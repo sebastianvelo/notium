@@ -1,4 +1,5 @@
-import Navbar from '@/components/layout/Navbar';
+import Navbar from '@/components/layout/navbar/Navbar';
+import LanguageProvider from '@/context/language/LanguageProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { PropsWithChildren } from 'react';
@@ -15,8 +16,10 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <LanguageProvider>
+          <Navbar />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

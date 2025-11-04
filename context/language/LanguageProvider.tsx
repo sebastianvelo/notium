@@ -1,3 +1,4 @@
+"use client"
 import React, { ReactNode, useEffect, useState } from "react";
 import LanguageContext from "./LanguageContext";
 import { getInitialLanguage, LangLS, LANGUAGES } from "./common/utils";

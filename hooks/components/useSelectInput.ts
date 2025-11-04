@@ -17,7 +17,7 @@ interface UseSelectInput {
     selectedValue: string | number;
     selectedLabel: string;
     isOpen: boolean;
-    selectRef: React.RefObject<HTMLElement | null>;
+    selectRef: React.RefObject<HTMLDivElement | null>;
     setIsOpen: (isOpen: boolean) => void;
     toggleDropdown: () => void;
     handleOptionSelect: (option: SelectOption) => void;
@@ -27,7 +27,7 @@ const useSelectInput = ({ options, initialValue = "", onChange }: UseSelectInput
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string | number>(initialValue);
     const [selectedLabel, setSelectedLabel] = useState("");
-    const selectRef = useRef<HTMLElement>(null);
+    const selectRef = useRef<HTMLDivElement>(null);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
     const handleOptionSelect = (option: SelectOption) => {
