@@ -26,7 +26,7 @@ const NewWorkspacePage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-secondary-50">
+        <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="mb-6">
                     <h1 className="text-3xl font-bold text-secondary-900">Create New Workspace</h1>

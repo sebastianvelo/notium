@@ -40,7 +40,7 @@ const WorkspacecNotesLayout: React.FC<WorkspacecNotesLayoutProps> = ({ workspace
     };
 
     return (
-        <div className="flex h-[calc(100vh-12rem)]">
+        <div className="flex">
             <NotesSidebar notes={notes} selectedNote={selectedNote} setSelectedNote={setSelectedNote} createNote={handleCreateNote} />
             <NoteEditorPanel note={selectedNote} onSave={handleSaveNote} onDelete={handleDeleteNote} />
         </div>

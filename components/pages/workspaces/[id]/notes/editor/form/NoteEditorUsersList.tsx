@@ -7,7 +7,7 @@ interface NoteEditorUsersListProps {
 const NoteEditorUsersList: React.FC<NoteEditorUsersListProps> = ({ note }) => {
   return (
     note && note.sharedWith && note.sharedWith.length > 0 && (
-      <div className="px-6 py-4 bg-secondary-50 border-t border-secondary-200">
+      <div className="px-6 py-4 bg-secondary-50 dark:bg-secondary-950 border-t border-secondary-200 dark:border-secondary-900">
         <h4 className="text-sm font-medium text-secondary-700 mb-2">Shared with</h4>
         <div className="flex flex-wrap gap-2">
           {note.sharedWith.map((userId) => (

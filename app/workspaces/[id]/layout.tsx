@@ -17,7 +17,7 @@ const WorkspaceLayout: React.FC<PropsWithChildren> = ({ children }) => {
     };
 
     return (
-        <div className="min-h-screen bg-secondary-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <WorkspaceLayoutHeader workspace={workspace} />
             {children}
         </div>

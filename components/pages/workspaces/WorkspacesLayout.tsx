@@ -29,7 +29,7 @@ const WorkspacesLayoutHeader: React.FC = () => {
 
 const WorkspacesEmptyList: React.FC = () => {
     return (
-        <div className="text-center py-12 bg-white rounded-lg border border-secondary-200">
+        <div className="text-center py-12 bg-white dark:bg-black rounded-lg border border-secondary-200 dark:border-secondary-900">
             <svg className="w-16 h-16 text-secondary-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
             </svg>
@@ -63,7 +63,7 @@ const WorkspacesLayoutList: React.FC<WorkspacesLayoutProps> = ({ workspaces, isL
 
 const WorkspacesLayout: React.FC<WorkspacesLayoutProps> = ({ workspaces, isLoading }) => {
     return (
-        <div className="min-h-screen bg-secondary-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <WorkspacesLayoutHeader />
             <WorkspacesLayoutList workspaces={workspaces} isLoading={isLoading} />
         </div>

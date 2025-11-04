@@ -11,7 +11,7 @@ interface NoteEditorFormProps {
 const NoteEditorForm: React.FC<NoteEditorFormProps> = ({ title, content, setTitle, setContent }) => {
   return (
     <>
-      <div className="p-6 border-b border-secondary-200">
+      <div className="p-6 border-b border-secondary-200 dark:border-secondary-900">
         <Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
