@@ -1,7 +1,7 @@
 "use client";
-import NoteItem from "@/components/pages/workspace/NoteItem";
-import MemberList from "@/components/pages/workspace/member-list/MemberList";
-import NoteEditor from "@/components/pages/workspace/note-editor/NoteEditor";
+import NoteItem from "@/components/pages/workspaces/note-item/NoteItem";
+import MemberList from "@/components/pages/workspaces/member-list/MemberList";
+import NoteEditor from "@/components/pages/workspaces/note-editor/NoteEditor";
 import Button from "@/components/ui/atoms/button/Button";
 import Tabs from "@/components/ui/molecules/Tabs";
 import { Member, Note } from "@/types";
