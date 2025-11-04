@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 import './globals.css';
+import Footer from '@/components/layout/footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <LanguageProvider>
           <Navbar />
           {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

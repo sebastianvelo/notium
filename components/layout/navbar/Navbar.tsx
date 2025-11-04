@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center">
                         <Link href="/workspaces" className="flex items-center">
-                            <span className="text-2xl font-bold text-primary-600">Notapp</span>
+                            <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">Notapp</span>
                         </Link>
                     </div>
 
