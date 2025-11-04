@@ -24,7 +24,7 @@ export interface Note {
     sharedWith: string[];
 }
 
-type MemberRole = "owner" | "editor" | "viewer";
+export type MemberRole = "owner" | "editor" | "viewer";
 
 export interface Member {
     id: string;
