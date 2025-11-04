@@ -5,13 +5,13 @@ import NoteEditorActions from "./NoteEditorActions";
 import NoteEditorForm from "./NoteEditorForm";
 import NoteEditorUsersList from "./NoteEditorUsersList";
 
-interface NoteEditorProps {
-  note?: Note;
-  onSave: (data: { title: string; content: string }) => void;
+export interface NoteEditorFormWrapperProps {
+  note?: Note | null;
+  onSave: (data: Pick<Note, "title" | "content">) => void;
   onDelete?: () => void;
 }
 
-const NoteEditor: React.FC<NoteEditorProps> = ({ note, onSave, onDelete }) => {
+const NoteEditorFormWrapper: React.FC<NoteEditorFormWrapperProps> = ({ note, onSave, onDelete }) => {
   const [title, setTitle] = useState(note?.title || "");
   const [content, setContent] = useState(note?.content || "");
 
@@ -28,4 +28,4 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ note, onSave, onDelete }) => {
   );
 }
 
-export default NoteEditor;
+export default NoteEditorFormWrapper;

@@ -1,5 +1,5 @@
 "use client"
-import WorkspaceMembersLayout from "@/components/pages/workspaces/members/WorkspaceMembersLayout";
+import WorkspaceMembersLayout from "@/components/pages/workspaces/[id]/members/WorkspaceMembersLayout";
 import { Member } from "@/types";
 
 const WorkspaceMembersPage: React.FC = () => {

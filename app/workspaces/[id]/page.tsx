@@ -1,5 +1,5 @@
 "use client";
-import WorkspaceLayout from "@/components/pages/workspaces/WorkspaceLayout";
+import WorkspaceLayout from "@/components/pages/workspaces/[id]/WorkspaceLayout";
 import { useParams } from "next/navigation";
 
 const WorkspacePage: React.FC = () => {

@@ -1,5 +1,5 @@
 "use client";
-import WorkspacecNotesLayout from "@/components/pages/workspaces/notes/WorkspacecNotesLayout";
+import WorkspacecNotesLayout from "@/components/pages/workspaces/[id]/notes/WorkspacecNotesLayout";
 import { Note, Workspace } from "@/types";
 import { useParams } from "next/navigation";
 

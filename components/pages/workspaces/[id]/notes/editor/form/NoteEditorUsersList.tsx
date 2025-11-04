@@ -1,7 +1,7 @@
 import { Note } from "@/types";
 
 interface NoteEditorUsersListProps {
-  note?: Note;
+  note?: Note | null;
 }
 
 const NoteEditorUsersList: React.FC<NoteEditorUsersListProps> = ({ note }) => {
