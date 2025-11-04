@@ -7,8 +7,8 @@ const LoginPage: React.FC = () => {
             <div className="max-w-md w-full">
                 <div className="bg-white rounded-2xl shadow-xl p-8">
                     <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">NotesApp</h1>
-                        <p className="text-gray-600">Collaborate on notes with your team</p>
+                        <h1 className="text-3xl font-bold text-secondary-900 mb-2">NotesApp</h1>
+                        <p className="text-secondary-600">Collaborate on notes with your team</p>
                     </div>
 
                     <div className="space-y-4">
@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
                         </Button>
                     </div>
 
-                    <p className="text-center text-sm text-gray-500 mt-6">
+                    <p className="text-center text-sm text-secondary-500 mt-6">
                         By signing in, you agree to our Terms of Service and Privacy Policy
                     </p>
                 </div>

@@ -2,7 +2,7 @@
 import Button from "@/components/ui/atoms/button/Button";
 import Input from "@/components/ui/atoms/Input";
 import Textarea from "@/components/ui/atoms/Textarea";
-import Card, { CardBody, CardHeader } from "@/components/ui/molecules/Card";
+import Card, { CardBody, CardHeader } from "@/components/ui/molecules/card/Card";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -26,16 +26,16 @@ const NewWorkspacePage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-secondary-50">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="mb-6">
-                    <h1 className="text-3xl font-bold text-gray-900">Create New Workspace</h1>
-                    <p className="text-gray-600 mt-1">Set up a new workspace for your team</p>
+                    <h1 className="text-3xl font-bold text-secondary-900">Create New Workspace</h1>
+                    <p className="text-secondary-600 mt-1">Set up a new workspace for your team</p>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <h2 className="text-xl font-semibold text-gray-900">Workspace Details</h2>
+                        <h2 className="text-xl font-semibold text-secondary-900">Workspace Details</h2>
                     </CardHeader>
                     <CardBody>
                         <form onSubmit={handleSubmit} className="space-y-6">

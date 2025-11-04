@@ -8,10 +8,10 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ children, className = "", onClick, hover = false }) => {
-    const hoverStyles = hover ? "hover:shadow-lg hover:border-gray-300 cursor-pointer" : "";
+    const hoverStyles = hover ? "hover:shadow-lg hover:border-secondary-300 cursor-pointer" : "";
 
     return (
-        <div className={`bg-white border border-gray-200 rounded-lg shadow-sm transition-all ${hoverStyles} ${className}`} onClick={onClick}>
+        <div className={`bg-white border border-secondary-200 rounded-lg shadow-sm transition-all ${hoverStyles} ${className}`} onClick={onClick}>
             {children}
         </div>
     );
@@ -21,7 +21,7 @@ export default Card;
 
 export const CardHeader: React.FC<ComponentProps<"div">> = ({ children, className = "" }) => {
     return (
-        <div className={`px-6 py-4 border-b border-gray-200 ${className}`}>
+        <div className={`px-6 py-4 border-b border-secondary-200 ${className}`}>
             {children}
         </div>
     );
@@ -37,7 +37,7 @@ export const CardBody: React.FC<ComponentProps<"div">> = ({ children, className 
 
 export const CardFooter: React.FC<ComponentProps<"div">> = ({ children, className = "" }) => {
     return (
-        <div className={`px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-lg ${className}`}>
+        <div className={`px-6 py-4 border-t border-secondary-200 bg-secondary-50 rounded-b-lg ${className}`}>
             {children}
         </div>
     );

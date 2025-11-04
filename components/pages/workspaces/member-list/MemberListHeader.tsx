@@ -7,7 +7,7 @@ interface MemberListHeaderProps {
 const MemberListHeader: React.FC<MemberListHeaderProps> = ({ onInvite }) => {
     return (
         <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">Team Members</h3>
+            <h3 className="text-lg font-semibold text-secondary-900">Team Members</h3>
             <Button onClick={onInvite}>
                 Invite Member
             </Button>
