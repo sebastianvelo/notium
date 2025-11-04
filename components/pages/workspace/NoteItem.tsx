@@ -7,11 +7,11 @@ interface NoteItemProps {
 }
 
 const NoteItem: React.FC<NoteItemProps> = ({ note, active = false, onClick }) => {
-    const statusStyle = active ? "bg-blue-50 border-blue-500" : "border-transparent hover:bg-gray-50";
+    const statusStyle = active ? "bg-primary-50 border-primary-500" : "border-transparent hover:bg-gray-50";
 
     return (
         <div onClick={onClick} className={`px-4 py-3 cursor-pointer border-l-2 transition-colors ${statusStyle}`}>
-            <h4 className={`font-medium text-sm mb-1 ${active ? "text-blue-900" : "text-gray-900"}`}>
+            <h4 className={`font-medium text-sm mb-1 ${active ? "text-primary-900" : "text-gray-900"}`}>
                 {note.title || "Untitled Note"}
             </h4>
             <p className="text-xs text-gray-500 truncate">

@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/components/layout/Navbar";
 import NoteItem from "@/components/pages/workspace/NoteItem";
 import MemberList from "@/components/pages/workspace/member-list/MemberList";
 import NoteEditor from "@/components/pages/workspace/note-editor/NoteEditor";
@@ -107,7 +106,7 @@ const WorkspacePage: React.FC = () => {
                         placeholder="Search notes..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                     />
                     <Button className="w-full mt-3" onClick={handleCreateNote}>
                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,8 +190,6 @@ const WorkspacePage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navbar />
-
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="mb-6">
                     <h1 className="text-3xl font-bold text-gray-900">{workspace.name}</h1>

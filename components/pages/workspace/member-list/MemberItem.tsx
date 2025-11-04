@@ -6,7 +6,7 @@ const getRoleBadgeColor = (role: MemberRole) => {
         case "owner":
             return "bg-purple-100 text-purple-700";
         case "editor":
-            return "bg-blue-100 text-blue-700";
+            return "bg-primary-100 text-primary-700";
         case "viewer":
             return "bg-gray-100 text-gray-700";
         default:

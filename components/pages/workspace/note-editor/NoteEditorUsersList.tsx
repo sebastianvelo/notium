@@ -11,7 +11,7 @@ const NoteEditorUsersList: React.FC<NoteEditorUsersListProps> = ({ note }) => {
         <h4 className="text-sm font-medium text-gray-700 mb-2">Shared with</h4>
         <div className="flex flex-wrap gap-2">
           {note.sharedWith.map((userId) => (
-            <span key={userId} className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+            <span key={userId} className="px-2 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">
               User {userId}
             </span>
           ))}

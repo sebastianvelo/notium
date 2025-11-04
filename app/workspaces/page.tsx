@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/components/layout/Navbar";
 import WorkspaceCard from "@/components/pages/workspace/WorkspaceCard";
 import Button from "@/components/ui/atoms/button/Button";
 import { Workspace } from "@/types";
@@ -36,8 +35,6 @@ const WorkspacesPage: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
@@ -56,7 +53,7 @@ const WorkspacesPage: React.FC = () => {
         
         {isLoading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
             <p className="text-gray-600 mt-4">Loading workspaces...</p>
           </div>
         ) : workspaces.length > 0 ? (
