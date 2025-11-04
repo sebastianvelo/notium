@@ -29,6 +29,6 @@ const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ workspace }) => {
             </Card>
         </Link>
     );
-}
+};
 
 export default WorkspaceCard;

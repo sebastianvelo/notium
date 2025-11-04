@@ -15,7 +15,7 @@ const Card: React.FC<CardProps> = ({ children, className = "", onClick, hover = 
             {children}
         </div>
     );
-}
+};
 
 export default Card;
 
@@ -25,7 +25,7 @@ export const CardHeader: React.FC<ComponentProps<"div">> = ({ children, classNam
             {children}
         </div>
     );
-}
+};
 
 export const CardBody: React.FC<ComponentProps<"div">> = ({ children, className = "" }) => {
     return (
@@ -33,7 +33,7 @@ export const CardBody: React.FC<ComponentProps<"div">> = ({ children, className 
             {children}
         </div>
     );
-}
+};
 
 export const CardFooter: React.FC<ComponentProps<"div">> = ({ children, className = "" }) => {
     return (
@@ -41,4 +41,4 @@ export const CardFooter: React.FC<ComponentProps<"div">> = ({ children, classNam
             {children}
         </div>
     );
-}
+};

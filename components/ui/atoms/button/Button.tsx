@@ -12,6 +12,6 @@ const Button: React.FC<ButtonProps> = ({ variant, size, children, className = ""
             {children}
         </button>
     );
-}
+};
 
 export default Button;
