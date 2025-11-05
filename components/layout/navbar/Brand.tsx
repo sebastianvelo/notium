@@ -8,8 +8,8 @@ const Brand: React.FC = () => {
             <Link href={ROUTES.WORKSPACES} className="flex items-center space-x-1">
                 <Notebook className="text-primary-600 dark:text-primary-400 h-4 w-4" />
                 <div>
-                    <span className="text-2xl tracking-widest font-bold text-primary-600 dark:text-primary-500 font-brand italic">Not</span>
-                    <span className="text-2xl tracking-widest font-bold text-primary-400 dark:text-primary-300 font-brand italic">ium</span>
+                    <span className="text-2xl tracking-widest font-bold text-primary-600 dark:text-primary-500 font-brand">Not</span>
+                    <span className="text-2xl tracking-widest font-bold text-primary-400 dark:text-primary-300 font-brand">ium</span>
                 </div>
             </Link>
         </div>

@@ -1,8 +1,10 @@
 "use client";
-import Button from "@/components/ui/atoms/button/Button";
+import ROUTES from "@/constants/routes";
+import Link from "next/link";
 import LanguageSelector from "./actions/LanguageSelector";
 import ThemeToggleButton from "./actions/ThemeToggleButton";
 import Brand from "./Brand";
+import Text from "@/components/ui/atoms/text/Text";
 
 const Navbar: React.FC = () => {
     return (
@@ -13,9 +15,9 @@ const Navbar: React.FC = () => {
                     <div className="flex items-center space-x-4">
                         <LanguageSelector />
                         <ThemeToggleButton />
-                        <Button variant="ghost" size="sm">
-                            Sign Out
-                        </Button>
+                        <Link href={ROUTES.LOGIN}>
+                            <Text>Sign in</Text>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,12 +1,12 @@
-import Footer from '@/components/layout/footer/Footer';
-import Navbar from '@/components/layout/navbar/Navbar';
-import LanguageProvider from '@/context/language/LanguageProvider';
-import type { Metadata } from 'next';
-import { Inter, Sora } from 'next/font/google';
-import { PropsWithChildren } from 'react';
-import './globals.css';
+import Footer from "@/components/layout/footer/Footer";
+import Navbar from "@/components/layout/navbar/Navbar";
+import LanguageProvider from "@/context/language/LanguageProvider";
+import type { Metadata } from "next";
+import { Inter, Sora } from "next/font/google";
+import { PropsWithChildren } from "react";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const sora = Sora({
   subsets: ["latin"],
@@ -15,8 +15,8 @@ export const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: 'NotesApp - Collaborative Note Taking',
-  description: 'Create and collaborate on notes with your team',
+  title: "Notium - Collaborative Note Taking",
+  description: "Create and collaborate on notes with your team",
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -25,7 +25,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={inter.className}>
         <LanguageProvider>
           <Navbar />
-          {children}
+          <div className="bg-gradient-to-br from-primary-100 via-primary-50 to-primary-100 dark:from-secondary-950 dark:via-primary-950 dark:to-secondary-950">
+            {children}
+          </div>
           <Footer />
         </LanguageProvider>
       </body>
