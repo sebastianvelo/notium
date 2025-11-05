@@ -1,4 +1,6 @@
 import Button from "@/components/ui/atoms/button/Button";
+import Title from "@/components/ui/atoms/title/Title";
+import I18n from "@/context/language/common/I18nKeys";
 
 export interface WorkspaceMembersLayoutHeaderProps {
     onInvite: () => void;
@@ -7,10 +9,8 @@ export interface WorkspaceMembersLayoutHeaderProps {
 const WorkspaceMembersLayoutHeader: React.FC<WorkspaceMembersLayoutHeaderProps> = ({ onInvite }) => {
     return (
         <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold text-secondary-900">Team Members</h3>
-            <Button onClick={onInvite}>
-                Invite Member
-            </Button>
+            <Title t={I18n.WORKSPACE.MEMBERS.TITLE} />
+            <Button onClick={onInvite} t={I18n.WORKSPACE.MEMBERS.INVITE} />
         </div>
     );
 };

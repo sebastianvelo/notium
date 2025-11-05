@@ -1,28 +1,28 @@
 "use client"
 import WorkspaceLayoutHeader from "@/components/pages/workspaces/[id]/WorkspaceLayout";
-import Workspace from "@/types/Workspace";
+import WorkspaceProvider from "@/context/workspace/WorkspaceContext";
+import WorkspaceService from "@/lib/service/WorkspaceService";
 import { useParams } from "next/navigation";
 import { PropsWithChildren } from "react";
 
 const WorkspaceLayout: React.FC<PropsWithChildren> = ({ children }) => {
     const params = useParams();
     const workspaceId = params.id as string;
+    const workspace = WorkspaceService.getWorkspaceById(workspaceId);
 
-    const workspace: Workspace = {
-        id: workspaceId,
-        name: "Personal Projects",
-        description: "My personal notes and ideas",
-        createdAt: "2024-01-01",
-        ownerId: "1",
-    };
+    if (!workspace) return (
+        <p>Not found</p>
+    );
 
     return (
-        <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950 max-w-7xl mx-auto">
-            <WorkspaceLayoutHeader workspace={workspace} />
-            <div className="px-4 sm:px-6 lg:px-8">
-                {children}
+        <WorkspaceProvider value={{ workspace, workspaceId }}>
+            <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950 max-w-7xl mx-auto">
+                <WorkspaceLayoutHeader />
+                <div className="px-4 sm:px-6 lg:px-8">
+                    {children}
+                </div>
             </div>
-        </div>
+        </WorkspaceProvider>
     );
 }
 

@@ -4,16 +4,13 @@ import Text from "@/components/ui/atoms/text/Text";
 import Title from "@/components/ui/atoms/title/Title";
 import I18n from "@/context/language/common/I18nKeys";
 import useI18N from "@/hooks/app/useI18N";
-import Workspace from "@/types/Workspace";
+import useWorkspace from "@/hooks/data/useWorkspace";
 import { useRouter } from "next/navigation";
 
-interface WorkspaceLayoutHeaderProps {
-    workspace: Workspace;
-}
-
-const WorkspaceLayoutHeader: React.FC<WorkspaceLayoutHeaderProps> = ({ workspace }) => {
+const WorkspaceLayoutHeader: React.FC = () => {
     const { t } = useI18N();
     const router = useRouter();
+    const { workspace, workspaceId } = useWorkspace();
 
     return (
         <div className="space-y-4 mb-4 bg-gradient-to-br from-accent-50 to-accent-200 dark:from-accent-800 dark:to-accent-950 p-4">
