@@ -1,5 +1,5 @@
 import Text from "@/components/ui/atoms/text/Text";
-import { Note } from "@/types";
+import Note from "@/types/Note";
 import React from "react";
 import NoteItem from "./item/NoteItem";
 

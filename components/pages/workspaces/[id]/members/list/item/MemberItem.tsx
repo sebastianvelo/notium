@@ -1,5 +1,5 @@
 import Button from "@/components/ui/atoms/button/Button";
-import { Member, MemberRole } from "@/types";
+import Member, { MemberRole } from "@/types/Member";
 
 const getRoleBadgeColor = (role: MemberRole) => {
     switch (role) {

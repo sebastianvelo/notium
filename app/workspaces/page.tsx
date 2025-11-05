@@ -1,6 +1,6 @@
 "use client";
 import WorkspacesLayout from "@/components/pages/workspaces/WorkspacesLayout";
-import { Workspace } from "@/types";
+import Workspace from "@/types/Workspace";
 import { useState } from "react";
 
 const WorkspacesPage: React.FC = () => {

@@ -1,4 +1,4 @@
-import { Workspace } from "@/types";
+import Workspace from "@/types/Workspace";
 import WorkspaceCard from "./card/WorkspaceCard";
 import WorkspacesEmptyList from "./WorkspacesEmptyList";
 

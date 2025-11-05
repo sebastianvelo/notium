@@ -1,4 +1,6 @@
-import { Workspace, Note, Member } from '@/types';
+import Member from "@/types/Member";
+import Note from "@/types/Note";
+import Workspace from "@/types/Workspace";
 
 // Authentication
 export async function signInWithGoogle() {

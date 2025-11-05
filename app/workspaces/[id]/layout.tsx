@@ -1,6 +1,6 @@
 "use client"
 import WorkspaceLayoutHeader from "@/components/pages/workspaces/[id]/WorkspaceLayout";
-import { Workspace } from "@/types";
+import Workspace from "@/types/Workspace";
 import { useParams } from "next/navigation";
 import { PropsWithChildren } from "react";
 

@@ -1,6 +1,7 @@
 "use client";
 import WorkspacesNotesLayout from "@/components/pages/workspaces/[id]/notes/WorkspacesNotesLayout";
-import { Note, Workspace } from "@/types";
+import Note from "@/types/Note";
+import Workspace from "@/types/Workspace";
 import { useParams } from "next/navigation";
 
 const WorkspaceNotesPage: React.FC = () => {

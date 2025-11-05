@@ -1,7 +1,7 @@
 import Text from "@/components/ui/atoms/text/Text";
 import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody } from "@/components/ui/molecules/card/Card";
-import { Workspace } from "@/types";
+import Workspace from "@/types/Workspace";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 

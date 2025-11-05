@@ -1,4 +1,5 @@
-import { Note, Workspace } from "@/types";
+import Note from "@/types/Note";
+import Workspace from "@/types/Workspace";
 import React, { useState } from "react";
 import NoteEditorPanel from "./editor/NoteEditorPanel";
 import NotesSidebar from "./sidebar/NotesSidebar";

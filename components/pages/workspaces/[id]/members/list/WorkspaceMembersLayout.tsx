@@ -1,4 +1,4 @@
-import { Member } from "@/types";
+import Member from "@/types/Member";
 import MemberItem from "./item/MemberItem";
 
 export interface WorkspaceMembersLayoutListProps {

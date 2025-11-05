@@ -4,7 +4,7 @@ import Text from "@/components/ui/atoms/text/Text";
 import Title from "@/components/ui/atoms/title/Title";
 import I18n from "@/context/language/common/I18nKeys";
 import useI18N from "@/hooks/app/useI18N";
-import { Workspace } from "@/types";
+import Workspace from "@/types/Workspace";
 import { useRouter } from "next/navigation";
 
 interface WorkspaceLayoutHeaderProps {
