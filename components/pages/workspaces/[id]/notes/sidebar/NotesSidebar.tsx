@@ -1,7 +1,7 @@
 import { Note } from "@/types";
 import React, { useState } from "react";
-import NotesSidebarActions from "./NotesSidebarActions";
-import NotesSidebarList from "./NotesSidebarList";
+import NotesSidebarActions from "./actions/NotesSidebarActions";
+import NotesSidebarBody from "./list/NotesSidebarBody";
 
 export interface NotesSidebarProps {
     notes: Note[];
@@ -24,25 +24,7 @@ const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, notes, selected
     return (
         <div className="w-80 border-r border-secondary-200 dark:border-secondary-900 flex flex-col">
             <NotesSidebarActions searchQuery={searchQuery} setSearchQuery={setSearchQuery} createNote={createNote} />
-            <div className="flex-1 overflow-y-auto">
-                <NotesSidebarList
-                    title="MyNotes"
-                    notes={myNotes}
-                    selectedNote={selectedNote}
-                    setSelectedNote={setSelectedNote}
-                />
-                <NotesSidebarList
-                    title="Shared with me"
-                    notes={sharedNotes}
-                    selectedNote={selectedNote}
-                    setSelectedNote={setSelectedNote}
-                />
-                {filteredNotes.length === 0 && (
-                    <div className="text-center py-8 text-secondary-500 text-sm">
-                        No notes found
-                    </div>
-                )}
-            </div>
+            <NotesSidebarBody myNotes={myNotes} sharedNotes={sharedNotes} filteredNotes={filteredNotes} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
         </div>
     );
 };

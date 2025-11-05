@@ -1,5 +1,5 @@
 "use client";
-import WorkspacecNotesLayout from "@/components/pages/workspaces/[id]/notes/WorkspacecNotesLayout";
+import WorkspacesNotesLayout from "@/components/pages/workspaces/[id]/notes/WorkspacesNotesLayout";
 import { Note, Workspace } from "@/types";
 import { useParams } from "next/navigation";
 
@@ -40,7 +40,7 @@ const WorkspaceNotesPage: React.FC = () => {
     ];
 
     return (
-        <WorkspacecNotesLayout workspace={workspace} notes={notes} />
+        <WorkspacesNotesLayout workspace={workspace} notes={notes} />
     );
 }
 

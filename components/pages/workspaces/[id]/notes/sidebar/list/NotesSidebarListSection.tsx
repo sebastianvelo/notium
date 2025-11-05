@@ -2,14 +2,14 @@ import { Note } from "@/types";
 import React from "react";
 import NoteItem from "./item/NoteItem";
 
-export interface NotesSidebarListProps {
+export interface NotesSidebarListSectionProps {
     title: string;
     notes: Note[];
     selectedNote: Note | null;
     setSelectedNote: (value: Note) => void;
 }
 
-const NotesSidebarList: React.FC<NotesSidebarListProps> = ({ title, notes, selectedNote, setSelectedNote }) => {
+const NotesSidebarListSection: React.FC<NotesSidebarListSectionProps> = ({ title, notes, selectedNote, setSelectedNote }) => {
     return notes.length > 0 && (
         <div className="py-2">
             <div className="px-4 py-2">
@@ -26,4 +26,4 @@ const NotesSidebarList: React.FC<NotesSidebarListProps> = ({ title, notes, selec
     );
 };
 
-export default NotesSidebarList;
+export default NotesSidebarListSection;

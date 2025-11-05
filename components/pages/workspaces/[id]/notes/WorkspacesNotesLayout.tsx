@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import NoteEditorPanel from "./editor/NoteEditorPanel";
 import NotesSidebar from "./sidebar/NotesSidebar";
 
-export interface WorkspacecNotesLayoutProps {
+export interface WorkspacesNotesLayoutProps {
     workspace: Workspace;
     notes: Note[];
 }
 
-const WorkspacecNotesLayout: React.FC<WorkspacecNotesLayoutProps> = ({ workspace, notes: fnotes }) => {
+const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ workspace, notes: fnotes }) => {
     const [notes, setNotes] = useState<Note[]>(fnotes);
     const [selectedNote, setSelectedNote] = useState<Note | null>(notes[0] || null);
 
@@ -47,4 +47,4 @@ const WorkspacecNotesLayout: React.FC<WorkspacecNotesLayoutProps> = ({ workspace
     );
 };
 
-export default WorkspacecNotesLayout;
+export default WorkspacesNotesLayout;
