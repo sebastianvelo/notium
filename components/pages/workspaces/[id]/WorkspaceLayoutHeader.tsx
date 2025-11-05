@@ -1,12 +1,11 @@
 "use client";
 import Button from "@/components/ui/atoms/button/Button";
-import Text from "@/components/ui/atoms/text/Text";
-import Title from "@/components/ui/atoms/title/Title";
 import ROUTES from "@/constants/routes";
 import useWorkspace from "@/hooks/data/useWorkspace";
 import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
-import WorkspaceLayoutHeaderTabs from "./WorkspaceLayoutHeaderTabs";
+import WorkspaceEditor from "./ui/editor/WorkspaceEditor";
+import WorkspaceHeaderTabs from "./ui/tabs/WorkspaceHeaderTabs";
 
 const WorkspaceLayoutHeader: React.FC = () => {
     const router = useRouter();
@@ -18,12 +17,9 @@ const WorkspaceLayoutHeader: React.FC = () => {
                 <Button variant="ghost" onClick={() => router.push(ROUTES.WORKSPACES)}>
                     <ChevronLeft />
                 </Button>
-                <div className="space-y-4">
-                    <div>
-                        <Title size="lg">{workspace.name}</Title>
-                        {workspace.description && <Text>{workspace.description}</Text>}
-                    </div>
-                    <WorkspaceLayoutHeaderTabs />
+                <div className="space-y-4 flex-1">
+                    <WorkspaceEditor workspace={workspace} />
+                    <WorkspaceHeaderTabs />
                 </div>
             </div>
         </div>

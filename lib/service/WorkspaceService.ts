@@ -1,5 +1,7 @@
 import WorkspaceRepository from "@/lib/repository/WorkspaceRepository";
 import Workspace from "@/types/Workspace";
+import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
+import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";
 
 const WorkspaceService = {
     getAllWorkspaces(): Workspace[] {
@@ -14,14 +16,11 @@ const WorkspaceService = {
         return WorkspaceRepository.findByOwnerId(ownerId);
     },
 
-    createWorkspace(data: Omit<Workspace, "id" | "createdAt">): Workspace {
+    createWorkspace(data: WorkspaceCreateDTO): Workspace {
         return WorkspaceRepository.create(data);
     },
 
-    updateWorkspace(
-        id: string,
-        data: Partial<Omit<Workspace, "id" | "createdAt" | "ownerId">>
-    ): Workspace | undefined {
+    updateWorkspace(id: string, data: Partial<WorkspaceUpdateDTO>): Workspace | undefined {
         return WorkspaceRepository.update(id, data);
     },
 

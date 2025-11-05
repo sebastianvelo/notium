@@ -1,5 +1,7 @@
-import Workspace from "@/types/Workspace";
+import Workspace, { WorkspaceStatus } from "@/types/Workspace";
 import WorkspacesDB from "../db/memory/WorkspaceDB";
+import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
+import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";
 
 const WorkspaceRepository = {
     findAll(): Workspace[] {
@@ -14,17 +16,18 @@ const WorkspaceRepository = {
         return WorkspacesDB.filter((w) => w.ownerId === ownerId);
     },
 
-    create(data: Omit<Workspace, "id" | "createdAt">): Workspace {
+    create(data: WorkspaceCreateDTO): Workspace {
         const newWorkspace: Workspace = {
             id: `ws_${WorkspacesDB.length + 1}`,
             createdAt: new Date().toISOString(),
+            status: WorkspaceStatus.ACTIVE,
             ...data,
         };
         WorkspacesDB.push(newWorkspace);
         return newWorkspace;
     },
 
-    update(id: string, data: Partial<Omit<Workspace, "id" | "createdAt" | "ownerId">>): Workspace | undefined {
+    update(id: string, data: Partial<WorkspaceUpdateDTO>): Workspace | undefined {
         const index = WorkspacesDB.findIndex((w) => w.id === id);
         if (index === -1) return undefined;
 

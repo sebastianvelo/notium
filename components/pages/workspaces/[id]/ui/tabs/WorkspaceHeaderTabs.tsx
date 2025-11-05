@@ -19,7 +19,7 @@ const getTabs = (workspaceId: string) => [
     }
 ];
 
-const WorkspaceLayoutHeaderTabs: React.FC = () => {
+const WorkspaceHeaderTabs: React.FC = () => {
     const pathname = usePathname();
     const { workspace } = useWorkspace();
     const tabs = getTabs(workspace.id);
@@ -35,4 +35,4 @@ const WorkspaceLayoutHeaderTabs: React.FC = () => {
     );
 };
 
-export default WorkspaceLayoutHeaderTabs;
+export default WorkspaceHeaderTabs;
