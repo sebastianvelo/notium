@@ -1,7 +1,9 @@
 import Input from "@/components/ui/atoms/input/Input";
+import Text from "@/components/ui/atoms/text/Text";
 import Textarea from "@/components/ui/atoms/textarea/Textarea";
 import I18n from "@/context/language/common/I18nKeys";
 import useI18N from "@/hooks/app/useI18N";
+import { Pen } from "lucide-react";
 
 interface NoteEditorFormProps {
   title: string;
@@ -15,7 +17,8 @@ const NoteEditorForm: React.FC<NoteEditorFormProps> = ({ title, content, setTitl
 
   return (
     <>
-      <div className="p-6 border-b border-secondary-200 dark:border-secondary-900">
+      <div className="p-6 border-b border-secondary-200 dark:border-secondary-900 flex items-center space-x-1">
+        <Text><Pen className="-rotate-90" /></Text>
         <Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}

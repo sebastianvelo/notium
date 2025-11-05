@@ -1,5 +1,5 @@
 "use client"
-import WorkspaceLayoutHeader from "@/components/pages/workspaces/[id]/WorkspaceLayout";
+import WorkspaceLayoutHeader from "@/components/pages/workspaces/[id]/WorkspaceLayoutHeader";
 import WorkspaceProvider from "@/context/workspace/WorkspaceContext";
 import WorkspaceService from "@/lib/service/WorkspaceService";
 import { useParams } from "next/navigation";

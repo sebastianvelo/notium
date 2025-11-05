@@ -15,17 +15,17 @@ const NotesSidebarActions: React.FC<NotesSidebarActionsProps> = ({ searchQuery, 
     const { t } = useI18N();
 
     return (
-        <div className="py-2 px-3 border-b border-secondary-200 dark:border-secondary-900 space-y-2">
+        <div className="pb-2 pr-3 border-b border-secondary-200 dark:border-secondary-900 space-y-2">
+            <Button size="sm" className="w-full flex items-center justify-center space-x-2" onClick={createNote}>
+                <Plus className="w-4 h-4" />
+                <span>{t(I18n.WORKSPACE.NOTES.NEW)}</span>
+            </Button>
             <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t(I18n.WORKSPACE.NOTES.SEARCH)}
                 className="text-sm font-bold p-0 focus:ring-0"
             />
-            <Button className="w-full flex items-center space-x-2" onClick={createNote}>
-                <Plus />
-                <span>{t(I18n.WORKSPACE.NOTES.NEW)}</span>
-            </Button>
         </div>
     );
 };
