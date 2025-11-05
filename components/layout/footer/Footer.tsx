@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     const { t } = useI18N();
 
     return (
-        <footer className="backdrop-blur-lg sticky bottom-0 border-t border-primary-200/50 dark:border-primary-900/50 shadow-lg dark:bg-black/90 text-white py-4">
+        <footer className="backdrop-blur-lg sticky bottom-0 border-t border-primary-200/50 dark:border-primary-900/50 shadow-lg dark:bg-black text-white py-4">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-row justify-between items-center">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-1 sm:space-y-0">

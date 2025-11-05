@@ -1,20 +1,9 @@
+import Badge from "@/components/ui/atoms/badge/Badge";
 import Button from "@/components/ui/atoms/button/Button";
 import Text from "@/components/ui/atoms/text/Text";
-import Member, { MemberRole } from "@/types/Member";
+import Member from "@/types/Member";
 import MemberItemAvatar from "./MemberItemAvatar";
-
-const getRoleBadgeColor = (role: MemberRole) => {
-    switch (role) {
-        case "owner":
-            return "bg-purple-100 text-purple-700";
-        case "editor":
-            return "bg-primary-100 text-primary-700";
-        case "viewer":
-            return "bg-secondary-100 text-secondary-700";
-        default:
-            return "bg-secondary-100 text-secondary-700";
-    }
-};
+import { getRoleBadgeColor } from "./getRoleBadgeColor";
 
 interface MemberItemProps {
     member: Member;
@@ -32,9 +21,7 @@ const MemberItem: React.FC<MemberItemProps> = ({ member }) => {
             </div>
 
             <div className="flex items-center space-x-3">
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${getRoleBadgeColor(member.role)}`}>
-                    {member.role}
-                </span>
+                <Badge color={getRoleBadgeColor(member.role)}>{member.role}</Badge>
                 {member.role !== "owner" && (
                     <Button variant="ghost" size="sm">
                         Remove
