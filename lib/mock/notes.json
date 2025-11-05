@@ -1,0 +1,60 @@
+[
+    {
+        "id": "note_1",
+        "workspaceId": "ws_1",
+        "title": "Project Ideas",
+        "content": "List of potential project ideas to explore:\n1. Task manager app\n2. Note-taking system\n3. Budget tracker",
+        "createdAt": "2024-01-16T10:30:00Z",
+        "updatedAt": "2024-01-20T15:45:00Z",
+        "createdBy": "usr_1",
+        "sharedWith": []
+    },
+    {
+        "id": "note_2",
+        "workspaceId": "ws_2",
+        "title": "Meeting Notes - Sprint Planning",
+        "content": "Sprint planning meeting outcomes and action items",
+        "createdAt": "2024-02-21T09:00:00Z",
+        "updatedAt": "2024-02-21T11:30:00Z",
+        "createdBy": "usr_2",
+        "sharedWith": [
+            "usr_1",
+            "usr_4"
+        ]
+    },
+    {
+        "id": "note_3",
+        "workspaceId": "ws_1",
+        "title": "Learning Resources",
+        "content": "Curated list of learning resources for TypeScript and React",
+        "createdAt": "2024-03-05T14:20:00Z",
+        "updatedAt": "2024-03-12T16:10:00Z",
+        "createdBy": "usr_1",
+        "sharedWith": [
+            "usr_3"
+        ]
+    },
+    {
+        "id": "note_4",
+        "workspaceId": "ws_4",
+        "title": "Campaign Strategy",
+        "content": "Q2 marketing campaign strategy and target audience analysis",
+        "createdAt": "2024-03-26T10:00:00Z",
+        "updatedAt": "2024-03-28T14:30:00Z",
+        "createdBy": "usr_3",
+        "sharedWith": [
+            "usr_2",
+            "usr_4"
+        ]
+    },
+    {
+        "id": "note_5",
+        "workspaceId": "ws_3",
+        "title": "Literature Review",
+        "content": "Summary of key papers and research findings",
+        "createdAt": "2024-03-11T08:45:00Z",
+        "updatedAt": "2024-03-15T12:20:00Z",
+        "createdBy": "usr_1",
+        "sharedWith": []
+    }
+]
