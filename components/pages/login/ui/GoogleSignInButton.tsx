@@ -1,12 +1,21 @@
 import Button from "@/components/ui/atoms/button/Button";
+import { createClient } from "@/lib/db/supabase/SupabaseClient";
 
-interface GoogleSignInButtonProps {
-}
+const GoogleSignInButton: React.FC = () => {
+    const handleSignIn = async () => {
+        const supabase = createClient();
 
-const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = () => {
+        await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${window.location.origin}/auth/callback`,
+            },
+        });
+    };
+
     return (
         <div className="space-y-4">
-            <Button className="w-full flex items-center justify-center space-x-3" size="lg">
+            <Button className="w-full flex items-center justify-center space-x-3" size="lg" onClick={handleSignIn}>
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path
                         fill="currentColor"

@@ -6,7 +6,7 @@ import Card, { CardBody, CardFooter, CardHeader } from "@/components/ui/molecule
 
 const LoginLayout: React.FC = () => {
     return (
-        <div className="min-h-screen bg-linear-to-br from-primary-50 to-indigo-100 flex items-baseline justify-center p-4">
+        <div className="min-h-screen bg-linear-to-br from-primary-50 to-indigo-100 flex items-center justify-center">
             <Card className="max-w-md" hover>
                 <CardHeader className="space-y-3">
                     <Title size="xl">Notium</Title>
