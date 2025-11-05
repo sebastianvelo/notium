@@ -1,5 +1,7 @@
 import Button from "@/components/ui/atoms/button/Button";
+import Text from "@/components/ui/atoms/text/Text";
 import Member, { MemberRole } from "@/types/Member";
+import MemberItemAvatar from "./MemberItemAvatar";
 
 const getRoleBadgeColor = (role: MemberRole) => {
     switch (role) {
@@ -20,16 +22,12 @@ interface MemberItemProps {
 
 const MemberItem: React.FC<MemberItemProps> = ({ member }) => {
     return (
-        <div key={member.id} className="flex items-center justify-between p-4 bg-white dark:bg-black border border-secondary-200 dark:border-secondary-900 rounded-lg">
+        <div className="flex items-center justify-between p-4 bg-white dark:bg-black border border-secondary-200 dark:border-secondary-900 rounded-lg">
             <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-secondary-300 dark:bg-secondary-800 rounded-full flex items-center justify-center">
-                    <span className="text-sm font-medium text-secondary-700">
-                        {member.name.split(" ").map(n => n[0]).join("").toUpperCase()}
-                    </span>
-                </div>
+                <MemberItemAvatar name={member.name} />
                 <div>
-                    <p className="font-medium text-secondary-900">{member.name}</p>
-                    <p className="text-sm text-secondary-500">{member.email}</p>
+                    <Text weight="bold">{member.name}</Text>
+                    <Text size="xs">{member.email}</Text>
                 </div>
             </div>
 
