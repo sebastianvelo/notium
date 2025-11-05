@@ -25,7 +25,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={inter.className}>
         <LanguageProvider>
           <Navbar />
-          <div className="bg-gradient-to-br from-primary-100 via-primary-50 to-primary-100 dark:from-secondary-950 dark:via-primary-950 dark:to-secondary-950">
+          <div className="bg-gradient-to-br from-primary-100 via-primary-50 to-primary-100 dark:from-black dark:via-primary-950 dark:to-black">
             {children}
           </div>
           <Footer />

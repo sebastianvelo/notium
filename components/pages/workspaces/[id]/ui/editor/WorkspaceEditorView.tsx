@@ -18,14 +18,14 @@ interface WorkspaceEditorViewProps {
 const WorkspaceEditorView: React.FC<WorkspaceEditorViewProps> = ({ name, description, editMode, isLoading, setName, setDescription, onSave, onCancel, onToggleEdit }) => (
     <div className="space-y-2">
         <div className="flex items-start gap-2">
-            <div className="flex-1 space-y-2">
+            <div className="space-y-2">
                 {editMode ? (
                     <>
                         <Input
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Workspace name"
-                            className="text-3xl font-bold border-0 p-0 focus:ring-0"
+                            className="text-2xl font-bold border-0 p-0 focus:ring-0"
                             disabled={isLoading}
                         />
                         <Input
@@ -43,7 +43,6 @@ const WorkspaceEditorView: React.FC<WorkspaceEditorViewProps> = ({ name, descrip
                     </>
                 )}
             </div>
-
             <WorkspaceEditorActions
                 editMode={editMode}
                 isLoading={isLoading}

@@ -4,26 +4,31 @@
         "name": "Personal Projects",
         "description": "My personal workspace for side projects",
         "createdAt": "2024-01-15T10:00:00Z",
-        "ownerId": "usr_1"
+        "ownerId": "usr_1",
+        "status": "ACTIVE"
     },
     {
         "id": "ws_2",
         "name": "Team Alpha",
         "description": "Collaborative workspace for Team Alpha",
         "createdAt": "2024-02-20T14:30:00Z",
-        "ownerId": "usr_2"
+        "ownerId": "usr_2",
+        "status": "ACTIVE"
+
     },
     {
         "id": "ws_3",
         "name": "Research Notes",
         "createdAt": "2024-03-10T09:15:00Z",
-        "ownerId": "usr_1"
+        "ownerId": "usr_1",
+        "status": "ACTIVE"
     },
     {
         "id": "ws_4",
         "name": "Marketing Campaign",
         "description": "Q2 2024 Marketing Campaign Planning",
         "createdAt": "2024-03-25T11:45:00Z",
-        "ownerId": "usr_3"
+        "ownerId": "usr_3",
+        "status": "ACTIVE"
     }
 ]
