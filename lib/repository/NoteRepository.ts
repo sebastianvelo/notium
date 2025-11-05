@@ -1,5 +1,5 @@
 import Note from "@/types/Note";
-import NotesDB from "../db/NoteDB";
+import NotesDB from "../db/memory/NoteDB";
 
 const NoteRepository = {
     findAll(): Note[] {

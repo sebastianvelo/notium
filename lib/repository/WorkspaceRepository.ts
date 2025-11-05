@@ -1,5 +1,5 @@
 import Workspace from "@/types/Workspace";
-import WorkspacesDB from "../db/WorkspaceDB";
+import WorkspacesDB from "../db/memory/WorkspaceDB";
 
 const WorkspaceRepository = {
     findAll(): Workspace[] {
