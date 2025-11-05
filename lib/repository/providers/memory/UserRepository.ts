@@ -1,5 +1,5 @@
+import UsersDB from "@/lib/db/memory/UserDB";
 import User from "@/types/User";
-import UsersDB from "../db/memory/UserDB";
 
 const UserRepository = {
     findAll(): User[] {

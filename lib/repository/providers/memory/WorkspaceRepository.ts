@@ -1,7 +1,7 @@
+import WorkspacesDB from "@/lib/db/memory/WorkspaceDB";
+import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
+import WorkspaceUpdateDTO from "@/lib/dto/WorkspaceUpdateDTO";
 import Workspace, { WorkspaceStatus } from "@/types/Workspace";
-import WorkspacesDB from "../db/memory/WorkspaceDB";
-import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
-import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";
 
 const WorkspaceRepository = {
     findAll(): Workspace[] {

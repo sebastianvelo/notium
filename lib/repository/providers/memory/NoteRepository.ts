@@ -1,5 +1,6 @@
+import NotesDB from "@/lib/db/memory/NoteDB";
+import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import Note from "@/types/Note";
-import NotesDB from "../db/memory/NoteDB";
 
 const NoteRepository = {
     findAll(): Note[] {
@@ -22,7 +23,7 @@ const NoteRepository = {
         return NotesDB.filter((n) => n.sharedWith.includes(userId));
     },
 
-    create(data: Omit<Note, "id" | "createdAt" | "updatedAt">): Note {
+    create(data: NoteCreateDTO): Note {
         const now = new Date().toISOString();
         const newNote: Note = {
             id: `note_${NotesDB.length + 1}`,

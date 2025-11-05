@@ -1,4 +1,6 @@
-import NoteRepository from "@/lib/repository/NoteRepository";
+import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
+import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
+import NoteRepository from "@/lib/repository/providers/memory/NoteRepository";
 import Note from "@/types/Note";
 
 const NoteService = {
@@ -35,14 +37,11 @@ const NoteService = {
         return uniqueNotes;
     },
 
-    createNote(data: Omit<Note, "id" | "createdAt" | "updatedAt">): Note {
+    createNote(data: NoteCreateDTO): Note {
         return NoteRepository.create(data);
     },
 
-    updateNote(
-        id: string,
-        data: Partial<Omit<Note, "id" | "createdAt" | "workspaceId" | "createdBy">>
-    ): Note | undefined {
+    updateNote(id: string, data: NoteUpdateDTO): Note | undefined {
         return NoteRepository.update(id, data);
     },
 
