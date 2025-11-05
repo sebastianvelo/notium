@@ -29,7 +29,7 @@ const WorkspacesPage: React.FC = () => {
     },
   ]);
 
-  return (<WorkspacesLayout workspaces={workspaces} isLoading={isLoading} />);
+  return <WorkspacesLayout workspaces={workspaces} isLoading={isLoading} />;
 }
 
 export default WorkspacesPage;
