@@ -1,6 +1,6 @@
 import Workspace from "@/types/Workspace";
 import WorkspaceCard from "./card/WorkspaceCard";
-import WorkspacesNewButton from "./new/WorkspacesNewButton";
+import NewWorkspaceButton from "./new/NewWorkspaceButton";
 import WorkspacesEmptyList from "./WorkspacesEmptyList";
 
 export interface WorkspacesLayoutListProps {
@@ -20,7 +20,7 @@ const WorkspacesLayoutList: React.FC<WorkspacesLayoutListProps> = ({ workspaces,
 
     return workspaces.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center">
-            <WorkspacesNewButton />
+            <NewWorkspaceButton />
             {workspaces.map(workspace => (
                 <WorkspaceCard key={workspace.id} workspace={workspace} />
             ))}

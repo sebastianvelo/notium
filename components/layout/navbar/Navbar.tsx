@@ -3,6 +3,7 @@ import Button from "@/components/ui/atoms/button/Button";
 import Link from "next/link";
 import LanguageSelector from "./actions/LanguageSelector";
 import ThemeToggleButton from "./actions/ThemeToggleButton";
+import ROUTES from "@/constants/routes";
 
 const Navbar: React.FC = () => {
     return (
@@ -10,7 +11,7 @@ const Navbar: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center">
-                        <Link href="/workspaces" className="flex items-center">
+                        <Link href={ROUTES.WORKSPACES} className="flex items-center">
                             <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">Notapp</span>
                         </Link>
                     </div>

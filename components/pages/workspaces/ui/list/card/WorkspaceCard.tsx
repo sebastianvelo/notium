@@ -1,6 +1,7 @@
 import Text from "@/components/ui/atoms/text/Text";
 import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody } from "@/components/ui/molecules/card/Card";
+import ROUTES from "@/constants/routes";
 import I18n from "@/context/language/common/I18nKeys";
 import Workspace from "@/types/Workspace";
 import { Calendar } from "lucide-react";
@@ -12,7 +13,7 @@ interface WorkspaceCardProps {
 
 const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ workspace }) => {
     return (
-        <Link href={`/workspaces/${workspace.id}`}>
+        <Link href={ROUTES.WORKSPACE(workspace.id)}>
             <Card hover>
                 <CardBody className="space-y-3">
                     <div>

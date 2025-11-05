@@ -1,15 +1,16 @@
 import Text from "@/components/ui/atoms/text/Text";
 import Card, { CardBody, CardHeader } from "@/components/ui/molecules/card/Card";
+import ROUTES from "@/constants/routes";
 import I18n from "@/context/language/common/I18nKeys";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
-const WorkspacesNewButton: React.FC = () => {
+const NewWorkspaceButton: React.FC = () => {
     return (
-        <Link href={`/workspaces/new`}>
+        <Link href={ROUTES.WORKSPACE_NEW}>
             <Card hover>
                 <CardHeader>
-                    <Text size="xs" t={I18n.WORKSPACES.NEW} />
+                    <Text t={I18n.WORKSPACES.NEW} />
                 </CardHeader>
                 <CardBody className="space-y-3 h-max flex items-center justify-center">
                     <Text>
@@ -21,4 +22,4 @@ const WorkspacesNewButton: React.FC = () => {
     );
 };
 
-export default WorkspacesNewButton;
+export default NewWorkspaceButton;
