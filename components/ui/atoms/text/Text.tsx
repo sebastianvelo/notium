@@ -8,13 +8,13 @@ interface TextProps extends TextStyleProps, React.HTMLAttributes<HTMLElement> {
     t?: string;
 }
 
-const Text: React.FC<TextProps> = ({ variant, size, weight, as = "p", children, t, className = "", ...props }) => {
+const Text: React.FC<TextProps> = ({ variant, size, weight, transform, align, as = "p", children, t, className = "", ...props }) => {
     const { t: translate } = useI18N();
     const Component = as;
     const content = t ? translate(t) : children;
 
     return (
-        <Component className={`${getStyle({ variant, size, weight })} ${className}`} {...props}>
+        <Component className={`${getStyle({ variant, size, weight, transform, align })} ${className}`} {...props}>
             {content}
         </Component>
     );

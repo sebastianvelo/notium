@@ -1,3 +1,5 @@
+import Text from "@/components/ui/atoms/text/Text";
+import I18n from "@/context/language/common/I18nKeys";
 import { Note } from "@/types";
 import React from "react";
 import NotesSidebarListSection from "./NotesSidebarListSection";
@@ -14,21 +16,19 @@ const NotesSidebarBody: React.FC<NotesSidebarBodyProps> = ({ myNotes, sharedNote
     return (
         <div className="flex-1 overflow-y-auto">
             <NotesSidebarListSection
-                title="MyNotes"
+                title={I18n.WORKSPACE.NOTES.MY}
                 notes={myNotes}
                 selectedNote={selectedNote}
                 setSelectedNote={setSelectedNote}
             />
             <NotesSidebarListSection
-                title="Shared with me"
+                title={I18n.WORKSPACE.NOTES.SHARED}
                 notes={sharedNotes}
                 selectedNote={selectedNote}
                 setSelectedNote={setSelectedNote}
             />
             {filteredNotes.length === 0 && (
-                <div className="text-center py-8 text-secondary-500 text-sm">
-                    No notes found
-                </div>
+                <Text size="sm" align="center" className="py-4" t={I18n.WORKSPACE.NOTES.EMPTY} />
             )}
         </div>
     );

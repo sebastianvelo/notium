@@ -1,6 +1,6 @@
-import { TextSize, TextVariant, TextWeight, TextStyleProps } from "./types";
+import { TextSize, TextVariant, TextWeight, TextStyleProps, TextAlign, TextTransform } from "./types";
 
-const baseStyles = "text-secondary-700";
+const baseStyles = "text-secondary-700 dark:text-secondary-300";
 
 const variants: Record<TextVariant, string> = {
     body: "leading-normal",
@@ -23,7 +23,21 @@ const weights: Record<TextWeight, string> = {
     bold: "font-bold",
 };
 
-const getStyle = ({ variant = "body", size = "md", weight = "normal" }: TextStyleProps) =>
-    `${baseStyles} ${variants[variant]} ${sizes[size]} ${weights[weight]}`;
+const aligns: Record<TextAlign, string> = {
+    left: "text-left",
+    center: "text-center",
+    right: "text-right",
+    justify: "text-justify",
+};
+
+const transforms: Record<TextTransform, string> = {
+    uppercase: "uppercase",
+    lowercase: "lowercase",
+    capitalize: "capitalize",
+    "normal-case": "normal-case",
+};
+
+const getStyle = ({ variant = "body", size = "md", weight = "normal", align = "left", transform = "normal-case" }: TextStyleProps) =>
+    `${baseStyles} ${variants[variant]} ${sizes[size]} ${weights[weight]} ${aligns[align]} ${transforms[transform]}`;
 
 export default getStyle;

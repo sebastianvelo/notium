@@ -1,5 +1,9 @@
 "use client";
 import Button from "@/components/ui/atoms/button/Button";
+import Text from "@/components/ui/atoms/text/Text";
+import Title from "@/components/ui/atoms/title/Title";
+import I18n from "@/context/language/common/I18nKeys";
+import useI18N from "@/hooks/app/useI18N";
 import { Workspace } from "@/types";
 import { useRouter } from "next/navigation";
 
@@ -8,19 +12,22 @@ interface WorkspaceLayoutHeaderProps {
 }
 
 const WorkspaceLayoutHeader: React.FC<WorkspaceLayoutHeaderProps> = ({ workspace }) => {
+    const { t } = useI18N();
     const router = useRouter();
 
     return (
-        <div>
-            <div className="mb-6">
-                <h1 className="text-3xl font-bold text-secondary-900">{workspace.name}</h1>
-                {workspace.description && (
-                    <p className="text-secondary-600 mt-1">{workspace.description}</p>
-                )}
-            </div>
+        <div className="space-y-4 mb-4">
             <div>
-                <Button onClick={() => router.push(`/workspaces/${workspace.id}/notes`)}>Notes</Button>
-                <Button onClick={() => router.push(`/workspaces/${workspace.id}/members`)}>Members</Button>
+                <Title size="lg">{workspace.name}</Title>
+                {workspace.description && <Text>{workspace.description}</Text>}
+            </div>
+            <div className="space-x-2">
+                <Button onClick={() => router.push(`/workspaces/${workspace.id}/notes`)}>
+                    {t(I18n.WORKSPACE.NOTES.BUTTON)}
+                </Button>
+                <Button onClick={() => router.push(`/workspaces/${workspace.id}/members`)}>
+                    {t(I18n.WORKSPACE.MEMBERS.BUTTON)}
+                </Button>
             </div>
         </div>
     );
