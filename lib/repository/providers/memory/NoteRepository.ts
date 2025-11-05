@@ -1,5 +1,6 @@
 import NotesDB from "@/lib/db/memory/NoteDB";
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
+import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import Note from "@/types/Note";
 
 const NoteRepository = {
@@ -35,7 +36,7 @@ const NoteRepository = {
         return newNote;
     },
 
-    update(id: string, data: Partial<Omit<Note, "id" | "createdAt" | "workspaceId" | "createdBy">>): Note | undefined {
+    update(id: string, data: NoteUpdateDTO): Note | undefined {
         const index = NotesDB.findIndex((n) => n.id === id);
         if (index === -1) return undefined;
 
