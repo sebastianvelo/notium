@@ -4,8 +4,10 @@ import Input from "@/components/ui/atoms/input/Input";
 import Textarea from "@/components/ui/atoms/textarea/Textarea";
 import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody, CardHeader } from "@/components/ui/molecules/card/Card";
+import ROUTES from "@/constants/routes";
 import I18n from "@/context/language/common/I18nKeys";
 import useI18N from "@/hooks/app/useI18N";
+import WorkspaceService from "@/lib/service/WorkspaceService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -19,14 +21,10 @@ const NewWorkspaceLayoutForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-
-        // TODO: Call API to create workspace
-        // await createWorkspace({ name, description });
-
-        // Simulate API call
-        setTimeout(() => {
-            router.push("/workspaces");
-        }, 1000);
+        WorkspaceService.createWorkspace({
+            name, description, ownerId: ""
+        });
+        router.push(ROUTES.WORKSPACES);
     };
 
     return (
@@ -57,7 +55,7 @@ const NewWorkspaceLayoutForm: React.FC = () => {
                             {t(I18n.WORKSPACE_NEW.FORM.CANCEL)}
                         </Button>
                         <Button type="submit" disabled={!name || isSubmitting}>
-                            {isSubmitting ? t(I18n.WORKSPACE_NEW.FORM.SUBMIT_LOADING) : t(I18n.WORKSPACE_NEW.FORM.SUBMIT)}
+                            {t(isSubmitting ? I18n.WORKSPACE_NEW.FORM.SUBMIT_LOADING : I18n.WORKSPACE_NEW.FORM.SUBMIT)}
                         </Button>
                     </div>
                 </form>
