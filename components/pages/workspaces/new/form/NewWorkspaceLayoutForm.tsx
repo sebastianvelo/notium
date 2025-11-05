@@ -2,12 +2,16 @@
 import Button from "@/components/ui/atoms/button/Button";
 import Input from "@/components/ui/atoms/input/Input";
 import Textarea from "@/components/ui/atoms/textarea/Textarea";
+import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody, CardHeader } from "@/components/ui/molecules/card/Card";
+import I18n from "@/context/language/common/I18nKeys";
+import useI18N from "@/hooks/app/useI18N";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const NewWorkspaceLayoutForm: React.FC = () => {
     const router = useRouter();
+    const { t } = useI18N();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,21 +32,21 @@ const NewWorkspaceLayoutForm: React.FC = () => {
     return (
         <Card>
             <CardHeader>
-                <h2 className="text-xl font-semibold text-secondary-900">Workspace Details</h2>
+                <Title size="xs" t={I18n.WORKSPACE_NEW.FORM.TITLE} />
             </CardHeader>
             <CardBody>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <Input
-                        label="Workspace Name"
-                        placeholder="e.g., Marketing Team, Personal Notes"
+                        label={t(I18n.WORKSPACE_NEW.FORM.NAME_LABEL)}
+                        placeholder={t(I18n.WORKSPACE_NEW.FORM.NAME_PLACEHOLDER)}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
 
                     <Textarea
-                        label="Description (Optional)"
-                        placeholder="What is this workspace for?"
+                        label={t(I18n.WORKSPACE_NEW.FORM.DESCRIPTION_LABEL)}
+                        placeholder={t(I18n.WORKSPACE_NEW.FORM.DESCRIPTION_PLACEHOLDER)}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         rows={4}
@@ -50,10 +54,10 @@ const NewWorkspaceLayoutForm: React.FC = () => {
 
                     <div className="flex justify-end space-x-3">
                         <Button type="button" variant="secondary" onClick={() => router.back()}>
-                            Cancel
+                            {t(I18n.WORKSPACE_NEW.FORM.CANCEL)}
                         </Button>
                         <Button type="submit" disabled={!name || isSubmitting}>
-                            {isSubmitting ? "Creating..." : "Create Workspace"}
+                            {isSubmitting ? t(I18n.WORKSPACE_NEW.FORM.SUBMIT_LOADING) : t(I18n.WORKSPACE_NEW.FORM.SUBMIT)}
                         </Button>
                     </div>
                 </form>
