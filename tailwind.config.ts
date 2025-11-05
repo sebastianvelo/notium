@@ -14,6 +14,9 @@ export default {
                 secondary: colors.slate,
                 accent: colors.indigo,
             },
+            fontFamily: {
+                brand: ["var(--font-sora)", "sans-serif"],
+            }
         },
     },
     plugins: [],
