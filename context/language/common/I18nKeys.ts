@@ -1,6 +1,9 @@
 const I18n = {
     WORKSPACES: {
-
+        HEADER: {
+            TITLE: "workspaces.header.title",
+            SUBTITLE: "workspaces.header.subtitle"
+        },
     },
     WORKSPACE: {
         HEADER: {
