@@ -1,6 +1,8 @@
 {
     "workspaces.header.title": "Tus espacios de trabajo",
     "workspaces.header.subtitle": "Accede y gestiona todos tus espacios desde un solo lugar",
+    "workspaces.new": "Nuevo espacio",
+    "workspaces.card.without-description": "Sin descripción",
     "workspace.header.title": "Resumen del espacio",
     "workspace.header.subtitle": "Gestiona notas, miembros y configuración",
     "workspace.notes.button": "Notas",

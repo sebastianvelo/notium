@@ -1,6 +1,8 @@
 {
     "workspaces.header.title": "Your workspaces",
     "workspaces.header.subtitle": "Access and manage all your workspaces in one place",
+    "workspaces.new": "New workspace",
+    "workspaces.card.without-description": "No descripción",
     "workspace.header.title": "Workspace overview",
     "workspace.header.subtitle": "Manage notes, members and settings",
     "workspace.notes.button": "Notes",

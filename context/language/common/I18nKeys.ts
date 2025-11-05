@@ -4,6 +4,10 @@ const I18n = {
             TITLE: "workspaces.header.title",
             SUBTITLE: "workspaces.header.subtitle"
         },
+        NEW: "workspaces.new",
+        CARD: {
+            WITHOUT_DESCRIPTION: "workspaces.card.without-description"
+        }
     },
     WORKSPACE: {
         HEADER: {

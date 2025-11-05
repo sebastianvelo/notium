@@ -1,6 +1,7 @@
 import Text from "@/components/ui/atoms/text/Text";
 import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody } from "@/components/ui/molecules/card/Card";
+import I18n from "@/context/language/common/I18nKeys";
 import Workspace from "@/types/Workspace";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
@@ -16,7 +17,7 @@ const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ workspace }) => {
                 <CardBody className="space-y-3">
                     <div>
                         <Title size="xs">{workspace.name}</Title>
-                        {workspace.description && <Text size="xs">{workspace.description}</Text>}
+                        <Text size="xs" t={workspace.description ?? I18n.WORKSPACES.CARD.WITHOUT_DESCRIPTION}/>
                     </div>
                     <Text size="xs" className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
