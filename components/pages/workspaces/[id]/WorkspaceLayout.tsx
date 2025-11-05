@@ -16,7 +16,7 @@ const WorkspaceLayoutHeader: React.FC<WorkspaceLayoutHeaderProps> = ({ workspace
     const router = useRouter();
 
     return (
-        <div className="space-y-4 mb-4">
+        <div className="space-y-4 mb-4 bg-gradient-to-br from-accent-50 to-accent-200 dark:from-accent-800 dark:to-accent-950 p-4">
             <div>
                 <Title size="lg">{workspace.name}</Title>
                 {workspace.description && <Text>{workspace.description}</Text>}

@@ -10,9 +10,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: colors.indigo,
+                primary: colors.blue,
                 secondary: colors.slate,
-                accent: colors.blue,
+                accent: colors.indigo,
             },
         },
     },
