@@ -18,7 +18,7 @@ const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, notes, selected
         note.content.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const myNotes = filteredNotes.filter(note => note.createdBy === "user1");
+    const myNotes = filteredNotes.filter(note => note.createdBy === "usr_1");
     const sharedNotes = filteredNotes.filter(note => note.sharedWith.length > 0);
 
     return (

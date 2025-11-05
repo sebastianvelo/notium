@@ -1,19 +1,25 @@
 "use client";
 import Note from "@/types/Note";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NoteEditorActions from "./NoteEditorActions";
 import NoteEditorForm from "./NoteEditorForm";
 import NoteEditorUsersList from "./NoteEditorUsersList";
+import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 
 export interface NoteEditorFormWrapperProps {
   note?: Note | null;
-  onSave: (data: Pick<Note, "title" | "content">) => void;
+  onSave: (data: NoteUpdateDTO) => void;
   onDelete?: () => void;
 }
 
 const NoteEditorFormWrapper: React.FC<NoteEditorFormWrapperProps> = ({ note, onSave, onDelete }) => {
   const [title, setTitle] = useState(note?.title || "");
   const [content, setContent] = useState(note?.content || "");
+
+  useEffect(() => {
+    setTitle(note?.title || "");
+    setContent(note?.content || "");
+  }, [note?.id]);
 
   const handleSave = () => {
     onSave({ title, content });

@@ -1,6 +1,7 @@
+import useWorkspaceNotes from "@/hooks/data/useWorkspaceNotes";
 import Note from "@/types/Note";
 import Workspace from "@/types/Workspace";
-import React, { useState } from "react";
+import React from "react";
 import NoteEditorPanel from "./editor/NoteEditorPanel";
 import NotesSidebar from "./sidebar/NotesSidebar";
 
@@ -9,41 +10,34 @@ export interface WorkspacesNotesLayoutProps {
     notes: Note[];
 }
 
-const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ workspace, notes: fnotes }) => {
-    const [notes, setNotes] = useState<Note[]>(fnotes);
-    const [selectedNote, setSelectedNote] = useState<Note | null>(notes[0] || null);
-
-    const handleCreateNote = () => {
-        const newNote: Note = {
-            id: Date.now().toString(),
-            title: "New Note",
-            content: "",
-            workspaceId: workspace.id,
-            createdBy: "user1",
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-            sharedWith: [],
-        };
-        setNotes([newNote, ...notes]);
-        setSelectedNote(newNote);
-    };
+const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ workspace, notes: initialNotes }) => {
+    const { notes, selectedNote, setSelectedNote, createNote, updateNote, deleteNote, } = useWorkspaceNotes({ workspaceId: workspace.id, initialNotes });
 
     const handleSaveNote = (data: { title: string; content: string }) => {
-        console.log("Saving note:", data);
-        // TODO: Call API to save note
+        if (selectedNote) {
+            updateNote(selectedNote.id, data);
+        }
     };
 
     const handleDeleteNote = () => {
         if (selectedNote) {
-            setNotes(notes.filter(n => n.id !== selectedNote.id));
-            setSelectedNote(notes[0] || null);
+            deleteNote(selectedNote.id);
         }
     };
 
     return (
         <div className="flex">
-            <NotesSidebar notes={notes} selectedNote={selectedNote} setSelectedNote={setSelectedNote} createNote={handleCreateNote} />
-            <NoteEditorPanel note={selectedNote} onSave={handleSaveNote} onDelete={handleDeleteNote} />
+            <NotesSidebar
+                notes={notes}
+                selectedNote={selectedNote}
+                setSelectedNote={setSelectedNote}
+                createNote={createNote}
+            />
+            <NoteEditorPanel
+                note={selectedNote}
+                onSave={handleSaveNote}
+                onDelete={handleDeleteNote}
+            />
         </div>
     );
 };
