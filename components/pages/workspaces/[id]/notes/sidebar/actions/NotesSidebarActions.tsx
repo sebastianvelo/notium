@@ -1,5 +1,5 @@
 import Button from "@/components/ui/atoms/button/Button";
-import Input from "@/components/ui/atoms/Input";
+import Input from "@/components/ui/atoms/input/Input";
 import { Plus } from "lucide-react";
 import React from "react";
 

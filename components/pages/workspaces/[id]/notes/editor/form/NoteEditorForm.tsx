@@ -1,5 +1,5 @@
-import Input from "@/components/ui/atoms/Input";
-import Textarea from "@/components/ui/atoms/Textarea";
+import Input from "@/components/ui/atoms/input/Input";
+import Textarea from "@/components/ui/atoms/textarea/Textarea";
 
 interface NoteEditorFormProps {
   title: string;

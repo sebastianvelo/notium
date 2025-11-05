@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/ui/atoms/button/Button";
-import Input from "@/components/ui/atoms/Input";
-import Textarea from "@/components/ui/atoms/Textarea";
+import Input from "@/components/ui/atoms/input/Input";
+import Textarea from "@/components/ui/atoms/textarea/Textarea";
 import Card, { CardBody, CardHeader } from "@/components/ui/molecules/card/Card";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
