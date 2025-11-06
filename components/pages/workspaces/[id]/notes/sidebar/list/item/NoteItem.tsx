@@ -1,3 +1,5 @@
+import Text from "@/components/ui/atoms/text/Text";
+import I18n from "@/context/language/common/I18nKeys";
 import NoteItemView from "@/types/view/NoteItemView";
 import { Clock } from "lucide-react";
 
@@ -7,13 +9,11 @@ interface NoteItemProps extends NoteItemView {
 }
 
 const NoteItem: React.FC<NoteItemProps> = ({ title, content, updatedAt, active = false, onClick }) => {
-    const statusStyle = active ? "bg-primary-50 border-primary-500 dark:bg-primary-950 border-primary-300" : "border-transparent hover:bg-secondary-50 dark:bg-secondary-950";
+    const statusStyle = active ? "bg-primary-50 border-primary-500 dark:bg-primary-950 border-primary-300" : "transition-all duration-200 border-transparent hover:bg-secondary-200 dark:bg-black dark:hover:bg-secondary-900";
 
     return (
         <div onClick={onClick} className={`px-4 py-3 cursor-pointer border-l-2 transition-colors ${statusStyle}`}>
-            <h4 className={`font-medium text-sm mb-1 ${active ? "text-primary-900 dark:text-primary-200" : "text-secondary-900 dark:text-secondary-300"}`}>
-                {title || "Untitled Note"}
-            </h4>
+            <Text size="sm" t={title || I18n.WORKSPACE.NOTES.UNTITLED} />
             <p className="text-xs text-secondary-500 dark:text-secondary-400 truncate">
                 {content ? content.substring(0, 60) : "No content"}
             </p>

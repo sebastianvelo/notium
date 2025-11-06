@@ -15,7 +15,6 @@ const UserService = {
     },
 
     async registerUser(data: Omit<User, "id">): Promise<User | null> {
-        // Verificar si el email ya existe
         const existingUser = await UserRepository.findByEmail(data.email);
         if (existingUser) {
             throw new Error("Email already registered");

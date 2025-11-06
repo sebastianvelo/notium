@@ -30,7 +30,8 @@ const I18n = {
             TEXTAREA_PLACEHOLDER: "workspace.notes.textarea-placeholder",
             SAVE: "workspace.notes.save",
             SHARE: "workspace.notes.share",
-            DELETE: "workspace.notes.delete"
+            DELETE: "workspace.notes.delete",
+            UNTITLED: "workspace.notes.untitled",
         },
         MEMBERS: {
             BUTTON: "workspace.members.button",

@@ -1,13 +1,10 @@
 import useWorkspaceEditor from "@/hooks/controller/useWorkspaceEditor";
-import WorkspaceItemView from "@/types/view/WorkspaceItemView";
+import useWorkspace from "@/hooks/data/useWorkspace";
 import WorkspaceEditorActions from "./WorkspaceEditorActions";
 import WorkspaceEditorHeader from "./WorkspaceEditorHeader";
 
-interface WorkspaceEditorProps {
-    workspace: WorkspaceItemView;
-}
-
-const WorkspaceEditor: React.FC<WorkspaceEditorProps> = ({ workspace }) => {
+const WorkspaceEditor: React.FC = () => {
+    const { workspace } = useWorkspace();
     const { name, description, editMode, isLoading, setName, setDescription, handleSave, handleCancel, toggleEdit } = useWorkspaceEditor({ workspace });
 
     return (

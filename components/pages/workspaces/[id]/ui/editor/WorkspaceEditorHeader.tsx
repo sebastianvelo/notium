@@ -1,8 +1,7 @@
 import Input from "@/components/ui/atoms/input/Input";
-import Text from "@/components/ui/atoms/text/Text";
-import Title from "@/components/ui/atoms/title/Title";
 import I18n from "@/context/language/common/I18nKeys";
 import useI18N from "@/hooks/app/useI18N";
+import WorkspaceHeader from "../header/WorkspaceHeader";
 
 interface WorkspaceEditorHeaderProps {
     name: string;
@@ -35,12 +34,7 @@ const WorkspaceEditorHeader: React.FC<WorkspaceEditorHeaderProps> = ({ name, des
                         disabled={isLoading}
                     />
                 </>
-            ) : (
-                <>
-                    <Title size="lg">{name}</Title>
-                    {description ? <Text t={description} /> : <Text t={I18n.WORKSPACES.CARD.WITHOUT_DESCRIPTION} />}
-                </>
-            )}
+            ) : (<WorkspaceHeader name={name} description={description} />)}
         </div>
     );
 };

@@ -8,7 +8,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ children, className = "", onClick, hover = false }) => {
-    const hoverStyles = hover ? "hover:shadow-lg hover:border-secondary-300 dark:border-secondary-800 cursor-pointer" : "";
+    const hoverStyles = hover ? "transition-all duration-200 hover:shadow-lg hover:border-secondary-300 dark:border-secondary-800 cursor-pointer hover:bg-white/80 dark:hover:bg-black/80" : "";
 
     return (
         <div className={`backdrop-blur-xl bg-white/50 dark:bg-black/50 border border-black/20 dark:border-white/20 rounded-lg shadow-sm transition-all ${hoverStyles} ${className}`} onClick={onClick}>

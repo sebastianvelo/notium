@@ -21,5 +21,11 @@
         "email": "alice.johnson@example.com",
         "name": "Alice Johnson",
         "avatar": "https://i.pravatar.cc/150?img=4"
+    },
+    {
+        "id": "c18d6a34-31cc-48d6-b93b-5155c9a9d884",
+        "email": "sebastianvelo.it@gmail.com",
+        "name": "Sebastian Velo",
+        "avatar": "https://i.pravatar.cc/150?img=4"
     }
 ]

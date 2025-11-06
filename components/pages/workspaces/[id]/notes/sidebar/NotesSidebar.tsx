@@ -18,8 +18,9 @@ const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, sections, selec
         <div className="w-80 border-r border-secondary-200 dark:border-secondary-900 flex flex-col">
             <NotesSidebarActions searchQuery={searchQuery} setSearchQuery={setSearchQuery} createNote={createNote} />
             <div className="flex-1 overflow-y-auto">
-                {sections.map((section) => (
+                {sections.map((section, idx) => (
                     <NotesSidebarListSection
+                        key={`notes-section-${idx}`}
                         selectedNote={selectedNote}
                         setSelectedNote={setSelectedNote}
                         {...section}

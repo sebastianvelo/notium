@@ -14,7 +14,6 @@ interface UseOAuthSignInReturn {
 const useOAuthSignIn = ({ provider = "google" }: UseOAuthSignInParams = {}): UseOAuthSignInReturn => {
     const handleSignIn = async () => {
         const supabase = createClient();
-
         await supabase.auth.signInWithOAuth({
             provider,
             options: {

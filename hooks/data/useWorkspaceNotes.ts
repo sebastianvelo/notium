@@ -6,12 +6,10 @@ import NoteItemView from "@/types/view/NoteItemView";
 import NotesListSectionView from "@/types/view/NotesListSectionView";
 import { useCallback, useEffect, useState } from "react";
 import useSWR from "swr";
+import useWorkspace from "./useWorkspace";
 
-interface UseWorkspaceNotesOptions {
-  workspaceId: string;
-}
-
-const useWorkspaceNotes = ({ workspaceId }: UseWorkspaceNotesOptions) => {
+const useWorkspaceNotes = () => {
+  const { workspace } = useWorkspace();
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
@@ -24,14 +22,14 @@ const useWorkspaceNotes = ({ workspaceId }: UseWorkspaceNotesOptions) => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const apiUrl = `${API_ROUTES.WORKSPACES.NOTES(workspaceId)}?query=${debouncedQuery}`;
+  const apiUrl = `${API_ROUTES.WORKSPACES.NOTES(workspace.id)}?query=${debouncedQuery}`;
 
   const { data: sections, error, mutate: mutateSections } = useSWR<NotesListSectionView[]>(apiUrl, fetcher);
 
   const selectedNote = sections?.flatMap(s => s.notes).find(n => n.id === selectedNoteId) || null;
 
   const createNote = useCallback(async () => {
-    const res = await fetch(API_ROUTES.WORKSPACES.NOTES(workspaceId), {
+    const res = await fetch(API_ROUTES.WORKSPACES.NOTES(workspace.id), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title: "", content: "" })
@@ -42,7 +40,7 @@ const useWorkspaceNotes = ({ workspaceId }: UseWorkspaceNotesOptions) => {
     await mutateSections();
     setSelectedNoteId(newNote.id);
     return newNote;
-  }, [workspaceId, mutateSections]);
+  }, [workspace.id, mutateSections]);
 
   const updateNote = useCallback(async (noteId: string, data: NoteUpdateDTO) => {
     const res = await fetch(API_ROUTES.NOTES.ID(noteId), {

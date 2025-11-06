@@ -18,9 +18,14 @@ export async function proxy(request: NextRequest) {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, options }) =>
+                    cookiesToSet.forEach(({ name, value }) =>
                         request.cookies.set(name, value)
                     )
+                    response = NextResponse.next({
+                        request: {
+                            headers: request.headers,
+                        },
+                    })
                     cookiesToSet.forEach(({ name, value, options }) =>
                         response.cookies.set(name, value, options)
                     )
@@ -32,15 +37,11 @@ export async function proxy(request: NextRequest) {
     const { data: { session } } = await supabase.auth.getSession();
     const user = session?.user;
 
-    /*if (!user && !request.nextUrl.pathname.startsWith(ROUTES.LOGIN)) {
-        return NextResponse.redirect(new URL(ROUTES.LOGIN, request.url));
-    }*/
-
     if (user && request.nextUrl.pathname.startsWith(ROUTES.LOGIN)) {
         return NextResponse.redirect(new URL(ROUTES.WORKSPACES, request.url));
     }
 
-    return;
+    return response; // ¡Importante! Devolver la respuesta actualizada
 }
 
 export const config = {

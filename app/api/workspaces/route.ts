@@ -1,4 +1,5 @@
 import { APIResponse } from "@/app/api/types";
+import { createClient } from "@/lib/db/supabase/SupabaseServer";
 import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
 import WorkspaceService from "@/lib/service/WorkspaceService";
 import Workspace from "@/types/model/Workspace";
@@ -7,7 +8,11 @@ import { NextResponse } from "next/server";
 
 export async function GET(): APIResponse<WorkspaceItemView[]> {
     try {
-        const workspaces: WorkspaceItemView[] = await WorkspaceService.getWorkspacesViewByOwner("usr_1");
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        
+        const workspaces: WorkspaceItemView[] = await WorkspaceService.getWorkspacesViewByOwner(user.id);
         return NextResponse.json(workspaces);
     } catch (err) {
         return NextResponse.json({ error: "Failed to fetch" }, { status: 500 });
