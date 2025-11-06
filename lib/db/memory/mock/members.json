@@ -12,5 +12,12 @@
         "workspaceId": "ws_1",
         "role": "editor",
         "joinedAt": "2024-01-02T10:00:00Z"
+    },
+    {
+        "id": "mem_3",
+        "userId": "usr_2",
+        "workspaceId": "ws_3",
+        "role": "owner",
+        "joinedAt": "2024-01-02T10:00:00Z"
     }
 ]

@@ -17,11 +17,10 @@ const useWorkspaceNotes = ({ workspaceId, initialNotes }: UseWorkspaceNotesOptio
     const res = await fetch(API_ROUTES.WORKSPACES.NOTES(workspaceId), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: "New Note", content: "" })
+      body: JSON.stringify({ title: "", content: "" })
     });
     if (!res.ok) throw new Error("Failed to create");
     const newNote: Note = await res.json();
-    console.log(newNote)
     setNotes(prev => [newNote, ...prev]);
     setSelectedNote(newNote);
     mutate(API_ROUTES.WORKSPACES.NOTES(workspaceId));
