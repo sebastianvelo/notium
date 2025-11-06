@@ -36,6 +36,10 @@ const I18n = {
             BUTTON: "workspace.members.button",
             TITLE: "workspace.members.title",
             INVITE: "workspace.members.invite",
+            EMPTY: "workspace.members.empty"
+        },
+        ADMIN: {
+            BUTTON: "workspace.admin.button"
         }
     },
     WORKSPACE_NEW: {

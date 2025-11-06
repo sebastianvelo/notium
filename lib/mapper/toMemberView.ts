@@ -5,7 +5,8 @@ import getRoleBadgeColor from "./common/getRoleBadgeColor";
 
 const toMemberView = (member: Member, user: User): MemberView => {
     return {
-        id: user.id,
+        id: member.id,
+        userId: user.id,
         name: user.name,
         email: user.email,
         avatar: user.avatar ?? undefined,

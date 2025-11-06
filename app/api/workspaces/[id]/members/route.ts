@@ -56,3 +56,39 @@ export async function POST(request: Request, { params }: ParamsId): APIResponse<
         return NextResponse.json({ error: "Failed to add member" }, { status: 500 });
     }
 }
+
+export async function PATCH(request: Request) {
+    try {
+        const { memberId, role } = await request.json();
+        if (!memberId || !role) {
+            return NextResponse.json({ error: "memberId and role are required" }, { status: 400 });
+        }
+        const updated = await MemberService.updateMemberRole(memberId, role);
+        if (!updated) {
+            return NextResponse.json({ error: "Member not found" }, { status: 404 });
+        }
+        return NextResponse.json(updated, { status: 200 });
+    } catch (err) {
+        console.error(err);
+        return NextResponse.json({ error: "Failed to update member role" }, { status: 500 });
+    }
+}
+
+export async function DELETE(request: Request) {
+    try {
+        const { memberId } = await request.json();
+        if (!memberId) {
+            return NextResponse.json({ error: "memberId is required" }, { status: 400 });
+        }
+
+        const deleted = await MemberService.removeMember(memberId);
+        if (!deleted) {
+            return NextResponse.json({ error: "Member not found" }, { status: 404 });
+        }
+
+        return NextResponse.json({ success: true }, { status: 200 });
+    } catch (err) {
+        console.error(err);
+        return NextResponse.json({ error: "Failed to remove member" }, { status: 500 });
+    }
+}
