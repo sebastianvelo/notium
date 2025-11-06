@@ -1,4 +1,5 @@
 import useWorkspaceNotes from "@/hooks/data/useWorkspaceNotes";
+import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import Note from "@/types/model/Note";
 import Workspace from "@/types/model/Workspace";
 import React from "react";
@@ -13,7 +14,7 @@ export interface WorkspacesNotesLayoutProps {
 const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ workspace, notes: initialNotes }) => {
     const { notes, selectedNote, setSelectedNote, createNote, updateNote, deleteNote, } = useWorkspaceNotes({ workspaceId: workspace.id, initialNotes });
 
-    const handleSaveNote = (data: { title: string; content: string }) => {
+    const handleSaveNote = (data: NoteUpdateDTO) => {
         if (selectedNote) {
             updateNote(selectedNote.id, data);
         }

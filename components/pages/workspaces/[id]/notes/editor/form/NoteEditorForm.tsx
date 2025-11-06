@@ -17,7 +17,7 @@ const NoteEditorForm: React.FC<NoteEditorFormProps> = ({ title, content, setTitl
 
   return (
     <>
-      <div className="p-6 border-b border-secondary-200 dark:border-secondary-900 flex items-center space-x-1">
+      <div className="px-6 py-4 border-b border-secondary-200 dark:border-secondary-900 flex items-center space-x-1">
         <Text><Pen className="-rotate-90" /></Text>
         <Input
           value={title}
