@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
 import WorkspaceService from "@/lib/service/WorkspaceService";
+import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const workspaces = await WorkspaceService.getAllWorkspaces();
+        const workspaces = await WorkspaceService.getWorkspacesByOwner("usr_1");
         return NextResponse.json(workspaces);
     } catch (err) {
         return NextResponse.json({ error: "Failed to fetch" }, { status: 500 });

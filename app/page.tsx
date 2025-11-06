@@ -1,7 +1,6 @@
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+import ROUTES from "@/constants/routes";
+import { redirect } from "next/navigation";
 
-    </div>
-  );
+export default function Home() {
+  redirect(ROUTES.WORKSPACES);
 }

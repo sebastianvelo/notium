@@ -1,6 +1,6 @@
-import { createServerClient } from "@supabase/ssr"
-import { NextResponse, type NextRequest } from "next/server"
-import ROUTES from "./constants/routes"
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
+import ROUTES from "./constants/routes";
 
 export async function proxy(request: NextRequest) {
     let response = NextResponse.next({
@@ -21,7 +21,6 @@ export async function proxy(request: NextRequest) {
                     cookiesToSet.forEach(({ name, value, options }) =>
                         request.cookies.set(name, value)
                     )
-                    // actualiza response cookies
                     cookiesToSet.forEach(({ name, value, options }) =>
                         response.cookies.set(name, value, options)
                     )
@@ -33,14 +32,15 @@ export async function proxy(request: NextRequest) {
     const { data: { session } } = await supabase.auth.getSession();
     const user = session?.user;
 
-    if (!user && !request.nextUrl.pathname.startsWith(ROUTES.LOGIN)) {
+    /*if (!user && !request.nextUrl.pathname.startsWith(ROUTES.LOGIN)) {
         return NextResponse.redirect(new URL(ROUTES.LOGIN, request.url));
-    }
+    }*/
+
     if (user && request.nextUrl.pathname.startsWith(ROUTES.LOGIN)) {
         return NextResponse.redirect(new URL(ROUTES.WORKSPACES, request.url));
     }
 
-    return ;
+    return;
 }
 
 export const config = {
