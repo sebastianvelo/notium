@@ -1,30 +1,31 @@
 import NotesDB from "@/lib/db/memory/NoteDB";
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
+import INoteRepository from "@/lib/repository/note/interface";
 import Note from "@/types/Note";
 
-const NoteRepository = {
-    findAll(): Note[] {
+class NoteRepositoryMemory implements INoteRepository {
+    async findAll(): Promise<Note[]> {
         return NotesDB;
-    },
+    }
 
-    findById(id: string): Note | undefined {
-        return NotesDB.find((n) => n.id === id);
-    },
+    async findById(id: string): Promise<Note | null> {
+        return NotesDB.find((n) => n.id === id) || null;
+    }
 
-    findByWorkspaceId(workspaceId: string): Note[] {
+    async findByWorkspaceId(workspaceId: string): Promise<Note[]> {
         return NotesDB.filter((n) => n.workspaceId === workspaceId);
-    },
+    }
 
-    findByCreatedBy(userId: string): Note[] {
+    async findByCreatedBy(userId: string): Promise<Note[]> {
         return NotesDB.filter((n) => n.createdBy === userId);
-    },
+    }
 
-    findSharedWithUser(userId: string): Note[] {
+    async findSharedWithUser(userId: string): Promise<Note[]> {
         return NotesDB.filter((n) => n.sharedWith.includes(userId));
-    },
+    }
 
-    create(data: NoteCreateDTO): Note {
+    async create(data: NoteCreateDTO): Promise<Note> {
         const now = new Date().toISOString();
         const newNote: Note = {
             id: `note_${NotesDB.length + 1}`,
@@ -34,11 +35,11 @@ const NoteRepository = {
         };
         NotesDB.push(newNote);
         return newNote;
-    },
+    }
 
-    update(id: string, data: NoteUpdateDTO): Note | undefined {
+    async update(id: string, data: NoteUpdateDTO): Promise<Note | null> {
         const index = NotesDB.findIndex((n) => n.id === id);
-        if (index === -1) return undefined;
+        if (index === -1) return null;
 
         NotesDB[index] = {
             ...NotesDB[index],
@@ -46,34 +47,33 @@ const NoteRepository = {
             updatedAt: new Date().toISOString(),
         };
         return NotesDB[index];
-    },
+    }
 
-    delete(id: string): boolean {
+    async delete(id: string): Promise<boolean> {
         const index = NotesDB.findIndex((n) => n.id === id);
         if (index === -1) return false;
 
         NotesDB.splice(index, 1);
         return true;
-    },
+    }
 
-    shareWithUser(noteId: string, userId: string): Note | undefined {
-        const note = this.findById(noteId);
+    async shareWithUser(noteId: string, userId: string): Promise<Note | null> {
+        const note = await this.findById(noteId);
         if (!note || note.sharedWith.includes(userId)) return note;
 
         return this.update(noteId, {
             sharedWith: [...note.sharedWith, userId],
         });
-    },
+    }
 
-    unshareWithUser(noteId: string, userId: string): Note | undefined {
-        const note = this.findById(noteId);
-        if (!note) return undefined;
+    async unshareWithUser(noteId: string, userId: string): Promise<Note | null> {
+        const note = await this.findById(noteId);
+        if (!note) return null;
 
         return this.update(noteId, {
             sharedWith: note.sharedWith.filter((id) => id !== userId),
         });
-    },
-};
+    }
+}
 
-export default NoteRepository;
-
+export default new NoteRepositoryMemory();

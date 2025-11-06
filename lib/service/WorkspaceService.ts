@@ -1,4 +1,4 @@
-import WorkspaceRepository from "@/lib/repository/providers/memory/WorkspaceRepository";
+import WorkspaceRepository from "@/lib/repository/workspace/providers/memory";
 import Workspace from "@/types/Workspace";
 import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";

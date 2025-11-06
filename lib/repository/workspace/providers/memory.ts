@@ -1,22 +1,23 @@
 import WorkspacesDB from "@/lib/db/memory/WorkspaceDB";
 import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "@/lib/dto/WorkspaceUpdateDTO";
+import IWorkspaceRepository from "@/lib/repository/workspace/interface";
 import Workspace, { WorkspaceStatus } from "@/types/Workspace";
 
-const WorkspaceRepository = {
-    findAll(): Workspace[] {
+class WorkspaceRepositoryMemory implements IWorkspaceRepository {
+    async findAll(): Promise<Workspace[]> {
         return WorkspacesDB;
-    },
+    }
 
-    findById(id: string): Workspace | undefined {
-        return WorkspacesDB.find((w) => w.id === id);
-    },
+    async findById(id: string): Promise<Workspace | null> {
+        return WorkspacesDB.find((w) => w.id === id) || null;
+    }
 
-    findByOwnerId(ownerId: string): Workspace[] {
+    async findByOwnerId(ownerId: string): Promise<Workspace[]> {
         return WorkspacesDB.filter((w) => w.ownerId === ownerId);
-    },
+    }
 
-    create(data: WorkspaceCreateDTO): Workspace {
+    async create(data: WorkspaceCreateDTO): Promise<Workspace> {
         const newWorkspace: Workspace = {
             id: `ws_${WorkspacesDB.length + 1}`,
             createdAt: new Date().toISOString(),
@@ -25,24 +26,23 @@ const WorkspaceRepository = {
         };
         WorkspacesDB.push(newWorkspace);
         return newWorkspace;
-    },
+    }
 
-    update(id: string, data: Partial<WorkspaceUpdateDTO>): Workspace | undefined {
+    async update(id: string, data: Partial<WorkspaceUpdateDTO>): Promise<Workspace | null> {
         const index = WorkspacesDB.findIndex((w) => w.id === id);
-        if (index === -1) return undefined;
+        if (index === -1) return null;
 
         WorkspacesDB[index] = { ...WorkspacesDB[index], ...data };
         return WorkspacesDB[index];
-    },
+    }
 
-    delete(id: string): boolean {
+    async delete(id: string): Promise<boolean> {
         const index = WorkspacesDB.findIndex((w) => w.id === id);
         if (index === -1) return false;
 
         WorkspacesDB.splice(index, 1);
         return true;
-    },
-};
+    }
+}
 
-export default WorkspaceRepository;
-
+export default new WorkspaceRepositoryMemory();

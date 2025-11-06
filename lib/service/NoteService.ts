@@ -1,6 +1,6 @@
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
-import NoteRepository from "@/lib/repository/providers/memory/NoteRepository";
+import NoteRepository from "@/lib/repository/note/providers/memory";
 import Note from "@/types/Note";
 
 const NoteService = {

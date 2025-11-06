@@ -1,4 +1,4 @@
-import UserRepository from "@/lib/repository/providers/memory/UserRepository";
+import UserRepository from "@/lib/repository/user/providers/memory";
 import User from "@/types/User";
 
 const UserService = {

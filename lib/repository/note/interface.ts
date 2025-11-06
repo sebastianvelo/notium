@@ -2,7 +2,7 @@ import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import Note from "@/types/Note";
 
-export interface INoteRepository {
+interface INoteRepository {
     findAll(): Promise<Note[]>;
     findById(id: string): Promise<Note | null>;
     findByWorkspaceId(workspaceId: string): Promise<Note[]>;
@@ -14,3 +14,5 @@ export interface INoteRepository {
     shareWithUser(noteId: string, userId: string): Promise<Note | null>;
     unshareWithUser(noteId: string, userId: string): Promise<Note | null>;
 }
+
+export default INoteRepository;

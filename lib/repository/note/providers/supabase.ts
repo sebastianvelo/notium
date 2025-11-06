@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/db/supabase/SupabaseServer';
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
-import { INoteRepository } from "@/lib/repository/interfaces/INoteRepository";
+import INoteRepository from "@/lib/repository/note/interface";
 import Note from "@/types/Note";
 
 class NoteRepositorySupabase implements INoteRepository {

@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/db/supabase/SupabaseServer';
 import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "@/lib/dto/WorkspaceUpdateDTO";
-import { IWorkspaceRepository } from "@/lib/repository/interfaces/IWorkspaceRepository";
+import IWorkspaceRepository from "@/lib/repository/workspace/interface";
 import Workspace, { WorkspaceStatus } from "@/types/Workspace";
 
 class WorkspaceRepositorySupabase implements IWorkspaceRepository {

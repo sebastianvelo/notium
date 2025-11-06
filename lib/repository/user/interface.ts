@@ -1,6 +1,6 @@
 import User from "@/types/User";
 
-export interface IUserRepository {
+interface IUserRepository {
     findAll(): Promise<User[]>;
     findById(id: string): Promise<User | null>;
     findByEmail(email: string): Promise<User | null>;
@@ -8,3 +8,5 @@ export interface IUserRepository {
     update(id: string, data: Partial<Omit<User, "id">>): Promise<User | null>;
     upsertFromAuth(authUser: any): Promise<User>;
 }
+
+export default IUserRepository;

@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/db/supabase/SupabaseServer';
+import IUserRepository from "@/lib/repository/user/interface";
 import User from "@/types/User";
-import { IUserRepository } from "@/lib/repository/interfaces/IUserRepository";
 
 class UserRepositorySupabase implements IUserRepository {
     async findAll(): Promise<User[]> {
