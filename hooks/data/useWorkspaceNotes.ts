@@ -20,6 +20,7 @@ const useWorkspaceNotes = ({ workspaceId, initialNotes }: UseWorkspaceNotesOptio
     });
     if (!res.ok) throw new Error("Failed to create");
     const newNote: Note = await res.json();
+    console.log(newNote)
     setNotes(prev => [newNote, ...prev]);
     setSelectedNote(newNote);
     mutate(API_ROUTES.WORKSPACES.NOTES(workspaceId));
