@@ -20,6 +20,7 @@ export async function PUT(request: Request, { params }: ParamsNoteId): APIRespon
     try {
         const body = await request.json();
         const updated: Note | null = await NoteService.updateNote(noteId, body);
+        console.log(updated)
         if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
         return NextResponse.json(updated);
     } catch (err) {

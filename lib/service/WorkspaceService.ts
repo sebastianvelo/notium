@@ -1,7 +1,9 @@
+import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
+import WorkspaceUpdateDTO from "@/lib/dto/WorkspaceUpdateDTO";
+import toWorkspaceItemView from "@/lib/mapper/toWorkspaceView";
 import WorkspaceRepository from "@/lib/repository/workspace";
 import Workspace from "@/types/model/Workspace";
-import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
-import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";
+import WorkspaceItemView from "@/types/view/WorkspaceItemView";
 import MemberService from "./MemberService";
 
 const WorkspaceService = {
@@ -19,12 +21,11 @@ const WorkspaceService = {
 
     async createWorkspace(data: WorkspaceCreateDTO): Promise<Workspace> {
         const workspace = await WorkspaceRepository.create(data); 
-        const member = await MemberService.addMember({
+        await MemberService.addMember({
             userId: data.ownerId,
             workspaceId: workspace.id,
             role: "owner"
         });
-        console.log(member)
         return workspace;
     },
 
@@ -38,7 +39,17 @@ const WorkspaceService = {
 
     addMember(id: string, userId: string, role: string): any { //TODO FIX THIS
         return "";
-    }
+    },
+
+    async getWorkspaceViewById(id: string): Promise<WorkspaceItemView | null> {
+        const workspace = await WorkspaceRepository.findById(id);
+        return workspace ? toWorkspaceItemView(workspace) : null;
+    },
+
+    async getWorkspacesViewByOwner(ownerId: string): Promise<WorkspaceItemView[]> {
+        const workspaces = await WorkspaceRepository.findByOwnerId(ownerId);
+        return workspaces.map(toWorkspaceItemView);
+    },
 };
 
 export default WorkspaceService;

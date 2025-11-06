@@ -1,7 +1,7 @@
-import WorkspaceContext from "@/context/workspace/WorkspaceContext";
+import WorkspaceContext, { WorkspaceContextType } from "@/context/workspace/WorkspaceContext";
 import { useContext } from "react";
 
-const useWorkspace = () => {
+const useWorkspace = (): WorkspaceContextType => {
     const context = useContext(WorkspaceContext);
 
     if (context === undefined) {

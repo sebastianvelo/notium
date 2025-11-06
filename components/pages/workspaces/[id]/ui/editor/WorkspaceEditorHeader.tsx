@@ -34,7 +34,7 @@ const WorkspaceEditorHeader: React.FC<WorkspaceEditorHeaderProps> = ({ name, des
             ) : (
                 <>
                     <Title size="lg">{name}</Title>
-                    {description && <Text>{description}</Text>}
+                    {description && <Text t={description} />}
                 </>
             )}
         </div>

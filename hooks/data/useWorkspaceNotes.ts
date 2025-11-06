@@ -4,7 +4,7 @@ import Note from "@/types/model/Note";
 import NoteItemView from "@/types/view/NoteItemView";
 import NotesListSectionView from "@/types/view/NotesListSectionView";
 import { useCallback, useEffect, useState } from "react";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 
 interface UseWorkspaceNotesOptions {
   workspaceId: string;
@@ -17,18 +17,17 @@ const useWorkspaceNotes = ({ workspaceId }: UseWorkspaceNotesOptions) => {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
 
-  // Debounce del search query
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(searchQuery);
-    }, 300); // 300ms de delay
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
   const apiUrl = `${API_ROUTES.WORKSPACES.NOTES(workspaceId)}?query=${debouncedQuery}`;
 
-  const { data: sections, error } = useSWR<NotesListSectionView[]>(apiUrl, fetcher);
+  const { data: sections, error, mutate: mutateSections } = useSWR<NotesListSectionView[]>(apiUrl, fetcher);
 
   const selectedNote = sections?.flatMap(s => s.notes).find(n => n.id === selectedNoteId) || null;
 
@@ -41,11 +40,10 @@ const useWorkspaceNotes = ({ workspaceId }: UseWorkspaceNotesOptions) => {
     if (!res.ok) throw new Error("Failed to create");
     const newNote: Note = await res.json();
 
-    // Revalidar la vista
-    mutate(apiUrl);
+    await mutateSections();
     setSelectedNoteId(newNote.id);
     return newNote;
-  }, [workspaceId, apiUrl]);
+  }, [workspaceId, mutateSections]);
 
   const updateNote = useCallback(async (noteId: string, data: NoteUpdateDTO) => {
     const res = await fetch(API_ROUTES.NOTES.ID(noteId), {
@@ -55,16 +53,16 @@ const useWorkspaceNotes = ({ workspaceId }: UseWorkspaceNotesOptions) => {
     });
     if (!res.ok) throw new Error("Failed to update");
 
-    mutate(apiUrl);
-  }, [apiUrl]);
+    await mutateSections();
+  }, [mutateSections]);
 
   const deleteNote = useCallback(async (noteId: string) => {
     const res = await fetch(API_ROUTES.NOTES.ID(noteId), { method: "DELETE" });
     if (!res.ok) throw new Error("Failed to delete");
 
     setSelectedNoteId(null);
-    mutate(apiUrl);
-  }, [apiUrl]);
+    await mutateSections();
+  }, [mutateSections]);
 
   return {
     sections: sections || [],

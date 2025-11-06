@@ -1,5 +1,6 @@
 const I18n = {
     WORKSPACES: {
+        LOADING: "workspaces.loading",
         HEADER: {
             TITLE: "workspaces.header.title",
             SUBTITLE: "workspaces.header.subtitle"

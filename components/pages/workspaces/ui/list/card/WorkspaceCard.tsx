@@ -2,27 +2,24 @@ import Text from "@/components/ui/atoms/text/Text";
 import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody } from "@/components/ui/molecules/card/Card";
 import ROUTES from "@/constants/routes";
-import I18n from "@/context/language/common/I18nKeys";
-import Workspace from "@/types/model/Workspace";
+import WorkspaceItemView from "@/types/view/WorkspaceItemView";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 
-interface WorkspaceCardProps {
-    workspace: Workspace;
-}
+interface WorkspaceCardProps extends WorkspaceItemView { }
 
-const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ workspace }) => {
+const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ id, name, description, createdAt }) => {
     return (
-        <Link href={ROUTES.WORKSPACE(workspace.id)}>
+        <Link href={ROUTES.WORKSPACE(id)}>
             <Card hover>
                 <CardBody className="space-y-3">
                     <div>
-                        <Title size="xs">{workspace.name}</Title>
-                        <Text size="xs" t={workspace.description ?? I18n.WORKSPACES.CARD.WITHOUT_DESCRIPTION}/>
+                        <Title size="xs">{name}</Title>
+                        <Text size="xs" t={description} />
                     </div>
                     <Text size="xs" className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
-                        <span>Created {new Date(workspace.createdAt).toLocaleDateString()}</span>
+                        <span>{createdAt}</span>
                     </Text>
                 </CardBody>
             </Card>

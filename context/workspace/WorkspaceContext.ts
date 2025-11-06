@@ -1,9 +1,9 @@
 "use client"
-import Workspace from "@/types/model/Workspace";
+import WorkspaceItemView from "@/types/view/WorkspaceItemView";
 import { createContext } from "react";
 
 export interface WorkspaceContextType {
-    workspace: Workspace;
+    workspace: WorkspaceItemView;
     workspaceId: string;
 }
 

@@ -2,11 +2,12 @@ import { APIResponse } from "@/app/api/types";
 import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
 import WorkspaceService from "@/lib/service/WorkspaceService";
 import Workspace from "@/types/model/Workspace";
+import WorkspaceItemView from "@/types/view/WorkspaceItemView";
 import { NextResponse } from "next/server";
 
-export async function GET(): APIResponse<Workspace[]> {
+export async function GET(): APIResponse<WorkspaceItemView[]> {
     try {
-        const workspaces: Workspace[] = await WorkspaceService.getWorkspacesByOwner("usr_1");
+        const workspaces: WorkspaceItemView[] = await WorkspaceService.getWorkspacesViewByOwner("usr_1");
         return NextResponse.json(workspaces);
     } catch (err) {
         return NextResponse.json({ error: "Failed to fetch" }, { status: 500 });

@@ -1,4 +1,4 @@
-import toMemberView from "@/lib/mapper/member-item/toMemberView";
+import toMemberView from "@/lib/mapper/toMemberView";
 import MemberRepository from "@/lib/repository/member";
 import Member from "@/types/model/Member";
 import MemberItemView from "@/types/view/MemberItemView";

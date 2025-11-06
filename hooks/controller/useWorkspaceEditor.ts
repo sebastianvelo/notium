@@ -1,10 +1,10 @@
 import API_ROUTES from "@/constants/api.routes";
-import Workspace from "@/types/model/Workspace";
+import WorkspaceItemView from "@/types/view/WorkspaceItemView";
 import { useState } from "react";
 import { mutate } from "swr";
 
 interface UseWorkspaceEditorParams {
-    workspace: Workspace;
+    workspace: WorkspaceItemView;
 }
 
 interface UseWorkspaceEditorReturn {
@@ -20,9 +20,9 @@ interface UseWorkspaceEditorReturn {
 }
 
 const useWorkspaceEditor = ({ workspace }: UseWorkspaceEditorParams): UseWorkspaceEditorReturn => {
-    const [editMode, setEditMode] = useState(false);
     const [name, setName] = useState(workspace.name);
     const [description, setDescription] = useState(workspace.description || "");
+    const [editMode, setEditMode] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSave = async () => {

@@ -1,13 +1,14 @@
 import { APIResponse, ParamsId } from "@/app/api/types";
 import WorkspaceService from "@/lib/service/WorkspaceService";
 import Workspace from "@/types/model/Workspace";
+import WorkspaceItemView from "@/types/view/WorkspaceItemView";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: ParamsId): APIResponse<Workspace> {
+export async function GET(request: Request, { params }: ParamsId): APIResponse<WorkspaceItemView> {
     const { id } = await params;
     
     try {
-        const workspace = await WorkspaceService.getWorkspaceById(id);
+        const workspace = await WorkspaceService.getWorkspaceViewById(id);
         if (!workspace) return NextResponse.json({ error: "Not found" }, { status: 404 });
         return NextResponse.json(workspace);
     } catch {

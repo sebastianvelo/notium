@@ -4,7 +4,7 @@ import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import NoteRepository from "@/lib/repository/note";
 import Note from "@/types/model/Note";
 import NotesListSectionView from "@/types/view/NotesListSectionView";
-import toNoteItemView from "../mapper/note-item/toNoteItemView";
+import toNoteItemView from "../mapper/toNoteItemView";
 
 const NoteService = {
     getAllNotes(): Promise<Note[]> {
