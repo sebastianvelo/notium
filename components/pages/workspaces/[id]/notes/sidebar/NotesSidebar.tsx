@@ -1,30 +1,31 @@
-import Note from "@/types/model/Note";
-import React, { useState } from "react";
+import NoteItemView from "@/types/view/NoteItemView";
+import NotesListSectionView from "@/types/view/NotesListSectionView";
+import React from "react";
 import NotesSidebarActions from "./actions/NotesSidebarActions";
-import NotesSidebarBody from "./list/NotesSidebarBody";
+import NotesSidebarListSection from "./list/NotesSidebarListSection";
 
 export interface NotesSidebarProps {
-    notes: Note[];
+    sections: NotesListSectionView[];
     createNote: () => void;
-    selectedNote: Note | null;
-    setSelectedNote: (value: Note) => void;
+    selectedNote: NoteItemView | null;
+    setSelectedNote: (value: NoteItemView) => void;
+    searchQuery: string;
+    setSearchQuery: (query: string) => void;
 }
 
-const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, notes, selectedNote, setSelectedNote }) => {
-    const [searchQuery, setSearchQuery] = useState("");
-
-    const filteredNotes = notes.filter(note =>
-        note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        note.content.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    const myNotes = filteredNotes.filter(note => note.createdBy === "usr_1");
-    const sharedNotes = filteredNotes.filter(note => note.sharedWith?.includes("usr_1"));
-
+const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, sections, selectedNote, setSelectedNote, searchQuery, setSearchQuery }) => {
     return (
         <div className="w-80 border-r border-secondary-200 dark:border-secondary-900 flex flex-col">
             <NotesSidebarActions searchQuery={searchQuery} setSearchQuery={setSearchQuery} createNote={createNote} />
-            <NotesSidebarBody myNotes={myNotes} sharedNotes={sharedNotes} filteredNotes={filteredNotes} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
+            <div className="flex-1 overflow-y-auto">
+                {sections.map((section) => (
+                    <NotesSidebarListSection
+                        selectedNote={selectedNote}
+                        setSelectedNote={setSelectedNote}
+                        {...section}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

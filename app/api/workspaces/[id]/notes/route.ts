@@ -1,14 +1,17 @@
 import { APIResponse, ParamsId } from "@/app/api/types";
 import NoteService from "@/lib/service/NoteService";
 import Note from "@/types/model/Note";
+import NotesListSectionView from "@/types/view/NotesListSectionView";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: ParamsId): APIResponse<Note[]> {
+export async function GET(request: Request, { params }: ParamsId): APIResponse<NotesListSectionView[]> {
     const { id: workspaceId } = await params;
-    
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get('query') || '';
+
     try {
-        const notes: Note[] = await NoteService.getNotesByWorkspace(workspaceId);
-        return NextResponse.json(notes);
+        const sections = await NoteService.getNotesView(workspaceId, query);
+        return NextResponse.json(sections);
     } catch {
         return NextResponse.json({ error: "Failed" }, { status: 500 });
     }

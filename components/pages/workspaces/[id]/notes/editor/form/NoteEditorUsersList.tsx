@@ -1,7 +1,7 @@
-import Note from "@/types/model/Note";
+import NoteItemView from "@/types/view/NoteItemView";
 
 interface NoteEditorUsersListProps {
-  note?: Note | null;
+  note?: NoteItemView | null;
 }
 
 const NoteEditorUsersList: React.FC<NoteEditorUsersListProps> = ({ note }) => {

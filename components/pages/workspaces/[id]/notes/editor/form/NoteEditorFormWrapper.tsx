@@ -1,13 +1,13 @@
 "use client";
-import Note from "@/types/model/Note";
+import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
+import NoteItemView from "@/types/view/NoteItemView";
 import { useEffect, useState } from "react";
 import NoteEditorActions from "./NoteEditorActions";
 import NoteEditorForm from "./NoteEditorForm";
 import NoteEditorUsersList from "./NoteEditorUsersList";
-import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 
 export interface NoteEditorFormWrapperProps {
-  note?: Note | null;
+  note?: NoteItemView | null;
   onSave: (data: NoteUpdateDTO) => void;
   onDelete?: () => void;
 }

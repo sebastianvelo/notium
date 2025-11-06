@@ -3,7 +3,7 @@ import User from "@/types/model/User";
 import MemberView from "@/types/view/MemberItemView";
 import getRoleBadgeColor from "./getRoleBadgeColor";
 
-const mapMemberToView = (member: Member, user: User): MemberView => {
+const toMemberView = (member: Member, user: User): MemberView => {
     return {
         id: user.id,
         name: user.name,
@@ -14,4 +14,4 @@ const mapMemberToView = (member: Member, user: User): MemberView => {
     };
 }
 
-export default mapMemberToView;
+export default toMemberView;

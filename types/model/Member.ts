@@ -1,9 +1,11 @@
 export type MemberRole = "owner" | "editor" | "viewer";
 
-export default interface Member {
+interface Member {
     id: string;
     userId: string;
     workspaceId: string;
     role: MemberRole;
     joinedAt: string;
 }
+
+export default Member;

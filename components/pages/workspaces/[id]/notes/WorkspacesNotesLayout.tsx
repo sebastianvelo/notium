@@ -1,19 +1,22 @@
-import useWorkspaceNotes from "@/hooks/data/useWorkspaceNotes";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
-import Note from "@/types/model/Note";
-import Workspace from "@/types/model/Workspace";
+import NoteItemView from "@/types/view/NoteItemView";
+import NotesListSectionView from "@/types/view/NotesListSectionView";
 import React from "react";
 import NoteEditorPanel from "./editor/NoteEditorPanel";
 import NotesSidebar from "./sidebar/NotesSidebar";
 
 export interface WorkspacesNotesLayoutProps {
-    workspace: Workspace;
-    notes: Note[];
+    sections: NotesListSectionView[];
+    selectedNote: NoteItemView | null;
+    setSelectedNote: (note: NoteItemView) => void;
+    searchQuery: string;
+    setSearchQuery: (query: string) => void;
+    createNote: () => Promise<NoteItemView>;
+    updateNote: (noteId: string, data: NoteUpdateDTO) => Promise<void>;
+    deleteNote: (noteId: string) => Promise<void>;
 }
 
-const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ workspace, notes: initialNotes }) => {
-    const { notes, selectedNote, setSelectedNote, createNote, updateNote, deleteNote, } = useWorkspaceNotes({ workspaceId: workspace.id, initialNotes });
-
+const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ sections, selectedNote, setSelectedNote, searchQuery, setSearchQuery, createNote, updateNote, deleteNote }) => {
     const handleSaveNote = (data: NoteUpdateDTO) => {
         if (selectedNote) {
             updateNote(selectedNote.id, data);
@@ -29,9 +32,11 @@ const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ workspace
     return (
         <div className="flex">
             <NotesSidebar
-                notes={notes}
+                sections={sections}
                 selectedNote={selectedNote}
                 setSelectedNote={setSelectedNote}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
                 createNote={createNote}
             />
             <NoteEditorPanel

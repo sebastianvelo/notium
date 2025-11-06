@@ -1,19 +1,14 @@
 "use client";
 import WorkspacesNotesLayout from "@/components/pages/workspaces/[id]/notes/WorkspacesNotesLayout";
-import API_ROUTES from "@/constants/api.routes";
 import useWorkspace from "@/hooks/data/useWorkspace";
-import { fetcher } from "@/lib/fetcher";
-import Note from "@/types/model/Note";
-import useSWR from "swr";
+import useWorkspaceNotes from "@/hooks/data/useWorkspaceNotes";
 
-const WorkspaceNotesPage: React.FC = () => {
-    const { workspace, workspaceId } = useWorkspace();
-    const { data: notes, error } = useSWR<Note[]>(API_ROUTES.WORKSPACES.NOTES(workspaceId), fetcher);
+export default function NotesPage() {
+    const { workspace } = useWorkspace();
+    const notesData = useWorkspaceNotes({ workspaceId: workspace.id });
 
-    if (error) return <div>Error</div>;
-    if (!notes) return <div>Loading...</div>;
+    if (notesData.isLoading) return <div>Loading...</div>;
+    if (notesData.error) return <div>Error loading notes</div>;
 
-    return <WorkspacesNotesLayout workspace={workspace} notes={notes} />;
-};
-
-export default WorkspaceNotesPage;
+    return <WorkspacesNotesLayout {...notesData} />;
+}

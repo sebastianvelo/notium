@@ -1,4 +1,4 @@
-import mapMemberToView from "@/lib/mapper/member-item/memberItemMapper";
+import toMemberView from "@/lib/mapper/member-item/toMemberView";
 import MemberRepository from "@/lib/repository/member";
 import Member from "@/types/model/Member";
 import MemberItemView from "@/types/view/MemberItemView";
@@ -50,7 +50,7 @@ const MemberService = {
             .map((member, index) => {
                 const user = users[index];
                 if (!user) return null; 
-                return mapMemberToView(member, user);
+                return toMemberView(member, user);
             })
             .filter(Boolean) as MemberItemView[];
     },

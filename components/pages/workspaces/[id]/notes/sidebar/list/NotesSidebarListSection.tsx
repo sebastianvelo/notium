@@ -1,13 +1,12 @@
 import Text from "@/components/ui/atoms/text/Text";
-import Note from "@/types/model/Note";
+import NoteItemView from "@/types/view/NoteItemView";
+import NotesListSectionView from "@/types/view/NotesListSectionView";
 import React from "react";
 import NoteItem from "./item/NoteItem";
 
-export interface NotesSidebarListSectionProps {
-    title: string;
-    notes: Note[];
-    selectedNote: Note | null;
-    setSelectedNote: (value: Note) => void;
+export interface NotesSidebarListSectionProps extends NotesListSectionView {
+    selectedNote: NoteItemView | null;
+    setSelectedNote: (value: NoteItemView) => void;
 }
 
 const NotesSidebarListSection: React.FC<NotesSidebarListSectionProps> = ({ title, notes, selectedNote, setSelectedNote }) => {
@@ -18,9 +17,10 @@ const NotesSidebarListSection: React.FC<NotesSidebarListSectionProps> = ({ title
                 {notes.map(note => (
                     <NoteItem
                         key={note.id}
-                        note={note}
                         active={selectedNote?.id === note.id}
-                        onClick={() => setSelectedNote(note)} />
+                        onClick={() => setSelectedNote(note)}
+                        {...note}
+                    />
                 ))}
             </div>
         </div>

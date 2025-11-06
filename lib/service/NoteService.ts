@@ -1,7 +1,10 @@
+import I18n from "@/context/language/common/I18nKeys";
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import NoteRepository from "@/lib/repository/note";
 import Note from "@/types/model/Note";
+import NotesListSectionView from "@/types/view/NotesListSectionView";
+import toNoteItemView from "../mapper/note-item/toNoteItemView";
 
 const NoteService = {
     getAllNotes(): Promise<Note[]> {
@@ -55,6 +58,36 @@ const NoteService = {
 
     unshareNote(noteId: string, userId: string): Promise<Note | null> {
         return NoteRepository.unshareWithUser(noteId, userId);
+    },
+
+    async getNotesView(workspaceId: string, searchQuery: string = ''): Promise<NotesListSectionView[]> {
+        const notes: Note[] = await this.getNotesByWorkspace(workspaceId);
+        const currentUserId = "usr_1"; // Idealmente obtenerlo del contexto/sesión
+
+        // Filtrar por búsqueda
+        const filtered = notes.filter(note =>
+            note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            note.content.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        // Agrupar
+        const myNotes = filtered.filter(n => n.createdBy === currentUserId);
+        const sharedNotes = filtered.filter(n => n.sharedWith?.includes(currentUserId));
+
+        return [
+            {
+                title: I18n.WORKSPACE.NOTES.ALL,
+                notes: filtered.map(toNoteItemView)
+            },
+            {
+                title: I18n.WORKSPACE.NOTES.MY,
+                notes: myNotes.map(toNoteItemView)
+            },
+            {
+                title: I18n.WORKSPACE.NOTES.SHARED,
+                notes: sharedNotes.map(toNoteItemView)
+            }
+        ].filter(section => section.notes.length > 0);
     },
 };
 

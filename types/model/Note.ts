@@ -1,4 +1,4 @@
-export default interface Note {
+interface Note {
     id: string;
     title: string;
     content: string;
@@ -8,3 +8,5 @@ export default interface Note {
     createdBy: string; //user.id
     sharedWith: string[]; ////user.id[]
 }
+
+export default Note;

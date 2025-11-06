@@ -3,7 +3,7 @@ export enum WorkspaceStatus {
     DELETED = "DELETED"
 }
 
-export default interface Workspace {
+interface Workspace {
     id: string;
     name: string;
     description?: string;
@@ -11,3 +11,5 @@ export default interface Workspace {
     ownerId: string;
     status: WorkspaceStatus;
 }
+
+export default Workspace;
