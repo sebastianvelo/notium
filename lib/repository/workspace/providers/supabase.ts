@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/db/supabase/SupabaseServer';
+import { createClient } from "@/lib/db/supabase/SupabaseServer";
 import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "@/lib/dto/WorkspaceUpdateDTO";
 import IWorkspaceRepository from "@/lib/repository/workspace/interface";
@@ -8,9 +8,9 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
     async findAll(): Promise<Workspace[]> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('workspaces')
-            .select('*')
-            .order('created_at', { ascending: false });
+            .from("workspaces")
+            .select("*")
+            .order("created_at", { ascending: false });
 
         if (error) throw error;
         return this.mapToWorkspaces(data || []);
@@ -19,9 +19,9 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
     async findById(id: string): Promise<Workspace | null> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('workspaces')
-            .select('*')
-            .eq('id', id)
+            .from("workspaces")
+            .select("*")
+            .eq("id", id)
             .single();
 
         if (error) return null;
@@ -31,10 +31,10 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
     async findByOwnerId(ownerId: string): Promise<Workspace[]> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('workspaces')
-            .select('*')
-            .eq('owner_id', ownerId)
-            .order('created_at', { ascending: false });
+            .from("workspaces")
+            .select("*")
+            .eq("owner_id", ownerId)
+            .order("created_at", { ascending: false });
 
         if (error) throw error;
         return this.mapToWorkspaces(data || []);
@@ -43,7 +43,7 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
     async create(workspaceData: WorkspaceCreateDTO): Promise<Workspace> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('workspaces')
+            .from("workspaces")
             .insert([{
                 name: workspaceData.name,
                 description: workspaceData.description,
@@ -66,9 +66,9 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
         if (workspaceData.status !== undefined) updateData.status = workspaceData.status;
 
         const { data, error } = await supabase
-            .from('workspaces')
+            .from("workspaces")
             .update(updateData)
-            .eq('id', id)
+            .eq("id", id)
             .select()
             .single();
 
@@ -79,9 +79,9 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
     async delete(id: string): Promise<boolean> {
         const supabase = await createClient();
         const { error } = await supabase
-            .from('workspaces')
+            .from("workspaces")
             .delete()
-            .eq('id', id);
+            .eq("id", id);
 
         return !error;
     }

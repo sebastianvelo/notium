@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/db/supabase/SupabaseServer';
+import { createClient } from "@/lib/db/supabase/SupabaseServer";
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import INoteRepository from "@/lib/repository/note/interface";
@@ -8,12 +8,12 @@ class NoteRepositorySupabase implements INoteRepository {
     async findAll(): Promise<Note[]> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('notes')
+            .from("notes")
             .select(`
                 *,
                 note_shares(user_id)
             `)
-            .order('updated_at', { ascending: false });
+            .order("updated_at", { ascending: false });
 
         if (error) throw error;
         return this.mapToNotes(data || []);
@@ -22,12 +22,12 @@ class NoteRepositorySupabase implements INoteRepository {
     async findById(id: string): Promise<Note | null> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('notes')
+            .from("notes")
             .select(`
                 *,
                 note_shares(user_id)
             `)
-            .eq('id', id)
+            .eq("id", id)
             .single();
 
         if (error) return null;
@@ -37,13 +37,13 @@ class NoteRepositorySupabase implements INoteRepository {
     async findByWorkspaceId(workspaceId: string): Promise<Note[]> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('notes')
+            .from("notes")
             .select(`
                 *,
                 note_shares(user_id)
             `)
-            .eq('workspace_id', workspaceId)
-            .order('updated_at', { ascending: false });
+            .eq("workspace_id", workspaceId)
+            .order("updated_at", { ascending: false });
 
         if (error) throw error;
         return this.mapToNotes(data || []);
@@ -52,13 +52,13 @@ class NoteRepositorySupabase implements INoteRepository {
     async findByCreatedBy(userId: string): Promise<Note[]> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('notes')
+            .from("notes")
             .select(`
                 *,
                 note_shares(user_id)
             `)
-            .eq('created_by', userId)
-            .order('updated_at', { ascending: false });
+            .eq("created_by", userId)
+            .order("updated_at", { ascending: false });
 
         if (error) throw error;
         return this.mapToNotes(data || []);
@@ -67,7 +67,7 @@ class NoteRepositorySupabase implements INoteRepository {
     async findSharedWithUser(userId: string): Promise<Note[]> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('note_shares')
+            .from("note_shares")
             .select(`
                 note_id,
                 notes(
@@ -75,7 +75,7 @@ class NoteRepositorySupabase implements INoteRepository {
                     note_shares(user_id)
                 )
             `)
-            .eq('user_id', userId);
+            .eq("user_id", userId);
 
         if (error) throw error;
         return data?.map(item => this.mapToNote(item.notes as any)) || [];
@@ -84,7 +84,7 @@ class NoteRepositorySupabase implements INoteRepository {
     async create(noteData: NoteCreateDTO): Promise<Note> {
         const supabase = await createClient();
         const { data, error } = await supabase
-            .from('notes')
+            .from("notes")
             .insert([{
                 title: noteData.title,
                 content: noteData.content,
@@ -109,9 +109,9 @@ class NoteRepositorySupabase implements INoteRepository {
         if (noteData.content !== undefined) updateData.content = noteData.content;
 
         const { data, error } = await supabase
-            .from('notes')
+            .from("notes")
             .update(updateData)
-            .eq('id', id)
+            .eq("id", id)
             .select(`
                 *,
                 note_shares(user_id)
@@ -125,9 +125,9 @@ class NoteRepositorySupabase implements INoteRepository {
     async delete(id: string): Promise<boolean> {
         const supabase = await createClient();
         const { error } = await supabase
-            .from('notes')
+            .from("notes")
             .delete()
-            .eq('id', id);
+            .eq("id", id);
 
         return !error;
     }
@@ -137,7 +137,7 @@ class NoteRepositorySupabase implements INoteRepository {
 
         // Insertar en note_shares
         const { error: shareError } = await supabase
-            .from('note_shares')
+            .from("note_shares")
             .insert([{
                 note_id: noteId,
                 user_id: userId,
@@ -154,10 +154,10 @@ class NoteRepositorySupabase implements INoteRepository {
 
         // Eliminar de note_shares
         const { error: unshareError } = await supabase
-            .from('note_shares')
+            .from("note_shares")
             .delete()
-            .eq('note_id', noteId)
-            .eq('user_id', userId);
+            .eq("note_id", noteId)
+            .eq("user_id", userId);
 
         if (unshareError) return null;
 

@@ -4,27 +4,27 @@ import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";
 
 const WorkspaceService = {
-    getAllWorkspaces(): Workspace[] {
+    getAllWorkspaces(): Promise<Workspace[]> {
         return WorkspaceRepository.findAll();
     },
 
-    getWorkspaceById(id: string): Workspace | undefined {
+    getWorkspaceById(id: string): Promise<Workspace | null> {
         return WorkspaceRepository.findById(id);
     },
 
-    getWorkspacesByOwner(ownerId: string): Workspace[] {
+    getWorkspacesByOwner(ownerId: string): Promise<Workspace[]> {
         return WorkspaceRepository.findByOwnerId(ownerId);
     },
 
-    createWorkspace(data: WorkspaceCreateDTO): Workspace {
+    createWorkspace(data: WorkspaceCreateDTO): Promise<Workspace> {
         return WorkspaceRepository.create(data);
     },
 
-    updateWorkspace(id: string, data: Partial<WorkspaceUpdateDTO>): Workspace | undefined {
+    updateWorkspace(id: string, data: Partial<WorkspaceUpdateDTO>): Promise<Workspace | null> {
         return WorkspaceRepository.update(id, data);
     },
 
-    deleteWorkspace(id: string): boolean {
+    deleteWorkspace(id: string): Promise<boolean> {
         return WorkspaceRepository.delete(id);
     },
 };
