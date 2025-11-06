@@ -1,0 +1,16 @@
+[
+    {
+        "id": "mem_1",
+        "userId": "usr_1",
+        "workspaceId": "ws_1",
+        "role": "owner",
+        "joinedAt": "2024-01-01T10:00:00Z"
+    },
+    {
+        "id": "mem_2",
+        "userId": "usr_2",
+        "workspaceId": "ws_1",
+        "role": "editor",
+        "joinedAt": "2024-01-02T10:00:00Z"
+    }
+]

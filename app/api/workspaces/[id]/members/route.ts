@@ -1,18 +1,18 @@
-import { NextResponse } from "next/server";
-import UserService from "@/lib/service/UserService";
+import { ParamsId } from "@/app/api/types";
+import MemberService from "@/lib/service/MemberService";
 import WorkspaceService from "@/lib/service/WorkspaceService";
+import { NextResponse } from "next/server";
 
-export async function GET(
-    request: Request,
-    { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: Request, { params }: ParamsId) {
     const { id } = await params;
 
     try {
         const workspace = await WorkspaceService.getWorkspaceById(id);
-        if (!workspace) return NextResponse.json({ error: "Not found" }, { status: 404 });
+        if (!workspace) {
+            return NextResponse.json({ error: "Workspace not found" }, { status: 404 });
+        }
 
-        const members = await UserService.getAllUsers(); // 🔥 ajustá al nombre real
+        const members = await MemberService.getMembersByWorkspace(id);
         return NextResponse.json(members);
     } catch (err) {
         console.error(err);
@@ -20,10 +20,7 @@ export async function GET(
     }
 }
 
-export async function POST(
-    request: Request,
-    { params }: { params: Promise<{ id: string }> }
-) {
+export async function POST(request: Request, { params }: ParamsId) {
     const { id } = await params;
 
     try {
@@ -34,15 +31,28 @@ export async function POST(
             return NextResponse.json({ error: "userId is required" }, { status: 400 });
         }
 
+        // Validar workspace
         const workspace = await WorkspaceService.getWorkspaceById(id);
         if (!workspace) {
             return NextResponse.json({ error: "Workspace not found" }, { status: 404 });
         }
 
-        const newMember = await WorkspaceService.addMember(id, userId, role ?? "member"); // 🔥 ajustá al nombre real
+        // Crear miembro
+        const newMember = await MemberService.addMember({
+            userId,
+            workspaceId: id,
+            role: role ?? "viewer",
+            joinedAt: new Date().toISOString(),
+        });
+
         return NextResponse.json(newMember, { status: 201 });
-    } catch (err) {
+    } catch (err: any) {
         console.error(err);
+
+        if (err.message?.includes("already")) {
+            return NextResponse.json({ error: err.message }, { status: 409 }); // conflict
+        }
+
         return NextResponse.json({ error: "Failed to add member" }, { status: 500 });
     }
 }
