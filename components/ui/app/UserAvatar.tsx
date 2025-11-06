@@ -1,8 +1,8 @@
-interface MemberItemProps {
+interface UserAvatarProps {
     name: string;
 }
 
-const MemberItemAvatar: React.FC<MemberItemProps> = ({ name }) => {
+const UserAvatar: React.FC<UserAvatarProps> = ({ name }) => {
     const initials = name.split(" ").map(n => n[0]);
     
     return (
@@ -14,4 +14,4 @@ const MemberItemAvatar: React.FC<MemberItemProps> = ({ name }) => {
     );
 };
 
-export default MemberItemAvatar;
+export default UserAvatar;

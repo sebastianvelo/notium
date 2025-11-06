@@ -1,5 +1,7 @@
+import UserAvatar from "@/components/ui/app/UserAvatar";
 import Button from "@/components/ui/atoms/button/Button";
 import Text from "@/components/ui/atoms/text/Text";
+import Select from "@/components/ui/molecules/select/Select";
 import ROUTES from "@/constants/routes";
 import useAuth from "@/hooks/controller/useAuth";
 import Link from "next/link";
@@ -16,9 +18,7 @@ const UserSection: React.FC = () => {
     if (user) {
         return (
             <div className="flex items-center space-x-3">
-                <Text className="text-sm font-medium">
-                    {user.name || user.email}
-                </Text>
+                <UserAvatar name={user.name} />
                 <Button onClick={logout} variant="ghost">
                     Sign out
                 </Button>
