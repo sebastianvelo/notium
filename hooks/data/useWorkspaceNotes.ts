@@ -1,6 +1,6 @@
 import API_ROUTES from "@/constants/api.routes";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
-import { fetcher } from "@/lib/fetcher";
+import fetcher from "@/lib/fetcher";
 import Note from "@/types/model/Note";
 import NoteItemView from "@/types/view/NoteItemView";
 import NotesListSectionView from "@/types/view/NotesListSectionView";

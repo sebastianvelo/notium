@@ -24,12 +24,13 @@ const Brand: React.FC<BrandProps> = ({ size = "xl" }) => {
     const commonStyles = `${textSize[size]}  tracking-widest font-bold font-brand`;
     
     return (
-        <div className="flex items-center">
+        <div className="flex items-center group">
             <Link href={ROUTES.WORKSPACES} className="flex items-center space-x-1">
-                <Notebook className={`text-primary-600 dark:text-primary-400 iconSize ${iconSize[size]}`} />
+                <Notebook className={`text-primary-600 dark:text-primary-400 iconSize ${iconSize[size]} group-hover:rotate-45 transition-all duration-300`} />
                 <div>
-                    <span className={`${commonStyles} text-primary-600 dark:text-primary-500`}>Not</span>
-                    <span className={`${commonStyles} text-primary-400 dark:text-primary-300`}>ium</span>
+                    <span className={`${commonStyles} text-primary-600 dark:text-primary-300`}>No</span>
+                    <span className={`${commonStyles} text-primary-700 dark:text-primary-400`}>ti</span>
+                    <span className={`${commonStyles} text-primary-800 dark:text-primary-500`}>um</span>
                 </div>
             </Link>
         </div>

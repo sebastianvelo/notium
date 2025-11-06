@@ -3,7 +3,7 @@ import WorkspaceLayoutHeader from "@/components/pages/workspaces/[id]/WorkspaceL
 import Loading from "@/components/ui/molecules/loading/Loading";
 import API_ROUTES from "@/constants/api.routes";
 import WorkspaceProvider from "@/context/workspace/WorkspaceContext";
-import { fetcher } from "@/lib/fetcher";
+import fetcher from "@/lib/fetcher";
 import WorkspaceItemView from "@/types/view/WorkspaceItemView";
 import { useParams } from "next/navigation";
 import { PropsWithChildren } from "react";

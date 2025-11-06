@@ -16,10 +16,6 @@ const getTabs = (workspaceId: string) => [
     {
         href: ROUTES.WORKSPACE_MEMBERS(workspaceId),
         label: I18n.WORKSPACE.MEMBERS.BUTTON
-    },
-    {
-        href: ROUTES.WORKSPACE_ADMIN(workspaceId),
-        label: I18n.WORKSPACE.ADMIN.BUTTON
     }
 ];
 
