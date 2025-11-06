@@ -1,4 +1,4 @@
-import User from "@/types/User";
+import User from "@/types/model/User";
 
 interface IUserRepository {
     findAll(): Promise<User[]>;

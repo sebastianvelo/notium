@@ -1,4 +1,4 @@
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 import notesJson from "./mock/notes.json";
 
 const NotesDB: Note[] = notesJson.map((n) => ({

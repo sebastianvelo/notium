@@ -1,4 +1,4 @@
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 
 interface NoteEditorUsersListProps {
   note?: Note | null;

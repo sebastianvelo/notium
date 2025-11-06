@@ -1,4 +1,4 @@
-import Member from "@/types/Member";
+import Member from "@/types/model/Member";
 
 export default interface IMemberRepository {
     findAll(): Promise<Member[]>;

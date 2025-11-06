@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/db/supabase/SupabaseServer";
 import IMemberRepository from "@/lib/repository/member/interface";
-import Member from "@/types/Member";
+import Member from "@/types/model/Member";
 
 class MemberRepositorySupabase implements IMemberRepository {
     async findAll(): Promise<Member[]> {

@@ -1,18 +1,21 @@
-import { ParamsId } from "@/app/api/types";
+import { APIResponse, ParamsId } from "@/app/api/types";
 import MemberService from "@/lib/service/MemberService";
 import WorkspaceService from "@/lib/service/WorkspaceService";
+import Member from "@/types/model/Member";
+import Workspace from "@/types/model/Workspace";
+import MemberItemView from "@/types/view/MemberItemView";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: ParamsId) {
+export async function GET(request: Request, { params }: ParamsId): APIResponse<MemberItemView[]> {
     const { id } = await params;
 
     try {
-        const workspace = await WorkspaceService.getWorkspaceById(id);
+        const workspace: Workspace | null = await WorkspaceService.getWorkspaceById(id);
         if (!workspace) {
             return NextResponse.json({ error: "Workspace not found" }, { status: 404 });
         }
 
-        const members = await MemberService.getMembersByWorkspace(id);
+        const members: MemberItemView[] = await MemberService.getMembersViewsByWorkspace(id);
         return NextResponse.json(members);
     } catch (err) {
         console.error(err);
@@ -20,7 +23,7 @@ export async function GET(request: Request, { params }: ParamsId) {
     }
 }
 
-export async function POST(request: Request, { params }: ParamsId) {
+export async function POST(request: Request, { params }: ParamsId): APIResponse<Member> {
     const { id } = await params;
 
     try {
@@ -31,14 +34,12 @@ export async function POST(request: Request, { params }: ParamsId) {
             return NextResponse.json({ error: "userId is required" }, { status: 400 });
         }
 
-        // Validar workspace
-        const workspace = await WorkspaceService.getWorkspaceById(id);
+        const workspace: Workspace | null = await WorkspaceService.getWorkspaceById(id);
         if (!workspace) {
             return NextResponse.json({ error: "Workspace not found" }, { status: 404 });
         }
 
-        // Crear miembro
-        const newMember = await MemberService.addMember({
+        const newMember: Member = await MemberService.addMember({
             userId,
             workspaceId: id,
             role: role ?? "viewer",

@@ -1,6 +1,6 @@
 import WorkspaceCreateDTO from "@/lib/dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "@/lib/dto/WorkspaceUpdateDTO";
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 
 interface IWorkspaceRepository {
     findAll(): Promise<Workspace[]>;

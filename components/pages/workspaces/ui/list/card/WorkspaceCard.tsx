@@ -3,7 +3,7 @@ import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody } from "@/components/ui/molecules/card/Card";
 import ROUTES from "@/constants/routes";
 import I18n from "@/context/language/common/I18nKeys";
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 

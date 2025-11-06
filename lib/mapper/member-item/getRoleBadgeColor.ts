@@ -1,6 +1,6 @@
-import { MemberRole } from "@/types/Member";
+import { MemberRole } from "@/types/model/Member";
 
-export const getRoleBadgeColor = (role: MemberRole) => {
+ const getRoleBadgeColor = (role: MemberRole) => {
     switch (role) {
         case "owner":
             return "bg-purple-100 text-purple-700";
@@ -12,3 +12,5 @@ export const getRoleBadgeColor = (role: MemberRole) => {
             return "bg-secondary-100 text-secondary-700";
     }
 };
+
+export default getRoleBadgeColor;

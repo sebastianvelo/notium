@@ -1,6 +1,6 @@
 import MembersDB from "@/lib/db/memory/MemberDB";
 import IMemberRepository from "@/lib/repository/member/interface";
-import Member from "@/types/Member";
+import Member from "@/types/model/Member";
 
 class MemberRepositoryMemory implements IMemberRepository {
     async findAll(): Promise<Member[]> {

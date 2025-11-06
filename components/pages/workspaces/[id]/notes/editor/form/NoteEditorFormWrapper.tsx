@@ -1,5 +1,5 @@
 "use client";
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 import { useEffect, useState } from "react";
 import NoteEditorActions from "./NoteEditorActions";
 import NoteEditorForm from "./NoteEditorForm";

@@ -1,5 +1,5 @@
 "use client"
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 import { createContext } from "react";
 
 export interface WorkspaceContextType {

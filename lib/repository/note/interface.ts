@@ -1,6 +1,6 @@
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 
 interface INoteRepository {
     findAll(): Promise<Note[]>;

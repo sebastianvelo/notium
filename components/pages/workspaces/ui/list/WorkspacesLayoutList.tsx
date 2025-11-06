@@ -1,4 +1,4 @@
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 import WorkspaceCard from "./card/WorkspaceCard";
 import NewWorkspaceButton from "./new/NewWorkspaceButton";
 import WorkspacesEmptyList from "./WorkspacesEmptyList";

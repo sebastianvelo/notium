@@ -1,11 +1,12 @@
-import { ParamsNoteId } from "@/app/api/types";
+import { APIResponse, ParamsNoteId } from "@/app/api/types";
 import NoteService from "@/lib/service/NoteService";
+import Note from "@/types/model/Note";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: ParamsNoteId) {
+export async function GET(request: Request, { params }: ParamsNoteId): APIResponse<Note> {
     const { noteId } = await params;
     try {
-        const note = await NoteService.getNoteById(noteId);
+        const note: Note | null = await NoteService.getNoteById(noteId);
         if (!note) return NextResponse.json({ error: "Not found" }, { status: 404 });
         return NextResponse.json(note);
     } catch (err) {
@@ -14,11 +15,11 @@ export async function GET(request: Request, { params }: ParamsNoteId) {
     }
 }
 
-export async function PUT(request: Request, { params }: ParamsNoteId) {
+export async function PUT(request: Request, { params }: ParamsNoteId): APIResponse<Note> {
     const { noteId } = await params;
     try {
         const body = await request.json();
-        const updated = await NoteService.updateNote(noteId, body);
+        const updated: Note | null = await NoteService.updateNote(noteId, body);
         if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
         return NextResponse.json(updated);
     } catch (err) {
@@ -27,7 +28,7 @@ export async function PUT(request: Request, { params }: ParamsNoteId) {
     }
 }
 
-export async function DELETE(request: Request, { params }: ParamsNoteId) {
+export async function DELETE(request: Request, { params }: ParamsNoteId): APIResponse {
     const { noteId } = await params;
     try {
         const ok = await NoteService.deleteNote(noteId);

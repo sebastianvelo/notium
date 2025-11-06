@@ -1,5 +1,5 @@
 import WorkspaceRepository from "@/lib/repository/workspace";
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";
 

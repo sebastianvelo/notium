@@ -3,6 +3,7 @@ import WorkspaceLayoutHeader from "@/components/pages/workspaces/[id]/WorkspaceL
 import API_ROUTES from "@/constants/api.routes";
 import WorkspaceProvider from "@/context/workspace/WorkspaceContext";
 import { fetcher } from "@/lib/fetcher";
+import Workspace from "@/types/model/Workspace";
 import { useParams } from "next/navigation";
 import { PropsWithChildren } from "react";
 import useSWR from "swr";
@@ -10,7 +11,7 @@ import useSWR from "swr";
 const WorkspaceLayout: React.FC<PropsWithChildren> = ({ children }) => {
     const params = useParams();
     const id = params.id as string;
-    const { data: workspace, error } = useSWR(API_ROUTES.WORKSPACES.ID(id), fetcher);
+    const { data: workspace, error } = useSWR<Workspace>(API_ROUTES.WORKSPACES.ID(id), fetcher);
 
     if (error) return <p>Error</p>;
     if (!workspace) return <p>Loading...</p>;

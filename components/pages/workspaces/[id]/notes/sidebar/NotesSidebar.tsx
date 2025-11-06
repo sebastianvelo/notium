@@ -1,4 +1,4 @@
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 import React, { useState } from "react";
 import NotesSidebarActions from "./actions/NotesSidebarActions";
 import NotesSidebarBody from "./list/NotesSidebarBody";

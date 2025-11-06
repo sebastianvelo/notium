@@ -1,5 +1,5 @@
 import API_ROUTES from "@/constants/api.routes";
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 import { useCallback, useState } from "react";
 import { mutate } from "swr";
 

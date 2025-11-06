@@ -1,4 +1,4 @@
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 
 type WorkspaceCreateDTO = Omit<Workspace, "id" | "createdAt" | "status">;
 

@@ -1,4 +1,4 @@
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 import { Clock } from "lucide-react";
 
 interface NoteItemProps {

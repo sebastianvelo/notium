@@ -2,7 +2,7 @@ import NotesDB from "@/lib/db/memory/NoteDB";
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import INoteRepository from "@/lib/repository/note/interface";
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 
 class NoteRepositoryMemory implements INoteRepository {
     async findAll(): Promise<Note[]> {

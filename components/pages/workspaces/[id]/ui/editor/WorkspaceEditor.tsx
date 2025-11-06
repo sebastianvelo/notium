@@ -1,5 +1,5 @@
 import useWorkspaceEditor from "@/hooks/controller/useWorkspaceEditor";
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 import WorkspaceEditorActions from "./WorkspaceEditorActions";
 import WorkspaceEditorHeader from "./WorkspaceEditorHeader";
 

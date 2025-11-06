@@ -1,5 +1,8 @@
+import mapMemberToView from "@/lib/mapper/member-item/memberItemMapper";
 import MemberRepository from "@/lib/repository/member";
-import Member from "@/types/Member";
+import Member from "@/types/model/Member";
+import MemberItemView from "@/types/view/MemberItemView";
+import UserService from "./UserService";
 
 const MemberService = {
     getMembersByWorkspace(workspaceId: string): Promise<Member[]> {
@@ -29,6 +32,24 @@ const MemberService = {
 
     async removeMember(id: string): Promise<boolean> {
         return MemberRepository.delete(id);
+    },
+
+    async getMembersViewsByWorkspace(workspaceId: string): Promise<MemberItemView[]> {
+        const members = await this.getMembersByWorkspace(workspaceId);
+
+        // Traemos los users en paralelo
+        const users = await Promise.all(
+            members.map((m) => UserService.getUserById(m.userId))
+        );
+
+        // Mapear solo si el user existe (por si hay basura en la DB)
+        return members
+            .map((member, index) => {
+                const user = users[index];
+                if (!user) return null; 
+                return mapMemberToView(member, user);
+            })
+            .filter(Boolean) as MemberItemView[];
     },
 };
 

@@ -1,5 +1,5 @@
 import API_ROUTES from "@/constants/api.routes";
-import Workspace from "@/types/Workspace";
+import Workspace from "@/types/model/Workspace";
 import { useState } from "react";
 import { mutate } from "swr";
 

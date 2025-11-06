@@ -1,7 +1,7 @@
 import NoteCreateDTO from "@/lib/dto/NoteCreateDTO";
 import NoteUpdateDTO from "@/lib/dto/NoteUpdateDTO";
 import NoteRepository from "@/lib/repository/note";
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 
 const NoteService = {
     getAllNotes(): Promise<Note[]> {

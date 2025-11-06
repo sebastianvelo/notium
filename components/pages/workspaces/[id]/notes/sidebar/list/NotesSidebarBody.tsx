@@ -1,6 +1,6 @@
 import Text from "@/components/ui/atoms/text/Text";
 import I18n from "@/context/language/common/I18nKeys";
-import Note from "@/types/Note";
+import Note from "@/types/model/Note";
 import React from "react";
 import NotesSidebarListSection from "./NotesSidebarListSection";
 

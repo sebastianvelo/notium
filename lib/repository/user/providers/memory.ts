@@ -1,6 +1,6 @@
 import UsersDB from "@/lib/db/memory/UserDB";
 import IUserRepository from "@/lib/repository/user/interface";
-import User from "@/types/User";
+import User from "@/types/model/User";
 
 class UserRepositoryMemory implements IUserRepository {
     async findAll(): Promise<User[]> {

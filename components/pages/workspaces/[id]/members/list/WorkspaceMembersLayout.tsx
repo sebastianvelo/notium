@@ -1,8 +1,8 @@
-import Member from "@/types/Member";
+import MemberItemView from "@/types/view/MemberItemView";
 import MemberItem from "./item/MemberItem";
 
 export interface WorkspaceMembersLayoutListProps {
-    members: Member[];
+    members: MemberItemView[];
 }
 
 const WorkspaceMembersEmptyList: React.FC = () => {

@@ -1,8 +1,9 @@
 import WorkspaceService from "@/lib/service/WorkspaceService";
+import Workspace from "@/types/model/Workspace";
 import { NextResponse } from "next/server";
-import { ParamsId } from "../../types";
+import { APIResponse, ParamsId } from "../../types";
 
-export async function GET(request: Request, { params }: ParamsId) {
+export async function GET(request: Request, { params }: ParamsId): APIResponse<Workspace> {
     const { id } = await params;
     
     try {
@@ -14,7 +15,7 @@ export async function GET(request: Request, { params }: ParamsId) {
     }
 }
 
-export async function PUT(request: Request, { params }: ParamsId) {
+export async function PUT(request: Request, { params }: ParamsId): APIResponse<Workspace> {
     const { id } = await params;
 
     try {
@@ -27,7 +28,7 @@ export async function PUT(request: Request, { params }: ParamsId) {
     }
 }
 
-export async function DELETE(request: Request, { params }: ParamsId) {
+export async function DELETE(request: Request, { params }: ParamsId): APIResponse {
     const { id } = await params;
 
     try {
