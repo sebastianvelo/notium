@@ -23,6 +23,7 @@ const I18n = {
             MY: "workspace.notes.my",
             SHARED: "workspace.notes.shared",
             EMPTY: "workspace.notes.empty",
+            EDITOR_EMPTY: "workspace.notes.editor.empty",
             TITLE_PLACEHOLDER: "workspace.notes.title-placeholder",
             TEXTAREA_PLACEHOLDER: "workspace.notes.textarea-placeholder",
             SAVE: "workspace.notes.save",

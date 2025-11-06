@@ -1,5 +1,6 @@
 "use client";
 import WorkspaceLayoutHeader from "@/components/pages/workspaces/[id]/WorkspaceLayoutHeader";
+import Loading from "@/components/ui/molecules/loading/Loading";
 import API_ROUTES from "@/constants/api.routes";
 import WorkspaceProvider from "@/context/workspace/WorkspaceContext";
 import { fetcher } from "@/lib/fetcher";
@@ -14,13 +15,15 @@ const WorkspaceLayout: React.FC<PropsWithChildren> = ({ children }) => {
     const { data: workspace, error } = useSWR<WorkspaceItemView>(API_ROUTES.WORKSPACES.ID(id), fetcher);
 
     if (error) return <p>Error</p>;
-    if (!workspace) return <p>Loading...</p>;
+    if (!workspace) return <Loading isLoading />;
 
     return (
         <WorkspaceProvider value={{ workspace, workspaceId: id }}>
             <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950 max-w-7xl mx-auto">
                 <WorkspaceLayoutHeader />
-                <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+                <div className="px-4 sm:px-6 lg:px-8">
+                    {children}
+                </div>
             </div>
         </WorkspaceProvider>
     );
