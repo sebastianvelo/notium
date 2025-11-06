@@ -12,18 +12,18 @@ interface WorkspaceEditorActionsProps {
 
 const WorkspaceEditorActions: React.FC<WorkspaceEditorActionsProps> = ({ editMode, isLoading, disabledSave, onSave, onCancel, onToggleEdit }) => {
     return (
-        <div className="flex gap-1">
+        <div className="flex gap-2">
             {editMode ? (
                 <>
-                    <Button variant="ghost" size="sm" onClick={onSave} disabled={isLoading || disabledSave}>
+                    <Button variant="primary" size="sm" onClick={onSave} disabled={isLoading || disabledSave}>
                         <Check className="w-4 h-4" />
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={onCancel} disabled={isLoading}>
+                    <Button variant="danger" size="sm" onClick={onCancel} disabled={isLoading}>
                         <X className="w-4 h-4" />
                     </Button>
                 </>
             ) : (
-                <Button variant="ghost" size="sm" onClick={onToggleEdit}>
+                <Button variant="primary" size="sm" onClick={onToggleEdit}>
                     <Pencil className="w-4 h-4" />
                 </Button>
             )}

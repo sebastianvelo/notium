@@ -7,13 +7,13 @@ const WorkspaceHeader: React.FC = () => {
     const { workspace } = useWorkspace();
 
     return (
-        <>
+        <div>
             <Title size="lg">{workspace.name}</Title>
             {workspace.description ?
                 <Text t={workspace.description} /> :
                 <Text t={I18n.WORKSPACES.CARD.WITHOUT_DESCRIPTION} />
             }
-        </>
+        </div>
     );
 };
 

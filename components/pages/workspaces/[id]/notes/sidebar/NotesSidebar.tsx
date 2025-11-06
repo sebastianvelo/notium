@@ -1,3 +1,4 @@
+import { LoggedInRole } from "@/hooks/data/useWorkspaceMembers";
 import NoteItemView from "@/types/view/NoteItemView";
 import NotesListSectionView from "@/types/view/NotesListSectionView";
 import React from "react";
@@ -11,12 +12,13 @@ export interface NotesSidebarProps {
     setSelectedNote: (value: NoteItemView) => void;
     searchQuery: string;
     setSearchQuery: (query: string) => void;
+    loggedInRole: LoggedInRole;
 }
 
-const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, sections, selectedNote, setSelectedNote, searchQuery, setSearchQuery }) => {
+const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, sections, selectedNote, setSelectedNote, searchQuery, setSearchQuery, loggedInRole }) => {
     return (
         <div className="w-80 border-r border-secondary-200 dark:border-secondary-900 flex flex-col">
-            <NotesSidebarActions searchQuery={searchQuery} setSearchQuery={setSearchQuery} createNote={createNote} />
+            <NotesSidebarActions searchQuery={searchQuery} setSearchQuery={setSearchQuery} createNote={createNote} loggedInRole={loggedInRole} />
             <div className="flex-1 overflow-y-auto">
                 {sections.map((section, idx) => (
                     <NotesSidebarListSection

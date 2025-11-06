@@ -11,7 +11,7 @@ export async function GET(): APIResponse<WorkspaceItemView[]> {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        
+
         const workspaces: WorkspaceItemView[] = await WorkspaceService.getWorkspacesViewByOwner(user.id);
         return NextResponse.json(workspaces);
     } catch (err) {
@@ -22,7 +22,13 @@ export async function GET(): APIResponse<WorkspaceItemView[]> {
 export async function POST(request: Request): APIResponse<Workspace> {
     try {
         const body: WorkspaceCreateDTO = await request.json();
-        const workspace: Workspace = await WorkspaceService.createWorkspace(body);
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        const workspace: Workspace = await WorkspaceService.createWorkspace({
+            ...body,
+            ownerId: user.id
+        });
         return NextResponse.json(workspace, { status: 201 });
     } catch (err) {
         return NextResponse.json({ error: "Failed to create" }, { status: 500 });

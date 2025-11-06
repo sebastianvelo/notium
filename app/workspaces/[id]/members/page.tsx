@@ -4,12 +4,12 @@ import Loading from "@/components/ui/molecules/loading/Loading";
 import useWorkspaceMembers from "@/hooks/data/useWorkspaceMembers";
 
 const WorkspaceMembersPage: React.FC = () => {
-  const { members, error } = useWorkspaceMembers();
+  const { members, error, loggedInRole } = useWorkspaceMembers();
 
   if (error) return <div>Error</div>;
   if (!members) return <Loading isLoading />;
 
-  return <WorkspaceMembersLayout members={members} onInvite={() => { }} />;
+  return <WorkspaceMembersLayout members={members} onInvite={() => { }} loggedInRole={loggedInRole} />;
 };
 
 export default WorkspaceMembersPage;

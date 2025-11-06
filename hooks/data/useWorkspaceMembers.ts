@@ -5,15 +5,30 @@ import useSWR from "swr";
 import useAuth from "../controller/useAuth";
 import useWorkspace from "./useWorkspace";
 
-const useWorkspaceMembers = () => {
+export type LoggedInRole = {
+  isOwner: boolean;
+  isViewer: boolean;
+  isEditor: boolean;
+}
+
+interface UseWorkspaceMembers {
+  members: MemberItemView[] | undefined;
+  error: any;
+  loggedInRole: LoggedInRole;
+}
+
+const useWorkspaceMembers = (): UseWorkspaceMembers => {
   const { workspace } = useWorkspace();
   const { data: members, error } = useSWR<MemberItemView[]>(API_ROUTES.WORKSPACES.MEMBERS(workspace.id), fetcher);
   const { user } = useAuth();
-  console.log(members)
   const loggedInRole = members?.find((member) => member.userId === user?.id)?.role;
 
   return {
-    members, error, loggedInRole
+    members, error, loggedInRole: {
+      isOwner: loggedInRole === "owner",
+      isViewer: loggedInRole === "viewer",
+      isEditor: loggedInRole === "editor"
+    }
   };
 };
 

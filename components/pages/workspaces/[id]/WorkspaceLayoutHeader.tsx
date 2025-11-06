@@ -19,7 +19,7 @@ const WorkspaceLayoutHeader: React.FC = () => {
                     <ChevronLeft />
                 </Button>
                 <div className="space-y-4 flex-1">
-                    {loggedInRole === "owner" ? <WorkspaceEditor /> : <WorkspaceHeader />}
+                    {loggedInRole.isOwner ? <WorkspaceEditor /> : <WorkspaceHeader />}
                     <WorkspaceHeaderTabs />
                 </div>
             </div>

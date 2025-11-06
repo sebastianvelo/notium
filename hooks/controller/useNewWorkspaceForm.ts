@@ -27,12 +27,12 @@ const useNewWorkspaceForm = (): UseNewWorkspaceFormReturn => {
             const res = await fetch(API_ROUTES.WORKSPACES.ROOT, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, description, ownerId: "c18d6a34-31cc-48d6-b93b-5155c9a9d884" })
+                body: JSON.stringify({ name, description })
             });
             if (!res.ok) throw new Error("Failed");
-            await res.json();
+            const workspace = await res.json();
             mutate(API_ROUTES.WORKSPACES.ROOT);
-            router.push(ROUTES.WORKSPACES);
+            router.push(ROUTES.WORKSPACE(workspace.id));
         } catch (err) {
             console.error(err);
         } finally {

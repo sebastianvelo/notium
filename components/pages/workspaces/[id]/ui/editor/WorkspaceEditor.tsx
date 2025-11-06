@@ -9,7 +9,7 @@ const WorkspaceEditor: React.FC = () => {
 
     return (
         <div className="space-y-2">
-            <div className="flex items-start gap-2">
+            <div className="flex items-center gap-8">
                 <WorkspaceEditorHeader
                     name={name}
                     description={description}

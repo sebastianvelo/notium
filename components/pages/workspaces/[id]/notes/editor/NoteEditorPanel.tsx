@@ -2,9 +2,11 @@ import React from "react";
 import NoteEditorFormWrapper, { NoteEditorFormWrapperProps } from "./form/NoteEditorFormWrapper";
 import NoteEditorPanelEmpty from "./NoteEditorPanelEmpty";
 
-export interface NoteEditorPanelProps extends NoteEditorFormWrapperProps { }
+export interface NoteEditorPanelProps extends NoteEditorFormWrapperProps {
+    readonly?: boolean;
+ }
 
-const NoteEditorPanel: React.FC<NoteEditorPanelProps> = ({ note: selectedNote, onSave, onDelete }) => {
+const NoteEditorPanel: React.FC<NoteEditorPanelProps> = ({ note: selectedNote, onSave, onDelete, readonly }) => {
     return (
         <div className="flex-1">
             {selectedNote ? (<NoteEditorFormWrapper note={selectedNote} onSave={onSave} onDelete={onDelete} />)
