@@ -1,7 +1,7 @@
 "use client";
+import Brand from "@/components/ui/app/Brand";
 import LanguageSelector from "./actions/LanguageSelector";
 import ThemeToggleButton from "./actions/ThemeToggleButton";
-import Brand from "./Brand";
 import UserSection from "./user-section/UserSection";
 
 const Navbar: React.FC = () => {

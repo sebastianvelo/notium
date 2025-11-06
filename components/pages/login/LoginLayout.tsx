@@ -1,5 +1,5 @@
 "use client";
-import Brand from "@/components/layout/navbar/Brand";
+import Brand from "@/components/ui/app/Brand";
 import GoogleSignInButton from "@/components/pages/login/ui/GoogleSignInButton";
 import Text from "@/components/ui/atoms/text/Text";
 import Card, { CardBody, CardFooter, CardHeader } from "@/components/ui/molecules/card/Card";
