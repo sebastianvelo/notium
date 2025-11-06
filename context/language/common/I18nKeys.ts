@@ -3,7 +3,7 @@ const I18n = {
         LOADING: "workspaces.loading",
         HEADER: {
             TITLE: "workspaces.header.title",
-            SUBTITLE: "workspaces.header.subtitle"
+            SUBTITLE: "workspaces.header.subtitle",
         },
         NEW: "workspaces.new",
         CARD: {
@@ -13,7 +13,9 @@ const I18n = {
     WORKSPACE: {
         HEADER: {
             TITLE: "workspace.header.title",
-            SUBTITLE: "workspace.header.subtitle"
+            TITLE_PLACEHOLDER: "workspace.header.title-placeholder",
+            SUBTITLE: "workspace.header.subtitle",
+            SUBTITLE_PLACEHOLDER: "workspace.header.subtitle-placeholder",
         },
         NOTES: {
             BUTTON: "workspace.notes.button",
