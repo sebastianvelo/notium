@@ -18,6 +18,7 @@ const I18n = {
             BUTTON: "workspace.notes.button",
             SEARCH: "workspace.notes.search",
             NEW: "workspace.notes.new",
+            ALL: "workspace.notes.all",
             MY: "workspace.notes.my",
             SHARED: "workspace.notes.shared",
             EMPTY: "workspace.notes.empty",

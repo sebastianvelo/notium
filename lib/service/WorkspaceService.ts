@@ -2,6 +2,7 @@ import WorkspaceRepository from "@/lib/repository/workspace";
 import Workspace from "@/types/model/Workspace";
 import WorkspaceCreateDTO from "../dto/WorkspaceCreateDTO";
 import WorkspaceUpdateDTO from "../dto/WorkspaceUpdateDTO";
+import MemberService from "./MemberService";
 
 const WorkspaceService = {
     getAllWorkspaces(): Promise<Workspace[]> {
@@ -16,8 +17,15 @@ const WorkspaceService = {
         return WorkspaceRepository.findByOwnerId(ownerId);
     },
 
-    createWorkspace(data: WorkspaceCreateDTO): Promise<Workspace> {
-        return WorkspaceRepository.create(data);
+    async createWorkspace(data: WorkspaceCreateDTO): Promise<Workspace> {
+        const workspace = await WorkspaceRepository.create(data); 
+        const member = await MemberService.addMember({
+            userId: data.ownerId,
+            workspaceId: workspace.id,
+            role: "owner"
+        });
+        console.log(member)
+        return workspace;
     },
 
     updateWorkspace(id: string, data: Partial<WorkspaceUpdateDTO>): Promise<Workspace | null> {

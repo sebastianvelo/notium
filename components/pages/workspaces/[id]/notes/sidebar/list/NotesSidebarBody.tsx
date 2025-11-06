@@ -16,7 +16,7 @@ const NotesSidebarBody: React.FC<NotesSidebarBodyProps> = ({ myNotes, sharedNote
     return (
         <div className="flex-1 overflow-y-auto">
             <NotesSidebarListSection
-                title={I18n.WORKSPACE.NOTES.MY}
+                title={I18n.WORKSPACE.NOTES.ALL}
                 notes={filteredNotes}
                 selectedNote={selectedNote}
                 setSelectedNote={setSelectedNote}

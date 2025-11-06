@@ -1,7 +1,7 @@
+import { APIResponse, ParamsId } from "@/app/api/types";
 import WorkspaceService from "@/lib/service/WorkspaceService";
 import Workspace from "@/types/model/Workspace";
 import { NextResponse } from "next/server";
-import { APIResponse, ParamsId } from "../../types";
 
 export async function GET(request: Request, { params }: ParamsId): APIResponse<Workspace> {
     const { id } = await params;

@@ -17,13 +17,16 @@ const MemberService = {
         return MemberRepository.findByUserInWorkspace(userId, workspaceId);
     },
 
-    async addMember(data: Omit<Member, "id">): Promise<Member> {
+    async addMember(data: Omit<Member, "id" | "joinedAt">): Promise<Member> {
         const existing = await MemberRepository.findByUserInWorkspace(
             data.userId,
             data.workspaceId
         );
         if (existing) throw new Error("User is already a member of this workspace");
-        return MemberRepository.create(data);
+        return MemberRepository.create({
+            ...data,
+            joinedAt: new Date().toISOString(),
+        });
     },
 
     async updateMemberRole(id: string, role: Member["role"]): Promise<Member | null> {

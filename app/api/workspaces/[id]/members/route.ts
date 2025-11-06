@@ -43,7 +43,6 @@ export async function POST(request: Request, { params }: ParamsId): APIResponse<
             userId,
             workspaceId: id,
             role: role ?? "viewer",
-            joinedAt: new Date().toISOString(),
         });
 
         return NextResponse.json(newMember, { status: 201 });

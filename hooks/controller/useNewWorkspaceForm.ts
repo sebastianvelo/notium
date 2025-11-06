@@ -27,7 +27,7 @@ const useNewWorkspaceForm = (): UseNewWorkspaceFormReturn => {
             const res = await fetch(API_ROUTES.WORKSPACES.ROOT, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, description, ownerId: "" })
+                body: JSON.stringify({ name, description, ownerId: "usr_1" })
             });
             if (!res.ok) throw new Error("Failed");
             await res.json();
