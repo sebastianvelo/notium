@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
 import Text from "@/components/ui/atoms/text/Text";
+import API_ROUTES from "@/constants/api.routes";
 import ROUTES from "@/constants/routes";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import LanguageSelector from "./actions/LanguageSelector";
 import ThemeToggleButton from "./actions/ThemeToggleButton";
 import Brand from "./Brand";
@@ -20,7 +21,7 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await fetch("/api/auth/me");
+                const res = await fetch(API_ROUTES.AUTH.ME);
                 if (res.ok) {
                     const userData = await res.json();
                     setUser(userData);
@@ -37,7 +38,7 @@ const Navbar: React.FC = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await fetch("/api/auth/logout", { method: "POST" });
+            const res = await fetch(API_ROUTES.AUTH.LOGOUT, { method: "POST" });
             if (res.ok) {
                 setUser(null);
                 window.location.href = ROUTES.HOME;

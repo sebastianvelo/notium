@@ -4,6 +4,7 @@ import Input from "@/components/ui/atoms/input/Input";
 import Textarea from "@/components/ui/atoms/textarea/Textarea";
 import Title from "@/components/ui/atoms/title/Title";
 import Card, { CardBody, CardHeader } from "@/components/ui/molecules/card/Card";
+import API_ROUTES from "@/constants/api.routes";
 import ROUTES from "@/constants/routes";
 import I18n from "@/context/language/common/I18nKeys";
 import useI18N from "@/hooks/app/useI18N";
@@ -22,14 +23,14 @@ const NewWorkspaceLayoutForm: React.FC = () => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const res = await fetch("/api/workspaces", {
+            const res = await fetch(API_ROUTES.WORKSPACES.ROOT, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, description, ownerId: "" })
             });
             if (!res.ok) throw new Error("Failed");
             await res.json();
-            mutate("/api/workspaces");
+            mutate(API_ROUTES.WORKSPACES.ROOT);
             router.push(ROUTES.WORKSPACES);
         } catch (err) {
             console.error(err);

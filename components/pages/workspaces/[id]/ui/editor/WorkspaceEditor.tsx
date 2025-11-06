@@ -1,8 +1,8 @@
-import { useState } from "react";
-import WorkspaceService from "@/lib/service/WorkspaceService";
+import API_ROUTES from "@/constants/api.routes";
 import Workspace from "@/types/Workspace";
-import WorkspaceEditorView from "./WorkspaceEditorView";
+import { useState } from "react";
 import { mutate } from "swr";
+import WorkspaceEditorView from "./WorkspaceEditorView";
 
 interface WorkspaceEditorProps {
     workspace: Workspace;
@@ -18,7 +18,7 @@ const WorkspaceEditor: React.FC<WorkspaceEditorProps> = ({ workspace }) => {
         if (!name.trim()) return;
         setIsLoading(true);
         try {
-            const res = await fetch(`/api/workspaces/${workspace.id}`, {
+            const res = await fetch(API_ROUTES.WORKSPACES.ID(workspace.id), {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: name.trim(), description: description.trim() })
@@ -27,9 +27,8 @@ const WorkspaceEditor: React.FC<WorkspaceEditorProps> = ({ workspace }) => {
             if (!res.ok) throw new Error("Update failed");
             const updated = await res.json();
 
-            // actualiza caches relevantes
-            await mutate("/api/workspaces"); // lista
-            await mutate(`/api/workspaces/${workspace.id}`); // detail
+            await mutate(API_ROUTES.WORKSPACES.ROOT); 
+            await mutate(API_ROUTES.WORKSPACES.ID(workspace.id));
 
             setEditMode(false);
         } catch (error) {
