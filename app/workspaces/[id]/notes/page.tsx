@@ -3,7 +3,7 @@ import WorkspacesNotesLayout from "@/components/pages/workspaces/[id]/notes/Work
 import useWorkspace from "@/hooks/data/useWorkspace";
 import useWorkspaceNotes from "@/hooks/data/useWorkspaceNotes";
 
-export default function NotesPage() {
+const WorkspaceNotesPage = () => {
     const { workspace } = useWorkspace();
     const notesData = useWorkspaceNotes({ workspaceId: workspace.id });
 
@@ -12,3 +12,5 @@ export default function NotesPage() {
 
     return <WorkspacesNotesLayout {...notesData} />;
 }
+
+export default WorkspaceNotesPage;
