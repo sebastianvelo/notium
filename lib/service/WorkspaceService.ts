@@ -27,6 +27,10 @@ const WorkspaceService = {
     deleteWorkspace(id: string): Promise<boolean> {
         return WorkspaceRepository.delete(id);
     },
+
+    addMember(id: string, userId: string, role: string): any { //TODO FIX THIS
+        return "";
+    }
 };
 
 export default WorkspaceService;

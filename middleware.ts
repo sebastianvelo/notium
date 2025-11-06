@@ -31,10 +31,6 @@ export async function middleware(request: NextRequest) {
 
     const { data: { user } } = await supabase.auth.getUser();
 
-    // Redirigir a login si no está autenticado
-    if (!user && !request.nextUrl.pathname.startsWith("/login")) {
-        return NextResponse.redirect(new URL("/login", request.url))
-    }
 
     // Redirigir a home si está autenticado e intenta ir a login
     if (user && request.nextUrl.pathname.startsWith("/login")) {

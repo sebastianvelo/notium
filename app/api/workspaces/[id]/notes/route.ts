@@ -1,8 +1,10 @@
-import { NextResponse } from "next/server";
+import { ParamsId } from "@/app/api/types";
 import NoteService from "@/lib/service/NoteService";
+import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-    const workspaceId = params.id;
+export async function GET(request: Request, { params }: ParamsId) {
+    const { id: workspaceId } = await params;
+    
     try {
         const notes = await NoteService.getNotesByWorkspace(workspaceId);
         return NextResponse.json(notes);
@@ -11,8 +13,9 @@ export async function GET(request: Request, { params }: { params: { id: string }
     }
 }
 
-export async function POST(request: Request, { params }: { params: { id: string } }) {
-    const workspaceId = params.id;
+export async function POST(request: Request, { params }: ParamsId) {
+    const { id: workspaceId } = await params;
+
     try {
         const body = await request.json();
         const newNote = await NoteService.createNote({ ...body, workspaceId });

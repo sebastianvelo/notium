@@ -19,7 +19,7 @@ const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, notes, selected
     );
 
     const myNotes = filteredNotes.filter(note => note.createdBy === "usr_1");
-    const sharedNotes = filteredNotes.filter(note => note.sharedWith.length > 0);
+    const sharedNotes = filteredNotes.filter(note => note.sharedWith?.length > 0);
 
     return (
         <div className="w-80 border-r border-secondary-200 dark:border-secondary-900 flex flex-col">
