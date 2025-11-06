@@ -6,7 +6,7 @@ const GoogleSignInButton: React.FC = () => {
         const supabase = createClient();
 
         await supabase.auth.signInWithOAuth({
-            provider: 'google',
+            provider: "google",
             options: {
                 redirectTo: `${window.location.origin}/auth/callback`,
             },

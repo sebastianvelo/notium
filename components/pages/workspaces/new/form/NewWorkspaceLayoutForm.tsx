@@ -7,9 +7,9 @@ import Card, { CardBody, CardHeader } from "@/components/ui/molecules/card/Card"
 import ROUTES from "@/constants/routes";
 import I18n from "@/context/language/common/I18nKeys";
 import useI18N from "@/hooks/app/useI18N";
-import WorkspaceService from "@/lib/service/WorkspaceService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { mutate } from "swr";
 
 const NewWorkspaceLayoutForm: React.FC = () => {
     const router = useRouter();
@@ -21,11 +21,23 @@ const NewWorkspaceLayoutForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        WorkspaceService.createWorkspace({
-            name, description, ownerId: ""
-        });
-        router.push(ROUTES.WORKSPACES);
+        try {
+            const res = await fetch("/api/workspaces", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, description, ownerId: "" })
+            });
+            if (!res.ok) throw new Error("Failed");
+            await res.json();
+            mutate("/api/workspaces");
+            router.push(ROUTES.WORKSPACES);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
+
 
     return (
         <Card>
