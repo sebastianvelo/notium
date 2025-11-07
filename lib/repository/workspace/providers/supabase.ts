@@ -40,6 +40,41 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
         return this.mapToWorkspaces(data || []);
     }
 
+    /**
+     * Encuentra todos los workspaces donde el usuario es miembro
+     * (incluyendo aquellos donde es owner, ya que también es miembro)
+     */
+    async findByUserId(userId: string): Promise<Workspace[]> {
+        const supabase = await createClient();
+
+        console.log("🔍 [Repository] Buscando workspaces para userId:", userId);
+
+        // Join con members para obtener workspaces donde el usuario es miembro
+        const { data, error } = await supabase
+            .from("members")
+            .select(`
+                workspaces (*)
+            `)
+            .eq("userId", userId);
+
+        if (error) {
+            console.error("❌ Error buscando workspaces por userId:", error);
+            throw error;
+        }
+
+        console.log("📦 Datos crudos:", JSON.stringify(data, null, 2));
+
+        // Extraer los workspaces del resultado del join
+        const workspaces = data
+            ?.map(item => item.workspaces)
+            .filter(Boolean) // Filtrar nulls/undefined
+            .map(ws => this.mapToWorkspace(ws as any)) || [];
+
+        console.log("✅ Workspaces encontrados:", workspaces.length);
+
+        return workspaces;
+    }
+
     async create(workspaceData: WorkspaceCreateDTO): Promise<Workspace> {
         const supabase = await createClient();
         const { data, error } = await supabase

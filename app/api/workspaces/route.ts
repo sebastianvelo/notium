@@ -12,7 +12,7 @@ export async function GET(): APIResponse<WorkspaceItemView[]> {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-        const workspaces: WorkspaceItemView[] = await WorkspaceService.getWorkspacesViewByOwner(user.id);
+        const workspaces: WorkspaceItemView[] = await WorkspaceService.getWorkspacesViewByUserId(user.id);
         return NextResponse.json(workspaces);
     } catch (err) {
         return NextResponse.json({ error: "Failed to fetch" }, { status: 500 });

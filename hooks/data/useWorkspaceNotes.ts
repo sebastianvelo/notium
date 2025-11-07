@@ -29,17 +29,60 @@ const useWorkspaceNotes = () => {
   const selectedNote = sections?.flatMap(s => s.notes).find(n => n.id === selectedNoteId) || null;
 
   const createNote = useCallback(async () => {
-    const res = await fetch(API_ROUTES.WORKSPACES.NOTES(workspace.id), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: "", content: "" })
-    });
-    if (!res.ok) throw new Error("Failed to create");
-    const newNote: Note = await res.json();
+    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    console.log("🔵 [Hook] Creando nota");
+    console.log("  ├─ Workspace ID:", workspace.id);
+    console.log("  └─ URL:", API_ROUTES.WORKSPACES.NOTES(workspace.id));
 
-    await mutateSections();
-    setSelectedNoteId(newNote.id);
-    return newNote;
+    try {
+      const res = await fetch(API_ROUTES.WORKSPACES.NOTES(workspace.id), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: "", content: "" })
+      });
+
+      console.log("📥 Response recibida:");
+      console.log("  ├─ Status:", res.status);
+      console.log("  ├─ Status Text:", res.statusText);
+      console.log("  └─ OK:", res.ok);
+
+      if (!res.ok) {
+        // Intentar leer el body del error
+        const contentType = res.headers.get("content-type");
+        let errorData;
+
+        try {
+          if (contentType?.includes("application/json")) {
+            errorData = await res.json();
+            console.error("❌ Error JSON:", JSON.stringify(errorData, null, 2));
+          } else {
+            errorData = await res.text();
+            console.error("❌ Error Text:", errorData.substring(0, 500));
+          }
+        } catch (parseError) {
+          console.error("❌ No se pudo parsear el error:", parseError);
+        }
+
+        throw new Error(`Failed to create note: ${res.status} ${res.statusText}`);
+      }
+
+      const newNote: Note = await res.json();
+      console.log("✅ Nota creada:", JSON.stringify(newNote, null, 2));
+      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+      await mutateSections();
+      setSelectedNoteId(newNote.id);
+      return newNote;
+
+    } catch (error) {
+      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      console.error("❌ [Hook] Error en createNote:");
+      console.error("  ├─ Type:", error instanceof Error ? error.constructor.name : typeof error);
+      console.error("  ├─ Message:", error instanceof Error ? error.message : String(error));
+      console.error("  └─ Stack:", error instanceof Error ? error.stack : "N/A");
+      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+      throw error;
+    }
   }, [workspace.id, mutateSections]);
 
   const updateNote = useCallback(async (noteId: string, data: NoteUpdateDTO) => {

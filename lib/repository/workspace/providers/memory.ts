@@ -17,6 +17,10 @@ class WorkspaceRepositoryMemory implements IWorkspaceRepository {
         return WorkspacesDB.filter((w) => w.ownerId === ownerId);
     }
 
+    async findByUserId(userId: string): Promise<Workspace[]> {
+        return WorkspacesDB.filter((w) => w.ownerId === userId);
+    }
+
     async create(data: WorkspaceCreateDTO): Promise<Workspace> {
         const newWorkspace: Workspace = {
             id: `ws_${WorkspacesDB.length + 1}`,

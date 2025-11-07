@@ -19,8 +19,16 @@ const WorkspaceService = {
         return WorkspaceRepository.findByOwnerId(ownerId);
     },
 
+    /**
+     * Obtiene todos los workspaces donde el usuario es miembro
+     * (incluyendo aquellos donde es owner)
+     */
+    getWorkspacesByUserId(userId: string): Promise<Workspace[]> {
+        return WorkspaceRepository.findByUserId(userId);
+    },
+
     async createWorkspace(data: WorkspaceCreateDTO): Promise<Workspace> {
-        const workspace = await WorkspaceRepository.create(data); 
+        const workspace = await WorkspaceRepository.create(data);
         await MemberService.addMember({
             userId: data.ownerId,
             workspaceId: workspace.id,
@@ -50,7 +58,13 @@ const WorkspaceService = {
         const workspaces = await WorkspaceRepository.findByOwnerId(ownerId);
         return workspaces.map(toWorkspaceItemView);
     },
+
+    async getWorkspacesViewByUserId(userId: string): Promise<WorkspaceItemView[]> {
+        console.log("🔍 [Service] Obteniendo workspaces para userId:", userId);
+        const workspaces = await WorkspaceRepository.findByUserId(userId);
+        console.log("✅ [Service] Workspaces encontrados:", workspaces.length);
+        return workspaces.map(toWorkspaceItemView);
+    },
 };
 
 export default WorkspaceService;
-
