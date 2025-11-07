@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/sebastianvelo/notium)
+
 # Notium - Collaborative Note Taking  
   
 Notium es una plataforma colaborativa de toma de notas que permite a los equipos organizar su trabajo dentro de espacios de trabajo compartidos. [1](#0-0)   
