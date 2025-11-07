@@ -1,4 +1,5 @@
 import { APIResponse, ParamsId } from "@/app/api/types";
+import { createClient } from "@/lib/db/supabase/SupabaseServer";
 import MemberService from "@/lib/service/MemberService";
 import WorkspaceService from "@/lib/service/WorkspaceService";
 import Member from "@/types/model/Member";
@@ -15,7 +16,10 @@ export async function GET(request: Request, { params }: ParamsId): APIResponse<M
             return NextResponse.json({ error: "Workspace not found" }, { status: 404 });
         }
 
-        const members: MemberItemView[] = await MemberService.getMembersViewsByWorkspace(id);
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        const members: MemberItemView[] = await MemberService.getMembersViewsByWorkspace(id, user.id);
         return NextResponse.json(members);
     } catch (err) {
         console.error(err);

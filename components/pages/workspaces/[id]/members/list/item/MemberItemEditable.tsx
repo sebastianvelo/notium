@@ -14,7 +14,7 @@ const MemberItemEditable: React.FC<MemberItemEditableProps> = ({ member }) => {
     const { updateRole, removeMember, isLoading, availableRoles: options } = useMemberActions();
 
     return (
-        <div className="flex w-full  h-full">
+        <div className="flex w-full h-full">
             <MemberItem member={member} />
             <div className="flex flex-col bg-white dark:bg-black items-center  border border-secondary-200 dark:border-secondary-900 rounded-lg">
                 <Select name={`${member.id}-role`} value={member.role} options={options} onChange={(e) => updateRole(member.id, e.target.value as MemberRole)} />

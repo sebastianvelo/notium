@@ -13,8 +13,12 @@ const WorkspaceMembersLayoutList: React.FC<WorkspaceMembersLayoutListProps> = ({
     const Item = loggedInRole?.isOwner ? MemberItemEditable : MemberItem;
 
     return members.length > 0 ? (
-        <div className="space-y-3">
-            {members.map(member => <Item key={member.id} member={member} />)}
+        <div className="space-y-2">
+            {members.map(member => member.isLoggedIn ? (
+                <MemberItem key={member.id} member={member} />
+            ) : (
+                <Item key={member.id} member={member} />
+            ))}
         </div>
     ) : <WorkspaceMembersEmptyList />;
 };

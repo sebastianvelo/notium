@@ -11,9 +11,9 @@ const Navbar: React.FC = () => {
                 <div className="flex justify-between items-center h-16">
                     <Brand />
                     <div className="flex items-center space-x-4">
+                        <UserSection />
                         <LanguageSelector />
                         <ThemeToggleButton />
-                        <UserSection />
                     </div>
                 </div>
             </div>

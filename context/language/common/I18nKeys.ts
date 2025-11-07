@@ -1,4 +1,8 @@
 const I18n = {
+    NAVBAR: {
+        SIGN_IN: "sign-in.button",
+        SIGN_OUT: "sign-out.button",
+    },
     WORKSPACES: {
         LOADING: "workspaces.loading",
         HEADER: {

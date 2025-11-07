@@ -6,6 +6,7 @@ interface MemberItemView {
     avatar?: string;
     role: string;
     color: string;
+    isLoggedIn?: boolean;
 }
 
 export default MemberItemView;

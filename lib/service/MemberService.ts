@@ -37,7 +37,7 @@ const MemberService = {
         return MemberRepository.delete(id);
     },
 
-    async getMembersViewsByWorkspace(workspaceId: string): Promise<MemberItemView[]> {
+    async getMembersViewsByWorkspace(workspaceId: string, loggedInUserId: string): Promise<MemberItemView[]> {
         const members = await this.getMembersByWorkspace(workspaceId);
 
         const users = await Promise.all(
@@ -48,7 +48,7 @@ const MemberService = {
             .map((member, index) => {
                 const user = users[index];
                 if (!user) return null; 
-                return toMemberView(member, user);
+                return toMemberView(member, user, loggedInUserId);
             })
             .filter(Boolean) as MemberItemView[];
     },
