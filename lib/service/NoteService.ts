@@ -60,9 +60,8 @@ const NoteService = {
         return NoteRepository.unshareWithUser(noteId, userId);
     },
 
-    async getNotesView(workspaceId: string, searchQuery: string = ''): Promise<NotesListSectionView[]> {
+    async getNotesView(workspaceId: string, userId: string, searchQuery: string = ''): Promise<NotesListSectionView[]> {
         const notes: Note[] = await this.getNotesByWorkspace(workspaceId);
-        const currentUserId = "c18d6a34-31cc-48d6-b93b-5155c9a9d884";
 
         // Filtrar por búsqueda
         const filtered = notes.filter(note =>
@@ -71,8 +70,8 @@ const NoteService = {
         );
 
         // Agrupar
-        const myNotes = filtered.filter(n => n.createdBy === currentUserId);
-        const sharedNotes = filtered.filter(n => n.sharedWith?.includes(currentUserId));
+        const myNotes = filtered.filter(n => n.createdBy === userId);
+        const sharedNotes = filtered.filter(n => n.sharedWith?.includes(userId));
 
         return [
             {

@@ -15,7 +15,20 @@ export async function GET(request: Request, { params }: ParamsId): APIResponse<N
         console.log("  ├─ Workspace ID:", workspaceId);
         console.log("  └─ Query:", query);
 
-        const sections = await NoteService.getNotesView(workspaceId, query);
+        const { createClient } = await import("@/lib/db/supabase/SupabaseServer");
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
+            console.error("❌ Usuario no autenticado:", authError);
+            console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            return NextResponse.json(
+                { error: "No autorizado" },
+                { status: 401 }
+            );
+        }
+        
+        const sections = await NoteService.getNotesView(workspaceId, user?.id, query);
 
         console.log("✅ Notas obtenidas:", sections.length, "secciones");
         console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -63,7 +76,6 @@ export async function POST(request: Request, { params }: ParamsId): APIResponse<
         const body = await request.json();
         console.log("📦 Body recibido:", JSON.stringify(body, null, 2));
 
-        // Validación básica
         if (body.title === undefined) {
             console.log("⚠️ Warning: title no está definido, usando string vacío");
         }
@@ -74,7 +86,7 @@ export async function POST(request: Request, { params }: ParamsId): APIResponse<
         const noteData = {
             ...body,
             workspaceId,
-            createdBy: user.id  // ← AGREGADO: Usuario que crea la nota
+            createdBy: user.id
         };
 
         console.log("📝 Datos para crear nota:", JSON.stringify(noteData, null, 2));
