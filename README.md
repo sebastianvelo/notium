@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
+# Notium - Collaborative Note Taking  
+  
+Notium es una plataforma colaborativa de toma de notas que permite a los equipos organizar su trabajo dentro de espacios de trabajo compartidos. [1](#0-0)   
+  
+## 🚀 Características Principales  
+  
+- **Workspaces Colaborativos**: Crea y gestiona espacios de trabajo compartidos con tu equipo<cite />  
+- **Notas Organizadas**: Crea, edita y organiza notas dentro de cada workspace [2](#0-1)   
+- **Control de Acceso Basado en Roles**: Sistema RBAC con tres roles (owner, editor, viewer)<cite />  
+- **Autenticación OAuth**: Inicio de sesión con Google mediante Supabase Auth [3](#0-2)   
+- **Interfaz Moderna**: UI responsive con Tailwind CSS y modo oscuro<cite />  
+- **Internacionalización**: Soporte multiidioma (inglés y español)<cite />  
+  
+## 🛠️ Stack Tecnológico  
+  
+### Frontend  
+- **Next.js 14** - Framework React con App Router  
+- **React 18** - Biblioteca de componentes UI  
+- **TypeScript** - Desarrollo type-safe  
+- **Tailwind CSS** - Estilos utility-first  
+- **SWR** - Data fetching y caché [4](#0-3)   
+  
+### Backend  
+- **Next.js API Routes** - Endpoints RESTful  
+- **Supabase** - Base de datos PostgreSQL + autenticación  
+- **Repository Pattern** - Abstracción de acceso a datos  
+- **Service Layer** - Encapsulación de lógica de negocio<cite />  
+  
+## 📦 Instalación  
+  
+```bash  
+# Clonar el repositorio  [header-3](#header-3)
+git clone https://github.com/sebastianvelo/notium.git  
+  
+# Instalar dependencias  [header-4](#header-4)
+npm install  
+  
+# Configurar variables de entorno  [header-5](#header-5)
+cp .env.example .env.local  
+  
+# Ejecutar en desarrollo  [header-6](#header-6)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🗄️ Configuración de Base de Datos
+El proyecto utiliza Supabase como base de datos. Ejecuta el script SQL de configuración: setup.sql:1-60
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-- Ver supabase/setup.sql para el schema completo
+Las tablas principales son:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+users - Usuarios del sistema
+workspaces - Espacios de trabajo
+members - Relación usuarios-workspaces con roles
+notes - Notas dentro de workspaces
+note_shares - Compartir notas entre usuarios
+pending_invitations - Invitaciones pendientes
+🏗️ Arquitectura
+El proyecto sigue una arquitectura en capas:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Client Layer (Browser)  
+    ↓  
+API Layer (Next.js Routes)  
+    ↓  
+Service Layer (Business Logic)  
+    ↓  
+Repository Layer (Data Access)  
+    ↓  
+Data Layer (Supabase)  
+📁 Estructura del Proyecto
+notium/  
+├── app/                    # Next.js App Router  
+│   ├── api/               # API endpoints  
+│   ├── workspaces/        # Páginas de workspaces  
+│   └── login/             # Página de login  
+├── components/            # Componentes React  
+│   ├── layout/           # Componentes de layout  
+│   ├── pages/            # Componentes específicos de página  
+│   └── ui/               # Componentes UI reutilizables  
+├── hooks/                # Custom React hooks  
+│   ├── data/            # Hooks de data fetching  
+│   └── controller/      # Hooks de controlador  
+├── lib/                  # Lógica backend  
+│   ├── service/         # Capa de servicios  
+│   ├── repository/      # Capa de repositorios  
+│   └── db/              # Clientes de base de datos  
+└── types/               # Definiciones TypeScript  
+```<cite />  
+  
+## 🔑 Variables de Entorno  
+  
+```env  
+NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url  
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key  
+🚦 Scripts Disponibles
+npm run dev      # Servidor de desarrollo  
+npm run build    # Build de producción  
+npm run start    # Servidor de producción  
+npm run lint     # Ejecutar linter
