@@ -41,5 +41,8 @@
     "workspace-new.form.description-placeholder": "Descripción opcional del espacio",
     "workspace-new.form.cancel": "Cancelar",
     "workspace-new.form.submit": "Crear espacio",
-    "workspace-new.form.submit-loading": "Creando..."
+    "workspace-new.form.submit-loading": "Creando...",
+    "workspaces.empty.title": "Aún no hay espacios",
+    "workspaces.empty.subtitle": "Crea tu primer espacio para comenzar",
+    "workspaces.empty.button": "Crear espacio"
 }

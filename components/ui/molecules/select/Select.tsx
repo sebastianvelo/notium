@@ -1,3 +1,4 @@
+"use client"
 import useSelectInput, { SelectOption } from "@/hooks/components/useSelectInput";
 import { ChevronDown, ChevronUp } from "lucide-react";
 

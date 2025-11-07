@@ -19,6 +19,11 @@ const I18n = {
         NEW: "workspaces.new",
         CARD: {
             WITHOUT_DESCRIPTION: "workspaces.card.without-description"
+        },
+        EMPTY: {
+            TITLE: "workspaces.empty.title",
+            SUBTITLE: "workspaces.empty.subtitle",
+            BUTTON: "workspaces.empty.button"
         }
     },
     WORKSPACE: {

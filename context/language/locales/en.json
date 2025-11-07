@@ -41,5 +41,8 @@
     "workspace-new.form.description-placeholder": "Optional description of your workspace",
     "workspace-new.form.cancel": "Cancel",
     "workspace-new.form.submit": "Create workspace",
-    "workspace-new.form.submit-loading": "Creating..."
+    "workspace-new.form.submit-loading": "Creating...",
+    "workspaces.empty.title": "No workspaces yet",
+    "workspaces.empty.subtitle": "Create your first workspace to get started",
+    "workspaces.empty.button": "Create workspace"
 }

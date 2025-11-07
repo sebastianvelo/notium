@@ -1,16 +1,20 @@
 import Button from "@/components/ui/atoms/button/Button";
+import Text from "@/components/ui/atoms/text/Text";
+import ROUTES from "@/constants/routes";
+import I18n from "@/context/language/common/I18nKeys";
+import { Folder } from "lucide-react";
 import Link from "next/link";
 
 const WorkspacesEmptyList: React.FC = () => {
     return (
-        <div className="text-center py-12 bg-white dark:bg-black rounded-lg border border-secondary-200 dark:border-secondary-900">
-            <svg className="w-16 h-16 text-secondary-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-            </svg>
-            <h3 className="text-lg font-medium text-secondary-900 mb-2">No workspaces yet</h3>
-            <p className="text-secondary-600 mb-4">Create your first workspace to get started</p>
-            <Link href="/workspaces/new">
-                <Button>Create Workspace</Button>
+        <div className="flex flex-col items-center justify-center space-y-4 py-12 bg-white/60 dark:bg-black/60 rounded-lg border border-secondary-200 dark:border-secondary-900 backdrop-blur-xl">
+            <Folder className="h-32 w-32 text-center text-black/80 dark:text-white/80" />
+            <div>
+                <Text weight="bold" size="lg" align="center" t={I18n.WORKSPACES.EMPTY.TITLE} />
+                <Text align="center" size="sm" t={I18n.WORKSPACES.EMPTY.SUBTITLE} />
+            </div>
+            <Link href={ROUTES.WORKSPACE_NEW}>
+                <Button t={I18n.WORKSPACES.EMPTY.BUTTON} />
             </Link>
         </div>
     );
