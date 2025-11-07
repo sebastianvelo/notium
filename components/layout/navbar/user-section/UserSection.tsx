@@ -1,8 +1,9 @@
 import UserAvatar from "@/components/ui/app/UserAvatar";
 import Button from "@/components/ui/atoms/button/Button";
 import Text from "@/components/ui/atoms/text/Text";
-import Card, { CardBody, CardFooter, CardHeader } from "@/components/ui/molecules/card/Card";
+import Card, { CardFooter, CardHeader } from "@/components/ui/molecules/card/Card";
 import ROUTES from "@/constants/routes";
+import I18n from "@/context/language/common/I18nKeys";
 import useAuth from "@/hooks/controller/useAuth";
 import Link from "next/link";
 
@@ -27,9 +28,7 @@ const UserSection: React.FC = () => {
                         <Text size="xs">{user.email}</Text>
                     </CardHeader>
                     <CardFooter className="flex items-center justify-center">
-                        <Button size="sm" onClick={logout} variant="danger">
-                            Sign out
-                        </Button>
+                        <Button size="sm" onClick={logout} variant="danger" t={I18n.NAVBAR.SIGN_OUT} />
                     </CardFooter>
                 </Card>
             </details>
@@ -38,7 +37,7 @@ const UserSection: React.FC = () => {
 
     return (
         <Link href={ROUTES.LOGIN}>
-            <Text>Sign in</Text>
+            <Text size="xs" t={I18n.NAVBAR.SIGN_IN}></Text>
         </Link>
     );
 };

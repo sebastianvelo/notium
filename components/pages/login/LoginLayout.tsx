@@ -1,8 +1,9 @@
 "use client";
-import Brand from "@/components/ui/app/Brand";
 import GoogleSignInButton from "@/components/pages/login/ui/GoogleSignInButton";
+import Brand from "@/components/ui/app/Brand";
 import Text from "@/components/ui/atoms/text/Text";
 import Card, { CardBody, CardFooter, CardHeader } from "@/components/ui/molecules/card/Card";
+import I18n from "@/context/language/common/I18nKeys";
 
 const LoginLayout: React.FC = () => {
     return (
@@ -10,13 +11,13 @@ const LoginLayout: React.FC = () => {
             <Card className="max-w-md" hover>
                 <CardHeader className="space-y-1">
                     <Brand />
-                    <Text weight="bold" t={"Collaborate on notes with your team"} />
+                    <Text weight="bold" t={I18n.LOGIN.DESCRIPTION} />
                 </CardHeader>
                 <CardBody className="space-y-3">
                     <GoogleSignInButton />
                 </CardBody>
                 <CardFooter>
-                    <Text size="xs" t={"By signing in, you agree to our Terms of Service and Privacy Policy"} />
+                    <Text size="xs" t={I18n.LOGIN.DISCLAIMER} />
                 </CardFooter>
             </Card>
         </div>
