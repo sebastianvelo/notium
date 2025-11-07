@@ -17,7 +17,7 @@ export interface NotesSidebarProps {
 
 const NotesSidebar: React.FC<NotesSidebarProps> = ({ createNote, sections, selectedNote, setSelectedNote, searchQuery, setSearchQuery, loggedInRole }) => {
     return (
-        <div className="w-80 border-r border-secondary-200 dark:border-secondary-900 flex flex-col">
+        <div className="max-h-96 overflow-auto md:w-80 border-r border-secondary-200 dark:border-secondary-900 flex flex-col">
             <NotesSidebarActions searchQuery={searchQuery} setSearchQuery={setSearchQuery} createNote={createNote} loggedInRole={loggedInRole} />
             <div className="flex-1 overflow-y-auto">
                 {sections.map((section, idx) => (

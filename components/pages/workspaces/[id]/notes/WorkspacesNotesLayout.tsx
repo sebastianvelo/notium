@@ -34,7 +34,7 @@ const WorkspacesNotesLayout: React.FC<WorkspacesNotesLayoutProps> = ({ sections,
     };
 
     return (
-        <div className="flex min-h-96">
+        <div className="md:flex min-h-96">
             <NotesSidebar
                 loggedInRole={loggedInRole}
                 sections={sections}

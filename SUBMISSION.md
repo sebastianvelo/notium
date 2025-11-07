@@ -154,3 +154,11 @@ Middleware de Next.js:
 ## Seguridad
 - Validación de email en invitaciones: No se verifica que el email sea válido
 - Auditoría: No hay logs de acciones sensibles
+
+## Calidad de código
+- Mejoraría las APIs que tienen bastante codigo repetido en las responses para que se vea mas legible
+
+# 🕔 Desgloce de tiempo
+Dejar la app cumpliendo los requisitos mínimos me llevó al menos 7 horas. La mayor parte del tiempo estuve haciendo el backend (lo que está en /lib y /app/api).
+Ahorré algo de tiempo usando componentes que había hecho en otros proyectos (el ThemeToggler, el LanguageSelector, los @/atoms y @/molecules).
+Si tuviera que arrancarlo de vuelta arrancaría directo con supabase en lugar de haber arrancado con los mocks. También hubiera agregado tests.
