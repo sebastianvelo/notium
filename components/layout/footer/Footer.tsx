@@ -13,7 +13,6 @@ const Footer: React.FC = () => {
                 <div className="flex flex-row justify-between items-center">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-1 sm:space-y-0 justify-between w-full">
                         <Brand size={"sm"} />
-                        <span className="hidden sm:inline text-primary-400 text-xs">•</span>
                         <div className="flex space-x-6 items-center">
                             {contacts.map(({ id, name, url, Icon }) => (
                                 <Text key={id}>

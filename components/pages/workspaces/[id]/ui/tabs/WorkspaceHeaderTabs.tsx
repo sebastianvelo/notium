@@ -6,7 +6,7 @@ import useWorkspace from "@/hooks/data/useWorkspace";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const getTabStyle = (isActive: boolean) => `pb-1  ${isActive ? "border-b-2 border-primary-500 font-semibold" : "opacity-70 hover:opacity-100"}`
+const getTabStyle = (isActive: boolean) => `pb-1  ${isActive ? "border-b-4 border-primary-500 font-semibold" : "opacity-70 hover:opacity-100"}`
 
 const getTabs = (workspaceId: string) => [
     {

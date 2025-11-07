@@ -10,9 +10,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: colors.blue,
+                primary: colors.indigo,
                 secondary: colors.slate,
-                accent: colors.indigo,
+                accent: colors.blue,
             },
             fontFamily: {
                 brand: ["var(--font-sora)", "sans-serif"],

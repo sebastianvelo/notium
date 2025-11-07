@@ -11,13 +11,7 @@ interface BrandProps {
 const textSize = {
     sm: "text-lg",
     lg: "text-xl",
-    xl: "text-2xl",
-}
-
-const iconSize = {
-    sm: "h-2 w-2",
-    lg: "h-3 w-3",
-    xl: "h-4 w-4",
+    xl: "text-3xl",
 }
 
 const Brand: React.FC<BrandProps> = ({ size = "xl" }) => {
@@ -26,7 +20,6 @@ const Brand: React.FC<BrandProps> = ({ size = "xl" }) => {
     return (
         <div className="flex items-center group">
             <Link href={ROUTES.WORKSPACES} className="flex items-center space-x-1">
-                <Notebook className={`text-primary-700 dark:text-primary-300 iconSize ${iconSize[size]} group-hover:rotate-90 transition-all duration-300`} />
                 <div>
                     <span className={`${commonStyles} text-primary-600 dark:text-primary-300 italic group-hover:not-italic`}>No</span>
                     <span className={`${commonStyles} text-primary-700 dark:text-primary-400 group-hover:italic`}>ti</span>
