@@ -21,16 +21,16 @@ const iconSize = {
 }
 
 const Brand: React.FC<BrandProps> = ({ size = "xl" }) => {
-    const commonStyles = `${textSize[size]} tracking-widest font-black font-brand`;
+    const commonStyles = `${textSize[size]} tracking-tighter font-black font-brand`;
 
     return (
         <div className="flex items-center group">
             <Link href={ROUTES.WORKSPACES} className="flex items-center space-x-1">
-                <Notebook className={`text-primary-600 dark:text-primary-400 iconSize ${iconSize[size]} group-hover:rotate-90 transition-all duration-300`} />
+                <Notebook className={`text-primary-700 dark:text-primary-300 iconSize ${iconSize[size]} group-hover:rotate-90 transition-all duration-300`} />
                 <div>
                     <span className={`${commonStyles} text-primary-600 dark:text-primary-300 italic group-hover:not-italic`}>No</span>
                     <span className={`${commonStyles} text-primary-700 dark:text-primary-400 group-hover:italic`}>ti</span>
-                    <span className={`${commonStyles} text-primary-800 dark:text-primary-500 group-hover:italic`}>um</span>
+                    <span className={`${commonStyles} text-primary-800 dark:text-primary-500 italic group-hover:not-italic`}>um</span>
                 </div>
             </Link>
         </div>

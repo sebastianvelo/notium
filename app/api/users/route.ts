@@ -1,29 +1,35 @@
-import { createClient } from "@/lib/db/supabase/SupabaseServer";
 import UserService from "@/lib/service/UserService";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     try {
-        const supabase = await createClient();
+        console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        console.log("🔵 [/api/users POST] Inicio");
 
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        const body = await request.json();
+        console.log("📦 Body recibido:", JSON.stringify(body, null, 2));
 
-        if (authError || !user) {
-            console.error("❌ Usuario no autenticado:", authError);
+        // Validación básica
+        if (!body.id || !body.email) {
+            console.log("❌ Validación fallida: id o email faltante");
             return NextResponse.json(
-                { error: "No autorizado" },
-                { status: 401 }
+                { error: "ID y email son requeridos" },
+                { status: 400 }
             );
         }
 
-        const body = await request.json();
+        console.log("🔄 Registrando/actualizando usuario...");
 
         const result = await UserService.registerUser({
+            id: body.id,  // ← Asegúrate de incluir el ID
             email: body.email,
             name: body.name,
             avatar: body.avatar,
         });
+
+        console.log("✅ Usuario procesado exitosamente:", JSON.stringify(result, null, 2));
+        console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
         return NextResponse.json({
             success: true,
@@ -31,9 +37,24 @@ export async function POST(request: NextRequest) {
         });
 
     } catch (error) {
-        console.error("❌ Error interno:", error);
+        console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        console.error("❌ [/api/users POST] Error:");
+        console.error("  ├─ Type:", error instanceof Error ? error.constructor.name : typeof error);
+        console.error("  ├─ Message:", error instanceof Error ? error.message : String(error));
+        console.error("  └─ Stack:", error instanceof Error ? error.stack : "N/A");
+
+        // Si es un error de Supabase, mostrarlo
+        if (error && typeof error === 'object' && 'code' in error) {
+            console.error("  └─ Supabase Error Code:", (error as any).code);
+            console.error("  └─ Supabase Error Details:", (error as any).details);
+        }
+        console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
         return NextResponse.json(
-            { error: "Error interno del servidor" },
+            {
+                error: "Error interno del servidor",
+                details: error instanceof Error ? error.message : String(error)
+            },
             { status: 500 }
         );
     }

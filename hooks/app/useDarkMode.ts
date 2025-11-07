@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const ThemeLS = "theme";
 
 const getInitialTheme = (): boolean => {
-    const storedPreference = localStorage.getItem(ThemeLS);
+    const storedPreference = typeof window === "undefined" ? "dark" : localStorage.getItem(ThemeLS);
     if (storedPreference !== null) {
         return storedPreference === "dark";
     }

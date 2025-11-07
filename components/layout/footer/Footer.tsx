@@ -1,7 +1,7 @@
 "use client"
+import Brand from "@/components/ui/app/Brand";
 import Text from "@/components/ui/atoms/text/Text";
 import useI18N from "@/hooks/app/useI18N";
-import Brand from "../../ui/app/Brand";
 import contacts from "./contacts";
 
 const Footer: React.FC = () => {
@@ -15,9 +15,11 @@ const Footer: React.FC = () => {
                         <Brand size={"sm"} />
                         <span className="hidden sm:inline text-primary-400 text-xs">•</span>
                         <div className="flex space-x-6 items-center">
-                            {contacts.map((link) => (
-                                <Text key={link.name}>
-                                    <link.Icon  {...link} />
+                            {contacts.map(({ id, name, url, Icon }) => (
+                                <Text key={id}>
+                                    <a href={url}>
+                                        <Icon />
+                                    </a>
                                 </Text>
                             ))}
                         </div>

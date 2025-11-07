@@ -37,7 +37,7 @@ class UserRepositorySupabase implements IUserRepository {
         return data;
     }
 
-    async create(userData: Omit<User, "id">): Promise<User> {
+    async create(userData: User): Promise<User> {
         const supabase = await createClient();
         const { data, error } = await supabase
             .from("users")

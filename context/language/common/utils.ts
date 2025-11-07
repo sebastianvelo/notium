@@ -30,6 +30,7 @@ export const getBrowserLanguage = (): Locale => {
 };
 
 export const getInitialLanguage = (defLang?: Locale): Locale => {
+    if (typeof window === "undefined") return "es";
     const storedLang = localStorage.getItem(LangLS) as Locale | null;
 
     const validLanguages: Locale[] = ["en", "es"];
