@@ -23,11 +23,11 @@ CREATE TABLE workspaces (
 -- Tabla de members (relación muchos a muchos entre users y workspaces)
 CREATE TABLE members (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    "userId" UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    "workspaceId" UUID NOT NULL REFERENCES workspaces(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    workspace_id UUID NOT NULL REFERENCES workspaces(id) ON DELETE CASCADE,
     role TEXT NOT NULL,
-    "joinedAt" TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    UNIQUE("userId", "workspaceId")
+    joined_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(user_id, workspace_id)
 );
 
 -- Tabla de notes
@@ -63,15 +63,14 @@ CREATE TABLE pending_invitations (
 
 -- Índices para mejorar performance
 CREATE INDEX idx_workspaces_owner ON workspaces(owner_id);
-CREATE INDEX idx_members_user ON members("userId");
-CREATE INDEX idx_members_workspace ON members("workspaceId");
+CREATE INDEX idx_members_user ON members(user_id);
+CREATE INDEX idx_members_workspace ON members(workspace_id);
 CREATE INDEX idx_notes_workspace ON notes(workspace_id);
 CREATE INDEX idx_notes_creator ON notes(created_by);
 CREATE INDEX idx_note_shares_note ON note_shares(note_id);
 CREATE INDEX idx_note_shares_user ON note_shares(user_id);
 CREATE INDEX idx_pending_invitations_email ON pending_invitations(email);
 CREATE INDEX idx_pending_invitations_workspace ON pending_invitations(workspace_id);
-
 
 -- Función para actualizar updated_at automáticamente
 CREATE OR REPLACE FUNCTION update_updated_at_column()
