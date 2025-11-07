@@ -44,5 +44,13 @@
     "workspace-new.form.submit-loading": "Creando...",
     "workspaces.empty.title": "Aún no hay espacios",
     "workspaces.empty.subtitle": "Crea tu primer espacio para comenzar",
-    "workspaces.empty.button": "Crear espacio"
+    "workspaces.empty.button": "Crear espacio",
+    "workspace.members.invitation.title": "Invitar miembro al espacio",
+    "workspace.members.invitation.email-placeholder": "correo@ejemplo.com",
+    "workspace.members.invitation.role-label": "Rol",
+    "workspace.members.invitation.cancel": "Cancelar",
+    "workspace.members.invitation.submit": "Enviar invitación",
+    "workspace.members.invitation.submit-loading": "Enviando...",
+    "workspace.members.invitation.success": "Invitación enviada correctamente",
+    "workspace.members.invitation.error": "Error al enviar la invitación"
 }

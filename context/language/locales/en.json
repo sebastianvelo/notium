@@ -44,5 +44,13 @@
     "workspace-new.form.submit-loading": "Creating...",
     "workspaces.empty.title": "No workspaces yet",
     "workspaces.empty.subtitle": "Create your first workspace to get started",
-    "workspaces.empty.button": "Create workspace"
+    "workspaces.empty.button": "Create workspace",
+    "workspace.members.invitation.title": "Invite member to workspace",
+    "workspace.members.invitation.email-placeholder": "email@example.com",
+    "workspace.members.invitation.role-label": "Role",
+    "workspace.members.invitation.cancel": "Cancel",
+    "workspace.members.invitation.submit": "Send invitation",
+    "workspace.members.invitation.submit-loading": "Sending...",
+    "workspace.members.invitation.success": "Invitation sent successfully",
+    "workspace.members.invitation.error": "Failed to send invitation"
 }

@@ -1,7 +1,10 @@
 import toMemberView from "@/lib/mapper/toMemberView";
 import MemberRepository from "@/lib/repository/member";
-import Member from "@/types/model/Member";
+import Member, { MemberRole } from "@/types/model/Member";
 import MemberItemView from "@/types/view/MemberItemView";
+import InviteMemberDTO from "../dto/InviteMemberDTO";
+import PendingInvitationRepository from "../repository/pending-invitation";
+import UserRepository from "../repository/user";
 import UserService from "./UserService";
 
 const MemberService = {
@@ -47,11 +50,64 @@ const MemberService = {
         return members
             .map((member, index) => {
                 const user = users[index];
-                if (!user) return null; 
+                if (!user) return null;
                 return toMemberView(member, user, loggedInUserId);
             })
             .filter(Boolean) as MemberItemView[];
     },
+
+    async inviteMember(data: InviteMemberDTO) {
+        console.log("🔍 Buscando usuario con email:", data.email);
+
+        // 1. Verificar si el usuario ya existe
+        const existingUser = await UserRepository.findByEmail(data.email);
+
+        if (existingUser) {
+            console.log("✅ Usuario existe, agregando como member directo");
+
+            // Verificar si ya es miembro
+            const existingMember = await MemberRepository.findByUserInWorkspace(
+                existingUser.id,
+                data.workspaceId
+            );
+
+            if (existingMember) {
+                throw new Error("Este usuario ya es miembro del workspace");
+            }
+
+            return await MemberRepository.create({
+                userId: existingUser.id,
+                workspaceId: data.workspaceId,
+                role: data.role as MemberRole,
+                joinedAt: Date.now().toLocaleString()
+            });
+        } else {
+            console.log("⏳ Usuario no existe, creando invitación pendiente");
+
+            // Crear invitación pendiente
+            return await PendingInvitationRepository.create({
+                workspaceId: data.workspaceId,
+                email: data.email,
+                role: data.role,
+                invitedBy: data.invitedBy,
+            });
+        }
+    },
+    async processPendingInvitations(userId: string, email: string) {
+        const pendingInvites = await PendingInvitationRepository.findByEmail(email);
+
+        for (const invite of pendingInvites) {
+            await MemberRepository.create({
+                userId: userId,
+                workspaceId: invite.workspaceId,
+                role: invite.role as MemberRole,
+                joinedAt: Date.now().toLocaleString()
+            });
+            await PendingInvitationRepository.delete(invite.id);
+        }
+
+        console.log(`✅ Procesadas ${pendingInvites.length} invitaciones pendientes`);
+    }
 };
 
 export default MemberService;

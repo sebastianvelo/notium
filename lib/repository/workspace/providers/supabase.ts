@@ -55,7 +55,7 @@ class WorkspaceRepositorySupabase implements IWorkspaceRepository {
             .select(`
                 workspaces (*)
             `)
-            .eq("userId", userId);
+            .eq("user_id", userId);
 
         if (error) {
             console.error("❌ Error buscando workspaces por userId:", error);

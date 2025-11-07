@@ -3,10 +3,10 @@ import WorkspaceMembersLayoutList, { WorkspaceMembersLayoutListProps } from "./l
 
 interface WorkspaceMembersLayoutProps extends WorkspaceMembersLayoutHeaderProps, WorkspaceMembersLayoutListProps { }
 
-const WorkspaceMembersLayout: React.FC<WorkspaceMembersLayoutProps> = ({ members, onInvite, loggedInRole }) => {
+const WorkspaceMembersLayout: React.FC<WorkspaceMembersLayoutProps> = ({ members, loggedInRole }) => {
     return (
         <div>
-            <WorkspaceMembersLayoutHeader onInvite={onInvite} loggedInRole={loggedInRole} />
+            <WorkspaceMembersLayoutHeader loggedInRole={loggedInRole} />
             <WorkspaceMembersLayoutList members={members} loggedInRole={loggedInRole} />
         </div>
     );

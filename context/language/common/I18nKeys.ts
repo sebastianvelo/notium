@@ -53,7 +53,17 @@ const I18n = {
             BUTTON: "workspace.members.button",
             TITLE: "workspace.members.title",
             INVITE: "workspace.members.invite",
-            EMPTY: "workspace.members.empty"
+            EMPTY: "workspace.members.empty",
+            INVITATION: {
+                TITLE: "workspace.members.invitation.title",
+                EMAIL_PLACEHOLDER: "workspace.members.invitation.email-placeholder",
+                ROLE_LABEL: "workspace.members.invitation.role-label",
+                CANCEL: "workspace.members.invitation.cancel",
+                SUBMIT: "workspace.members.invitation.submit",
+                SUBMIT_LOADING: "workspace.members.invitation.submit-loading",
+                SUCCESS: "workspace.members.invitation.success",
+                ERROR: "workspace.members.invitation.error"
+            }
         },
         ADMIN: {
             BUTTON: "workspace.admin.button"

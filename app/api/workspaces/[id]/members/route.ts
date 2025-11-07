@@ -2,7 +2,6 @@ import { APIResponse, ParamsId } from "@/app/api/types";
 import { createClient } from "@/lib/db/supabase/SupabaseServer";
 import MemberService from "@/lib/service/MemberService";
 import WorkspaceService from "@/lib/service/WorkspaceService";
-import Member from "@/types/model/Member";
 import Workspace from "@/types/model/Workspace";
 import MemberItemView from "@/types/view/MemberItemView";
 import { NextResponse } from "next/server";
@@ -27,37 +26,50 @@ export async function GET(request: Request, { params }: ParamsId): APIResponse<M
     }
 }
 
-export async function POST(request: Request, { params }: ParamsId): APIResponse<Member> {
-    const { id } = await params;
+export async function POST(request: Request, { params }: ParamsId) {
+    const { id: workspaceId } = await params;
 
     try {
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
+            return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+        }
+
         const body = await request.json();
-        const { userId, role } = body;
 
-        if (!userId) {
-            return NextResponse.json({ error: "userId is required" }, { status: 400 });
+        // Validaciones
+        if (!body.email || !body.role) {
+            return NextResponse.json(
+                { error: "Email y role son requeridos" },
+                { status: 400 }
+            );
         }
 
-        const workspace: Workspace | null = await WorkspaceService.getWorkspaceById(id);
-        if (!workspace) {
-            return NextResponse.json({ error: "Workspace not found" }, { status: 404 });
-        }
+        const member = await MemberService.getMembersByWorkspace(workspaceId);
 
-        const newMember: Member = await MemberService.addMember({
-            userId,
-            workspaceId: id,
-            role: role ?? "viewer",
+        const result = await MemberService.inviteMember({
+            workspaceId,
+            email: body.email,
+            role: body.role,
+            invitedBy: user.id,
         });
 
-        return NextResponse.json(newMember, { status: 201 });
-    } catch (err: any) {
-        console.error(err);
+        return NextResponse.json({
+            success: true,
+            message: result.id
+                ? "Miembro agregado exitosamente"
+                : "Invitación enviada (usuario se agregará al registrarse)",
+            data: result
+        });
 
-        if (err.message?.includes("already")) {
-            return NextResponse.json({ error: err.message }, { status: 409 }); // conflict
-        }
-
-        return NextResponse.json({ error: "Failed to add member" }, { status: 500 });
+    } catch (error) {
+        console.error("Error invitando miembro:", error);
+        return NextResponse.json(
+            { error: error instanceof Error ? error.message : "Error interno" },
+            { status: 500 }
+        );
     }
 }
 

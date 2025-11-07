@@ -50,6 +50,17 @@ CREATE TABLE note_shares (
     UNIQUE(note_id, user_id)
 );
 
+-- Solo para usuarios que AÚN NO tienen cuenta
+CREATE TABLE pending_invitations (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    workspace_id UUID NOT NULL REFERENCES workspaces(id) ON DELETE CASCADE,
+    email TEXT NOT NULL,
+    role TEXT NOT NULL,
+    invited_by UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(workspace_id, email)
+);
+
 -- Índices para mejorar performance
 CREATE INDEX idx_workspaces_owner ON workspaces(owner_id);
 CREATE INDEX idx_members_user ON members("userId");
@@ -58,6 +69,9 @@ CREATE INDEX idx_notes_workspace ON notes(workspace_id);
 CREATE INDEX idx_notes_creator ON notes(created_by);
 CREATE INDEX idx_note_shares_note ON note_shares(note_id);
 CREATE INDEX idx_note_shares_user ON note_shares(user_id);
+CREATE INDEX idx_pending_invitations_email ON pending_invitations(email);
+CREATE INDEX idx_pending_invitations_workspace ON pending_invitations(workspace_id);
+
 
 -- Función para actualizar updated_at automáticamente
 CREATE OR REPLACE FUNCTION update_updated_at_column()

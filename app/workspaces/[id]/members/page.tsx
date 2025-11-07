@@ -9,7 +9,7 @@ const WorkspaceMembersPage: React.FC = () => {
   if (error) return <div>Error</div>;
   if (!members) return <Loading isLoading />;
 
-  return <WorkspaceMembersLayout members={members} onInvite={() => { }} loggedInRole={loggedInRole} />;
+  return <WorkspaceMembersLayout members={members} loggedInRole={loggedInRole} />;
 };
 
 export default WorkspaceMembersPage;
